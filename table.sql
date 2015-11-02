@@ -7,7 +7,7 @@ CREATE SCHEMA securityRequests;
 
 
 CREATE TABLE user (
-	pawPrintSSO	varchar(26) PRIMARY KEY, #this size may change depending on whether or not it needs to be more than 6 chars
+	pawPrintSSO varchar(26) PRIMARY KEY, #this size may change depending on whether or not it needs to be more than 6 chars
 	EmpID integer(8),
 	fullName varchar(50),
 	title varchar(10),
@@ -39,7 +39,7 @@ INSERT INTO authentication VALUES
 
 
 CREATE TABLE request (
-	submittedBy	varchar(26) REFERENCES securityRequests.user(pawPrintSSO),
+	submittedBy varchar(26) REFERENCES securityRequests.user(pawPrintSSO),
 	dateSubmitted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	isNew boolean DEFAULT TRUE,
 	isCopy boolean DEFAULT FALSE,
