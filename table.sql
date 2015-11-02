@@ -39,7 +39,7 @@ INSERT INTO authentication VALUES
 
 
 CREATE TABLE request (
-	submittedBy	varchar(26) REFERENCES securityRequests.user,
+	submittedBy	varchar(26) REFERENCES securityRequests.user(pawPrintSSO),
 	dateSubmitted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	isNew boolean DEFAULT TRUE,
 	isCopy boolean DEFAULT FALSE,
