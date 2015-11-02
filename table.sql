@@ -12,23 +12,31 @@ CREATE TABLE user (
 	fullName varchar(50),
 	title varchar(10),
 	phoneNumber integer(10),
-	FERPAscore numeric,
+	FERPAscore float(5,2),
 	campusAddress varchar(100),
 	academicOrg varchar(32),
-	isUGRD boolean,
-	isGRAD boolean,
-	isMED boolean,
-	isVETMED boolean,
-	isLAW boolean
+	isUGRD boolean DEFAULT false,
+	isGRAD boolean DEFAULT FALSE,
+	isMED boolean DEFAULT FALSE,
+	isVETMED boolean DEFAULT FALSE,
+	isLAW boolean DEFAULT FALSE
 );
+
+INSERT INTO user VALUES ('abc123', 12345678, 'Testy McTesterson', 'Professor', 5735551234, 89.624, '132 test st', 'Education', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO user VALUES ('def456', 87654321, 'new kid', 'student', 3823332828, 100, '59 main st', 'Engineering', TRUE, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 
 #this table holds the authentication data for our system
 CREATE TABLE authentication (
-	username varchar(26) REFERENCES securityRequests.user(pawPrintSSO),
+	pawPrintSSO varchar(26) REFERENCES securityRequests.user(pawPrintSSO),
 	hashedSalt varchar(40) NOT NULL,
 	hashedPassword varchar(40) NOT NULL,
-	PRIMARY KEY (username) 
+	PRIMARY KEY (pawPrintSSO) 
 );
+
+INSERT INTO authentication VALUES 
+('abc123', 'b295d117135a9763da282e7dae73a5ca7d3e5b11', 'd411466b66bd3688d13f7000612a3e1eb0e6bdfe'), #salt is the sha1 version of "salt" and the password is "password". It has been combined with the hashed salt into "b295d117135a9763da282e7dae73a5ca7d3e5b11password" and then hashed again into "d411466b66bd3688d13f7000612a3e1eb0e6bdfe"
+('def456', 'a415ab5cc17c8c093c015ccdb7e552aee7911aa4', '9d033ea2b2a4387561e2ffdfd6bfe64ab90a4e83'); # the password is test1234
+
 
 CREATE TABLE request (
 	submittedBy	varchar(26) REFERENCES securityRequests.user,
@@ -100,3 +108,6 @@ CREATE TABLE request (
 	advanceStandingReportUpdate boolean DEFAULT FALSE, #update advance standing report
 	PRIMARY KEY(submittedBy, dateSubmitted)
 );
+
+INSERT INTO request VALUES
+('abc123', DEFAULT, DEFAULT, TRUE, DEFAULT, DEFAULT, 'Description here', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
