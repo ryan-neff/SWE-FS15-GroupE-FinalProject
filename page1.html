@@ -1,1 +1,89 @@
-//page 1
+<!DOCTYPE html>
+<html>
+<title>Security Request Form</title>
+<body>
+
+<form action="page2.php">
+
+    <h2>Personal Information</h2>
+    <div id="personal">
+    	Username (Full legal name):<br>
+    	<input type="text" name="username" value="Username">
+    	<br>
+    	Title:<br>
+    	<input type="text" name="title" value="Title">
+    	<Br>
+    	Academic Organization:<br>
+    	<input type="text" name="org" value="Organization">
+    	<br>
+    	Pawprint/SSO:<br>
+    	<input type="text" name="pawprint" value="Pawprint">
+    	<br>
+    	Employee ID:<br>
+    	<input type="text" name="emp_ID" value="Employee ID">
+    	<br>
+    	Campus Address:<br>
+    	<input type="text" name="address" value="Campus address">
+    	<Br>
+    	Phone number: <br>
+    	<input type="text" name="phone" value="999-9999">
+    </div> 
+
+	<br><br>
+  
+  	<div id="request">
+  		Type of request:<Br>
+  		New request:<input type="radio" name="request">
+  		Additional request:<input type="radio" name="request">
+  		<Br> 
+  		Check if Student Worker: <input type="checkbox"> 
+  		<br>
+  		Copy security of Current/Former Staff Member
+  		<Br> 
+  		Current staff member:<input type="radio" name="staff">
+  		Former staff member:<input type="radio" name="staff">
+  		<Br>
+  		Name: <input type="text" name="name2">
+  		<br>
+  		Position: <input type="text" name="position">
+  		<br>
+  		PawPrint/SSO: <input type="text" name="SSO">
+  		<Br>
+  		Employee ID (if available): <input type="text" name="empID"> 
+  
+ 	</div>
+ 
+  	<br><br>
+  
+  	<div id="ferpa">
+  		A passing score of 85% on the FERPA quiz is required before access to student data is approved.
+ 		To request access to the FERPA tutorial and access the FERPA quiz can be done at http://myzoutraining.missouri.edu/ferpareq. php
+ 	 	<br>
+  		FERPA SCORE: <input type="text" name="ferpa">
+  	</div>
+  
+  
+  	<br><br>
+  
+  	<div id="standing">
+
+  		*Select the Academic Career(s). Please check all that apply.
+ 		 <br>
+		  UGRD<input type="checkbox" name="career">
+		  GRAD<input type="checkbox" name="career">
+		  MED<input type="checkbox" name="career">
+		  VET MED<input type="checkbox" name="career">
+		  LAW<input type="checkbox" name="career">
+
+ 		 <Br><Br> 
+ 	</div> 
+	<input type="submit" value="Next">  
+  
+
+ 
+  
+</form>
+
+
+</body>
+</html>
