@@ -15,4 +15,8 @@
 	</div>
 	</div>
 </body>
+ <?php 
+       echo form_open('user_controller');
+
+  ?>
 </html>
