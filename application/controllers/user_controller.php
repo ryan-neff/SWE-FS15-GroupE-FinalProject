@@ -1,4 +1,5 @@
 <?php 
+ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    class User_controller extends CI_Controller{
 
    		 public function __construct()
@@ -8,7 +9,11 @@
        }
 
    		public function index(){
-   			$this->load->view('myZouSecurityRequestForm');
+   			$this->load->view('loginPage');
+
+            if(isset($_POST['submit'])){
+                echo "WE in this";
+            }
    		}
         
         
@@ -30,10 +35,10 @@
          
          //create array to be passed to model for query
          $user_data = array(
-         	'PawprintSSO' = $this->input->post('pawprint'),
-         	'hashedSalt' = $salt;
-         	'hashedPassword' = $pwHash;
-         	)
+         	'PawprintSSO' => $this->input->post('pawprint'),
+         	'hashedSalt' =>$salt,
+         	'hashedPassword' => $pwHash
+         	);
 
 
          //insert user into DB

@@ -3,17 +3,17 @@
 
 	function __construct(){
 		parent::__construct();
-		//$this->load->database();
+		$this->load->database();
 	}
 
 
 	//takes array of user data to be stored in user table in the db
-	public function instert_user($user_data){
-         $this->db->instert('securityRequests.user',$user_data);
+	public function insert_user($user_data){
+         $this->db->insert('securityRequests.user',$user_data);
 	}
 
 	//takes array of user authentication and inserts it into the db
-	public function instert_authentication($auth_data){
+	public function insert_authentication($auth_data){
 		$this->db->insert('securityRequests.authentication',$auth_data);
 	}
 
