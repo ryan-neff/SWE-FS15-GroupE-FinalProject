@@ -247,23 +247,23 @@
 					</td>
 					<td>
 						UGRD
-						<input type="checkbox" class="form-control" id="ugrd" name="ugrd" value="true" <?php echo set_checkbox('career[]', 'ugrd');?> >
+						<input type="checkbox" class="form-control" id="ugrd" name="ugrd" value="true" <?php echo set_checkbox('ugrd', 'true');?> >
 					</td>
 					<td>
 						GRAD
-						<input type="checkbox" class="form-control" id="grad" name="grad" value="true" <?php echo set_checkbox('career[]', 'grad');?> >
+						<input type="checkbox" class="form-control" id="grad" name="grad" value="true" <?php echo set_checkbox('grad', 'true');?> >
 					</td>
 					<td>
 						MED
-						<input type="checkbox" class="form-control" id="med" name="med" value="true" <?php echo set_checkbox('career[]', 'med');?> >
+						<input type="checkbox" class="form-control" id="med" name="med" value="true" <?php echo set_checkbox('med', 'true');?> >
 					</td>
 					<td>
 						VET MED
-						<input type="checkbox" class="form-control" id="vetMed" name="vetMed" value="true" <?php echo set_checkbox('career[]', 'vetMed');?> >
+						<input type="checkbox" class="form-control" id="vetMed" name="vetMed" value="true" <?php echo set_checkbox('vetMed', 'true');?> >
 					</td>
 					<td>
 						LAW
-						<input type="checkbox" class="form-control" id="law" name="law" value="true" <?php echo set_checkbox('career[]', 'law');?> >
+						<input type="checkbox" class="form-control" id="law" name="law" value="true" <?php echo set_checkbox('law', 'true');?> >
 					</td>
 				</tr>
 			</tbody>
