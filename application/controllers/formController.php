@@ -83,7 +83,7 @@ class FormController extends CI_Controller {
 		$isStudentWorker = $this->input->post("student_worker");	
 
 		
-		$accessDesc = $this->input->post("access")
+		$accessDesc = $this->input->post("access");
 		
 		if($this->input->post("basic_inquiry") == "true")
 			$basicInq = 1;
