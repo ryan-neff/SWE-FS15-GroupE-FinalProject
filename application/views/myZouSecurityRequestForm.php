@@ -30,7 +30,7 @@
 </style>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-	<title>myZouSecurity</title>
+	<title>myZou SECURITY Request Form</title>
 	<div class="title">
 		<h1>myZou SECURITY Request Form</h1>
 		<br>
@@ -581,29 +581,33 @@
 			</thead>
 			<tbody>
 				<tr>
-					<th   colspan="3">Check which test(s) access is to be granted</th>
-					<th   colspan="2"><input type="checkbox" name="all_tests" value="ture">Access to All Test Scores</th>
+					<th colspan="3">
+                        Check which test(s) access is to be granted
+                    </th>
+					<th colspan="2">
+                        <input id="all_tests" type="checkbox" name="all_tests" value="ture" class="form-control">Access to All Test Scores
+                    </th>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="act" value="true">ACT</td>
-					<td><input type="checkbox" name="sat" value="true">SAT</td>
-					<td><input type="checkbox" name="gre" value="true">GRE</td>
-					<td><input type="checkbox" name="gmat" value="true">GMAT</td>
-					<td><input type="checkbox" name="tofel" value="true">TOFEL</td>
+					<td><input id="act"    type="checkbox" name="act"      value="true" class="form-control">ACT</td>
+					<td><input id="sat"    type="checkbox" name="sat"      value="true" class="form-control">SAT</td>
+					<td><input id="gre"    type="checkbox" name="gre"      value="true" class="form-control">GRE</td>
+					<td><input id="gmat"   type="checkbox" name="gmat"     value="true" class="form-control">GMAT</td>
+					<td><input id="tofel"  type="checkbox" name="tofel"    value="true" class="form-control">TOFEL</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="ielts" value="ielts">IELTS</td>
-					<td><input type="checkbox" name="lsat" value="lsat">LSAT</td>
-					<td><input type="checkbox" name="mcat" value="mcat">MCAT</td>
-					<td><input type="checkbox" name="ap" value="ap">AP</td>
-					<td><input type="checkbox" name="clep" value="clep">CLEP</td>
+					<td><input id="ielts"  type="checkbox" name="ielts"    value="ielts" class="form-control">IELTS</td>
+					<td><input id="lsat"   type="checkbox" name="lsat"     value="lsat" class="form-control">LSAT</td>
+					<td><input id="mcat"   type="checkbox" name="mcat"     value="mcat" class="form-control">MCAT</td>
+					<td><input id="ap"     type="checkbox" name="ap"       value="ap"   class="form-control">AP</td>
+					<td><input id="clep"   type="checkbox" name="clep"     value="clep" class="form-control">CLEP</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="ged" value="true">GED</td>
-					<td><input type="checkbox" name="millers" value="true">MILLERS</td>
-					<td><input type="checkbox" name="prax" value="true">PRAX</td>
-					<td><input type="checkbox" name="plamu" value="true">PLA-MU</td>
-					<td><input type="checkbox" name="base" value="true">BASE</td>
+					<td><input id="ged"    type="checkbox" name="ged" value="true" class="form-control">GED</td>
+					<td><input id="millers" type="checkbox" name="millers" value="true" class="form-control">MILLERS</td>
+					<td><input id="prax"   type="checkbox" name="prax" value="true" class="form-control">PRAX</td>
+					<td><input id="plamu"  type="checkbox" name="plamu" value="true" class="form-control">PLA-MU</td>
+					<td><input id="base"   type="checkbox" name="base" value="true" class="form-control">BASE</td>
 				</tr>
 			</tbody>
 		</table>
@@ -647,7 +651,7 @@
 						For staff outside of the Cashiers Office
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" name="sf_general_inq" value="true">
+						<input id="sf_general_inq" type="checkbox" class="form-control" name="sf_general_inq" value="true">
 					</td>
 					<td>
 					
@@ -661,9 +665,9 @@
 						Also known as "Cost Centers" (for areas that want to apply charges)
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" name="sf_cash_grp_view" value="true"></td>
+						<input id="sf_cash_grp_view" type="checkbox" class="form-control" name="sf_cash_grp_view" value="true"></td>
 					<td>
-						<input type="checkbox" class="form-control" name="sf_cash_grp__update" value="true">
+						<input id="sf_cash_grp__update" type="checkbox" class="form-control" name="sf_cash_grp__update" value="true">
 					</td>
 				</tr>
 			</tbody>
@@ -708,7 +712,7 @@
 						View a student's financial aid awards and budget
 					</td>
 					<td>
-						<input type="checkbox" name="fa_cash_view" value="true">
+						<input id="fa_cash_view" type="checkbox" name="fa_cash_view" value="true" class="form-control">
 					</td>
 					<td>
 					
@@ -722,7 +726,7 @@
 						Also known as "Cost Centers" (for areas that want to apply charges)
 					</td>
 					<td>
-						<input type="checkbox" name="fa_non_fin_aid_staff" value="true">
+						<input id="fa_non_fin_aid_staff" type="checkbox" name="fa_non_fin_aid_staff" value="true" class="form-control">
 					</td>
 					<td>
 					
@@ -775,44 +779,102 @@
 			<thead>
 			<tbody>
 				<tr>
-					<th>Role</th>
-					<th>View</th>
-					<th>Update</th>
-					<th>Role</th>
-					<th>View</th>
-					<th>Update</th>
+					<th>
+                        Role
+                    </th>
+					<th>
+                        View
+                    </th>
+					<th>
+                        Update
+                    </th>
+					<th>
+                        Role
+                    </th>
+					<th>
+                        View
+                    </th>
+					<th>
+                        Update
+                    </th>
 				</tr>
 				<tr>
 					<td>Immunization view</td>
-					<td><input type="checkbox" name="immunization_view_view" value="true"></input></td>
-					<td><input type="checkbox" name="immunization_view_update" value="true"></input></td>
-					<td>Accommodate (Student Health)</td>
-					<td></td>
-					<td><input type="checkbox" name="accomodate_update" value="true"></input></td>
+					<td>
+                        <input class="form-control" id="immunization_view_view" type="checkbox" name="immunization_view_view" value="true"></input>
+                    </td>
+					<td>
+                        <input class="form-control" id="immunization_view_update" type="checkbox" name="immunization_view_update" value="true"></input>
+                    </td>
+					<td>
+                        Accommodate (Student Health)
+                    </td>
+					<td>
+        
+                    </td>
+					<td>
+                        <input class="form-control" id="accomodate_update" type="checkbox" name="accomodate_update" value="true"></input>
+                    </td>
 				</tr>
 				<tr>
-					<td>Transfer Credit Admission</td>
-					<td><input type="checkbox" name="transfer_view" value="true"></input></td>
-					<td><input type="checkbox" name="transfer_update" value="true"></input></td>
-					<td>Support Staff (Registrar's Office)</td>
-					<td><input type="checkbox" name="support_staff_view" value="true"></input></td>
-					<td><input type="checkbox" name="support_staff_update" value="true"></input></td>
+					<td>
+                        Transfer Credit Admission
+                    </td>
+					<td>
+                        <input class="form-control" id="transfer_view" type="checkbox" name="transfer_view" value="true"></input>
+                    </td>
+					<td>
+                        <input class="form-control" id="transfer_update" type="checkbox" name="transfer_update" value="true"></input>
+                    </td>
+					<td>
+                        Support Staff (Registrar's Office)
+                    </td>
+					<td>
+                        <input class="form-control" id="support_staff_view" type="checkbox" name="support_staff_view" value="true"></input>
+                    </td>
+					<td>
+                        <input class="form-control" id="support_staff_update" type="checkbox" name="support_staff_update" value="true"></input>
+                    </td>
 				</tr>
 				<tr>
-					<td>Relationships</td>
-					<td><input type="checkbox" name="relationship_view" value="true"></input></td>
-					<td><input type="checkbox" name="relationship_update" value="true"></input></td>
-					<td>Advance Standing Report</td>
-					<td><input type="checkbox" name="advance_standing_view" value="true"></input></td>
-					<td><input type="checkbox" name="advance_standing_update" value="true"></input></td>
+					<td>
+                        Relationships
+                    </td>
+					<td>
+                        <input class="form-control" id="relationship_view" type="checkbox" name="relationship_view" value="true"></input>
+                    </td>
+					<td>
+                        <input class="form-control" id="relationship_update" type="checkbox" name="relationship_update" value="true"></input>
+                    </td>
+					<td>
+                        Advance Standing Report
+                    </td>
+					<td>
+                        <input class="form-control" id="advance_standing_view" type="checkbox" name="advance_standing_view" value="true"></input>
+                    </td>
+					<td>
+                        <input class="form-control" id="advance_standing_update" type="checkbox" name="advance_standing_update" value="true"></input>
+                    </td>
 				</tr>
 				<tr>
-					<td>Student Groups</td>
-					<td></td>
-					<td><input type="checkbox" name="student_group_update" value="true"></input></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>
+                        Student Groups
+                    </td>
+					<td>
+                    
+                    </td>
+					<td>
+                        <input class="form-control" id="student_group_update" type="checkbox" name="student_group_update" value="true"></input>
+                    </td>
+					<td>
+
+                    </td>
+					<td>
+
+                    </td>
+					<td>
+
+                    </td>
 				</tr>
 			</tbody>
 		</table>
@@ -820,7 +882,7 @@
 	
 	<hr/>
 	
-		<input type="Submit" class="btn btn-default" value ="Submit" name="Submit">
+	<input id="Submit" type="Submit" class="btn btn-default" value ="Submit" name="Submit">
 	
 	</div>
 	</form>
