@@ -12,9 +12,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $this->load->helper('form');
    			$this->load->view('loginPage');
 
-            if(isset($_POST['submit'])){
-                $this->Usermodel->get_user_data();
-                //echo "WE in this";
+             if(isset($_POST['submit'])){
+               $this->UserModel->get_user_data();
             }
    		}
         
