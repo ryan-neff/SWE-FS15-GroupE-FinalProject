@@ -13,6 +13,10 @@
          $this->db->insert('securityRequests.user',$user_data);
 	}
 
+	public function insert_request($request_data){
+		$this->db->insert('securityRequests.request',$request_data);
+	}
+
 	//takes array of user authentication and inserts it into the db
 	public function insert_authentication($auth_data){
 		$this->db->insert('securityRequests.authentication',$auth_data);
