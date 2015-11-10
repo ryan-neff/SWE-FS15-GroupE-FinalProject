@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Movie Database Thing</title>
+<title>MyZou Security Request Form</title>
 </head>
 <body>
 	<div align="center">
@@ -16,7 +16,10 @@
 	</div>
 </body>
  <?php 
-       echo form_open('user_controller');
+         
+
+
+       echo form_open('user');
 
   ?>
 </html>

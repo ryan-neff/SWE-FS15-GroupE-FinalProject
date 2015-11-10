@@ -1,18 +1,20 @@
 <?php 
- if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-   class User_controller extends CI_Controller{
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+   class User extends CI_Controller{
 
    		 public function __construct()
        {
             parent::__construct();
-            $this->load->model('User_model');
+            $this->load->model('UserModel');
        }
 
    		public function index(){
+            $this->load->helper('form');
    			$this->load->view('loginPage');
 
             if(isset($_POST['submit'])){
-                echo "WE in this";
+                $this->Usermodel->get_user_data();
+                //echo "WE in this";
             }
    		}
         
@@ -42,8 +44,8 @@
 
 
          //insert user into DB
-         $this->User_model->insert_user($user_data[0]);
-         $this->User_model->insert_authentication($user_data);
+         $this->UserModel->insert_user($user_data[0]);
+         $this->UserModel->insert_authentication($user_data);
     
         }
         
@@ -72,9 +74,7 @@
 				'isVETMED' => $this->input->post('vet med'),
 				'isLAW' => $this->input->post('law')
         		);
-        	$this->User_model->update_user_info($user_data,$sso);
+        	$this->UserModel->update_user_info($user_data,$sso);
 
         }
    }
-
- ?>
