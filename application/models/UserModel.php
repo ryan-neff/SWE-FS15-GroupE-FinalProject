@@ -1,11 +1,12 @@
 <?php
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    class UserModel extends CI_Model{
 
 	function __construct(){
 		parent::__construct();
 		
 		$this->load->database();
-}
+      }
 
 
 	//takes array of user data to be stored in user table in the db
@@ -27,27 +28,22 @@
   	 $this->db->where('PawprintSSO',$sso);
   	 $this->db->update('securityRequests.user',$user_data);
   }
-/*
-    public function get_user_data(){
-    	$this->db->get('groupe.user');
 
-    	echo intval($this);
-    }
-*/
+	
 
-	    public function get_user_data() {
-    $query = $this->db->query('SELECT fullName, title FROM user');
+     public function get_user_data()
+     {
+     	$query = $this->db->query('SELECT fullName, title FROM user');
 
-foreach ($query->result() as $row)
-{
-        echo $row->fullName;
-        echo ("<br>");
-        echo $row->title;
-     
-}
-echo ("<br>");
-echo 'Total Results: ' . $query->num_rows();
-    }
+     	foreach ($query->result() as $row) {
+     		echo $row->fullName;
+     		echo ("<br>");
+     		echo $row->title;
+     	}
+
+     	echo ("<br>");
+     	echo 'Total Results: ' . $query->num_rows();
+     }
 
 
 }
