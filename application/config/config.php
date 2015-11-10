@@ -14,6 +14,7 @@
 | path to your installation.
 |
 */
+//$config['base_url'] = "http://localhost/ci/";
 $config['base_url'] = 'https://' . getenv('OPENSHIFT_APP_DNS') . '/';
 
 /*

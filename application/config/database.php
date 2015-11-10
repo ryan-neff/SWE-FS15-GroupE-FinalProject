@@ -48,22 +48,20 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.3.33.2';
-$db['default']['username'] = 'adminEHxMDKP';
-$db['default']['password'] = 'je2DMVCAwE4d';
-$db['default']['database'] = 'groupe';
-$db['default']['dbdriver'] = 'mysqli';
-$db['default']['dbprefix'] = '';
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = '';
-$db['default']['char_set'] = 'utf8';
-$db['default']['dbcollat'] = 'utf8_general_ci';
-$db['default']['swap_pre'] = '';
-$db['default']['autoinit'] = TRUE;
-$db['default']['stricton'] = FALSE;
-$db['default']['port'] = '3306';
+$config['hostname'] = 'localhost:8889';
+//$config['port'] = 8889;
+$config['username'] = 'root';
+$config['password'] = 'root';
+$config['database'] = 'groupe';
+$config['dbdriver'] = 'mysql';
+$config['dbprefix'] = '';
+$config['pconnect'] = TRUE;
+$config['db_debug'] = TRUE;
+$config['cache_on'] = FALSE;
+$config['cachedir'] = '';
+$config['char_set'] = 'utf8';
+$config['dbcollat'] = 'utf8_general_ci';
+$this->load->database($config);
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
