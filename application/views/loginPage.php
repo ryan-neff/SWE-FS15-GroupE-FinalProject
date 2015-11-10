@@ -1,5 +1,22 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
+<head>
+<title>MyZou Security Request Form</title>
+</head>
+<body>
+	<div align="center">
+	<div id="login">
+	Please Login<br />
+<form method="POST">
+	Username: <input type='text' name='username'/> <br /><br />
+	Password: <input type='password' name='password'/><br /><br />
+	<input type='submit' name='submit' value='Submit' /><br /><br />
+</form>
+	</div>
+	</div>
+</body>
+=======
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
         <style>
@@ -53,8 +70,12 @@
         </div>
     </body>
     
+>>>>>>> master
  <?php 
-       echo form_open('user_controller');
+         
+
+
+       echo form_open('user');
 
  ?>
 </html>
