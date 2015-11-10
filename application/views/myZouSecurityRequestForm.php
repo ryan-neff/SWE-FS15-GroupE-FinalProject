@@ -596,11 +596,11 @@
 					<td><input id="tofel"  type="checkbox" name="tofel"    value="true" class="form-control">TOFEL</td>
 				</tr>
 				<tr>
-					<td><input id="ielts"  type="checkbox" name="ielts"    value="ielts" class="form-control">IELTS</td>
-					<td><input id="lsat"   type="checkbox" name="lsat"     value="lsat" class="form-control">LSAT</td>
-					<td><input id="mcat"   type="checkbox" name="mcat"     value="mcat" class="form-control">MCAT</td>
-					<td><input id="ap"     type="checkbox" name="ap"       value="ap"   class="form-control">AP</td>
-					<td><input id="clep"   type="checkbox" name="clep"     value="clep" class="form-control">CLEP</td>
+					<td><input id="ielts"  type="checkbox" name="ielts"    value="true" class="form-control">IELTS</td>
+					<td><input id="lsat"   type="checkbox" name="lsat"     value="true" class="form-control">LSAT</td>
+					<td><input id="mcat"   type="checkbox" name="mcat"     value="true" class="form-control">MCAT</td>
+					<td><input id="ap"     type="checkbox" name="ap"       value="true"   class="form-control">AP</td>
+					<td><input id="clep"   type="checkbox" name="clep"     value="true" class="form-control">CLEP</td>
 				</tr>
 				<tr>
 					<td><input id="ged"    type="checkbox" name="ged" value="true" class="form-control">GED</td>
