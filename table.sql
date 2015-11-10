@@ -57,7 +57,7 @@ CREATE TABLE request (
 	serviceIndicatorsView boolean DEFAULT FALSE, #view access to service indicators 
 	serviceIndicatorsUpdate boolean DEFAULT FALSE, #update Administrative users with proper security can assign or remove service indicators from a student's record
 	studentGroupsView boolean DEFAULT FALSE, #view groups a student is associated with
-	studentGroupsUpdate boolean DEFAULT FALSE, #update groups a student is associated with
+	studentGroupsUpdate boolean DEFAULT FALSE, #update groups a student is associated with (actually under reserved access)
 	studyList boolean DEFAULT FALSE, #view a students class schedule
 	registrarEnrollView boolean DEFAULT FALSE, #view access to Registrar Enrollment
 	registrarEnrollUpdate boolean DEFAULT FALSE, #Adding and dropping a course utilizing Enrollment Request
