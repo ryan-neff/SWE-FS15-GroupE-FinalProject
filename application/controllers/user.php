@@ -20,15 +20,15 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         
    			$this->load->view('loginPage');
 
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
              //if(isset($_POST['submit'])){
                //$this->UserModel->get_user_data();
     
-=======
-             if(isset($_POST['submit'])){
+//=======
+             if(isset($_POST['submit_login'])){
                check_login();
             }
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
    		}
    		
    		//validate and store register data in db 
@@ -45,7 +45,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    				$data = array (
    					'username' => $this->input->post('username'),
    					'email' => $this->input->post('email'),
-   					'password' => $this->input->post('password')
+   					'password' => htmlspecialchars($this->input->post('password'))
    					);
    					
    					$result = $this->database->registration_insert($data);

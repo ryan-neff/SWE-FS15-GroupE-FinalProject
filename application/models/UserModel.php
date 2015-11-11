@@ -29,7 +29,34 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
   	 $this->db->update('securityRequests.user',$user_data);
   }
 
-	
+	//registers the user
+    public function registration_insert($user_data){
+      if($this->db->insert($user_data)){
+        return TRUE;
+      }
+     }
+      
+      //checks input from the user to validate login
+      public function login($user_data){
+
+        $this->db->select('PawprintSSO','hashedSalt','hasedPassword');
+        $this->db->from('authentication');
+        $query = $this->db->get();
+
+        foreach ($query->result() as $row) {
+          $sso = $row->PawprintSSO;
+          $salt = $row->hashedSalt;
+          $password = $row->hasedPassword;
+        }
+
+        if(($user_data['username'] == $sso) && sha1($salt.$user_data['password']) == $password){
+          return TRUE;
+        } 
+      }
+
+    public function read_user_info($username){
+        return FALSE; //temporary
+    }
 
      public function get_user_data()
      {
