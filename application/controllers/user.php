@@ -20,9 +20,15 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         
    			$this->load->view('loginPage');
 
+<<<<<<< Updated upstream
              //if(isset($_POST['submit'])){
                //$this->UserModel->get_user_data();
     
+=======
+             if(isset($_POST['submit'])){
+               check_login();
+            }
+>>>>>>> Stashed changes
    		}
    		
    		//validate and store register data in db 
@@ -107,6 +113,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         //When user presses either submit button, the next view that needs to be called is the securityform view
         
 
+       
         /* 
          |  The following function will be used for creating a login feature for the user
          |  ------------------------------------------------------------------------------------
