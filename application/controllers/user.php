@@ -48,7 +48,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					'password' => htmlspecialchars($this->input->post('password'))
    					);
    					
-   					$result = $this->database->registration_insert($data);
+   					$result = $this->UserModel->registration_insert($data);
    					
    					if ($result == TRUE) {
    						$data['message_display'] = 'Registration succesfull!';
@@ -84,11 +84,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					'password' => $this->input->post('password')
    					);
    					
-   					$result = $this->database->login($data);
+   					$result = $this->UserModel->login($data);
    					
    					if ($result == TRUE) {
    						$username = $this->input->post('username');
-   						$result = $this->database->read_user_info($username);
+   						$result = $this->UserModel->read_user_info($username);
    						if ($result == false) {
    							$session_data = array(
    								'username' => $result[0]->username,
