@@ -21,7 +21,7 @@
             hr {
                 width: 90%;
                 size: 3; 
-                color= black;
+                color: black;
             }
 
             .title {
@@ -37,19 +37,55 @@
             <br>
             <h2>University of Missouri - Columbia</h2>
         </div>
-        <hr/>
+        <hr>
     </head>
     
     <body>
         <div align="center">
-            <div id="login">
-                Please Login<br />
-                <form method="POST">
-                    Username: <input id="username" class="form-control" type='text' name='username'/> <br /><br />
-                    Password: <input id="password" class="form-control" type='password' name='password'/><br /><br />
-                    <input id="submit" class="btn btn-default" type='submit' name='submit' value='Submit' /><br /><br />
-                </form>
-            </div>
+            <table>
+                <tr>
+                    <td>
+                        <h3 class="title"> Login
+                            <br>
+                            <small>
+                                Existing user login
+                            </small>
+                        </h3>
+                    </td>
+                    <td>
+                        <h3 class="title"> Register
+                            <br>
+                            <small>
+                                New user registration
+                            </small>
+                        </h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <form name ="login" action="" method="POST">
+                            Username: <input id="username" class="form-control" type='text' name='username'/> <br /><br />
+                            Password: <input id="password" class="form-control" type='password' name='password'/><br /><br />
+                            <input id="submit_login" class="btn btn-default" type='submit' name='submit_login' value='Login' /><br /><br />
+                        </form>
+                    </td>
+                    <td>
+                        <form name="registration" action="" method="POST">
+                            <label for="firstName">First Name: </label>
+                            <input id="firstName" class="form-control" type="text" name="firstName"></input><br />
+                            <label for="lastName">Last Name: </label>
+                            <input id="lastName" class="form-control" type="text" name="lastName"></input><br />
+                            <label for="userName">Create Username: </label>
+                            <input id="userName" class="form-control" type="text" name="userName"></input><br />
+                            <label for="createPassword">Create Password: </label>
+                            <input id="createPassword" class="form-control" type="text" name="createPassword"></input><br />
+                            <label for="retypePassword">Retype Password: </label>
+                            <input id="retypePassword" class="form-control" type="text" name="retypePassword"></input><br />
+                            <input id="submit_registration" class="btn btn-default" type='submit' name='submit_registration' value='Register' /><br /><br />
+                        </form>
+                    </td>
+                </tr>
+            </table>
         </div>
     </body>
 </html>
