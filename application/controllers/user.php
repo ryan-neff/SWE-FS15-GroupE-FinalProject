@@ -11,7 +11,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $this->load->helper('form'); //form helper
             $this->load->library('form_validation'); //form validation library
             $this->load->library('session');
-            $this->load->database();
+            //$this->load->database();
        }
 
    		
@@ -33,7 +33,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    			$this->form_validation->set_rules('email_value', 'Email', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
    			
-   			if ($this->form_validation->run() == FALSE {
+   			if ($this->form_validation->run() == FALSE) {
    				$this->load->view('loginPage');
    			} else {
    				$data = array (
@@ -58,12 +58,12 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    		}
    		
    		
-   		public function check_login {
+   		public function check_login() {
    		
    			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
    			
-   			if ($this->form_validation->run() == FALSE {
+   			if ($this->form_validation->run() == FALSE){
    				if(isset($this->session->userdata['logged_in'])) {
    					$this->load->view('myZouSecurityRequestForm');
    					
