@@ -1,4 +1,6 @@
 <?php 
+session_start(); //start session in order to access it through CI 
+
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    class User extends CI_Controller{
 
@@ -6,20 +8,112 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
        {
             parent::__construct();
             $this->load->model('UserModel');
+            $this->load->helper('form'); //form helper
+            $this->load->library('form_validation'); //form validation library
+            $this->load->library('session');
+            $this->load->database();
        }
 
+   		
+   		//show login page
    		public function index(){
-            $this->load->helper('form');
+        
    			$this->load->view('loginPage');
 
-            if(isset($_POST['submit'])){
-                $this->Usermodel->get_user_data();
-                //echo "WE in this";
+<<<<<<< Updated upstream
+             //if(isset($_POST['submit'])){
+               //$this->UserModel->get_user_data();
+    
+=======
+             if(isset($_POST['submit'])){
+               check_login();
             }
+>>>>>>> Stashed changes
    		}
-        
+   		
+   		//validate and store register data in db 
+   		public function new_user_registration() {
+   			
+   			//check validation from registration
+   			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('email_value', 'Email', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+   			
+   			if ($this->form_validation->run() == FALSE {
+   				$this->load->view('loginPage');
+   			} else {
+   				$data = array (
+   					'username' => $this->input->post('username'),
+   					'email' => $this->input->post('email'),
+   					'password' => $this->input->post('password')
+   					);
+   					
+   					$result = $this->database->registration_insert($data);
+   					
+   					if ($result == TRUE) {
+   						$data['message_display'] = 'Registration succesfull!';
+   						$this->load->view('loginPage', $data);
+   					} else {
+   						$data['message_display'] = 'Username already exists';
+   						$this->load->view('loginPage', $data);
+   						}
+   					}
+   				
+   		
+   		
+   		}
+   		
+   		
+   		public function check_login {
+   		
+   			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+   			
+   			if ($this->form_validation->run() == FALSE {
+   				if(isset($this->session->userdata['logged_in'])) {
+   					$this->load->view('myZouSecurityRequestForm');
+   					
+   				} else {
+   					$this->load->view('loginPage');
+   				}
+   			
+   			} else {
+   			
+   				$data = array(
+   					'username' => $this->input->post('username'),
+   					'password' => $this->input->post('password')
+   					);
+   					
+   					$result = $this->database->login($data);
+   					
+   					if ($result == TRUE) {
+   						$username = $this->input->post('username');
+   						$result = $this->database->read_user_info($username);
+   						if ($result == false) {
+   							$session_data = array(
+   								'username' => $result[0]->username,
+   							);
+   							
+   							//add user data in session
+   							$this->session->set_userdata('logged_in', $session_data);
+   							$this->load->view('securityRequestForm');
+   						}
+   					} else {
+   					
+   						$data = array(
+   							'error_message' => 'Ivalid username or password'
+   							);
+   							$this->load->view('loginPage', $data); 
+   						
+   					}
+   			}
+   		
+   		
+   		}
+        //When user presses either submit button, the next view that needs to be called is the securityform view
         
 
+       
         /* 
          |  The following function will be used for creating a login feature for the user
          |  ------------------------------------------------------------------------------------
@@ -27,13 +121,15 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
          |                   it will then encrypt the password and pass it to the User model
          |                   to be then inserted into the database.
          */
+         
+        
         public function create_user(){
         
         //encrypt password provided by user
         mt_srand();
 		$salt = sha1(mt_rand()); 
         $password = htmlspecialchars($this->input->post('password'));
-        $pwHash = sha1($password.$salt);
+        $pwHash = sha1($salt.$password);
          
          //create array to be passed to model for query
          $user_data = array(
