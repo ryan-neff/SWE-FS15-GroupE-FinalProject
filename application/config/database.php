@@ -48,12 +48,12 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$config['hostname'] = 'localhost:8889';
-//$config['port'] = 8889;
+$config['hostname'] = 'localhost';
+$config['port'] = 8889;
 $config['username'] = 'root';
 $config['password'] = 'root';
 $config['database'] = 'groupe';
-$config['dbdriver'] = 'mysql';
+$config['dbdriver'] = 'mysqli';
 $config['dbprefix'] = '';
 $config['pconnect'] = TRUE;
 $config['db_debug'] = TRUE;
