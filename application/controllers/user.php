@@ -84,13 +84,10 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					
    					if ($result == TRUE) {
    						$username = $this->input->post('username');
-<<<<<<< HEAD
-   						$result = $this->UserModel->read_user_info($username);
-   						if ($result == false) {
-=======
+
    						$result2 = $this->UserModel->read_user_info($username);
    						if ($result2 == false) {
->>>>>>> origin/master
+
    							$session_data = array(
    								'username' => $data['username'],
    							);
