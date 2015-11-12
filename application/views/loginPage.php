@@ -63,14 +63,20 @@
                 </tr>
                 <tr>
                     <td>
-                        <form name ="login" action="" method="POST">
+                    
+                    <?php 
+                    	echo form_open('index.php/user/check_login');
+                    ?> 
                             Username: <input id="username" class="form-control" type='text' name='username'/> <br /><br />
                             Password: <input id="password" class="form-control" type='password' name='password'/><br /><br />
                             <input id="submit_login" class="btn btn-default" type='submit' name='submit_login' value='Login' /><br /><br />
                         </form>
                     </td>
                     <td>
-                        <form name="registration" action="" method="POST">
+                        	<?php
+                        		echo form_open('index.php/user/new_user_registration');
+                        	?>
+                        
                             <label for="firstName">First Name: </label>
                             <input id="firstName" class="form-control" type="text" name="firstName"></input><br />
                             <label for="lastName">Last Name: </label>

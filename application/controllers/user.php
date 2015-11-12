@@ -11,7 +11,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $this->load->helper('form'); //form helper
             $this->load->library('form_validation'); //form validation library
             $this->load->library('session');
-            //$this->load->database();
        }
 
    		
@@ -20,48 +19,45 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         
    			$this->load->view('loginPage');
 
-//<<<<<<< Updated upstream
-             //if(isset($_POST['submit'])){
-               //$this->UserModel->get_user_data();
-    
-//=======
-             if(isset($_POST['submit_login'])){
-               check_login();
-            }
-//>>>>>>> Stashed changes
+
    		}
    		
-   		//validate and store register data in db 
-   		public function new_user_registration() {
+   		validate and store register data in db 
+   		
+   		/* public function new_user_registration() {
    			
    			//check validation from registration
-   			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('email_value', 'Email', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
-   			
+   			$this->form_validation->set_rules('firstName', 'First Name', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('userName', 'Username', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('createPassword', 'Password', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('retypePassword', 'Re-type Password', 'trim|required|xss_clean');
+
+  			
    			if ($this->form_validation->run() == FALSE) {
    				$this->load->view('loginPage');
    			} else {
    				$data = array (
-   					'username' => $this->input->post('username'),
+   					'firstname' => $this->input->post('firstName'),
+   					'lastname' => $this->input->post('lastName'),   					
+   					'username' => $this->input->post('userName'),
    					'email' => $this->input->post('email'),
-   					'password' => htmlspecialchars($this->input->post('password'))
+   					'password' => //hash the password
    					);
    					
    					$result = $this->UserModel->registration_insert($data);
    					
    					if ($result == TRUE) {
-   						$data['message_display'] = 'Registration succesfull!';
    						$this->load->view('loginPage', $data);
    					} else {
-   						$data['message_display'] = 'Username already exists';
    						$this->load->view('loginPage', $data);
    						}
    					}
    				
+   				}
+   		*/
    		
    		
-   		}
    		
    		
    		public function check_login() {
@@ -88,20 +84,22 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					
    					if ($result == TRUE) {
    						$username = $this->input->post('username');
-   						$result = $this->UserModel->read_user_info($username);
-   						if ($result == false) {
+
+   						$result2 = $this->UserModel->read_user_info($username);
+   						if ($result2 == false) {
+
    							$session_data = array(
-   								'username' => $result[0]->username,
+   								'username' => $data['username'],
    							);
    							
    							//add user data in session
    							$this->session->set_userdata('logged_in', $session_data);
-   							$this->load->view('securityRequestForm');
+   							$this->load->view('myZouSecurityRequestForm');
    						}
    					} else {
    					
    						$data = array(
-   							'error_message' => 'Ivalid username or password'
+   							'error_message' => 'Invalid username or password'
    							);
    							$this->load->view('loginPage', $data); 
    						
@@ -170,6 +168,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 				'isVETMED' => $this->input->post('vet med'),
 				'isLAW' => $this->input->post('law')
         		);
+        		//add email and student_Worker 
         	$this->UserModel->update_user_info($user_data,$sso);
 
         }
