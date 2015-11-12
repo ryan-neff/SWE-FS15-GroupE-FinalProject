@@ -82,6 +82,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					
    					$result = $this->UserModel->login($data);
    					
+            //comment
    					if ($result == TRUE) {
    						$username = $this->input->post('username');
 
