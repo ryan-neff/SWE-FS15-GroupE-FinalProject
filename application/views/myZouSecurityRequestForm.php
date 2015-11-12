@@ -2,13 +2,39 @@
 <html>
 <style>
 	table {
-		width: 100%;
+		width: 90%;
+		align: center;
 		float: left;
 		border-collapse: collapse;
 		padding: 15px;
 	}
 	
+	table-form {
+		
+	}
+	
+	.table-border {
+		align: center;
+		border-top: solid black;
+		border-bottom: solid black;
+	}
+	
+	.student-border {
+		border: solid black;
+	}
+	
+	.bottom-border {
+		border-bottom: dotted grey;
+		border-width: 2px;
+	}
+	
+	#form-control {
+		border-right: solid black;
+		padding: 10px;
+	}
+	
 	tr {
+		
 		padding-bottom: 1em;
 	}
 	
@@ -18,8 +44,8 @@
 	
 	hr {
 		width: 90%;
-		size: 3; 
-		color= black;
+		size: 2px; 
+		border: solid black;
 	}
 	
 	.title {
@@ -33,29 +59,27 @@
 	<title>myZou SECURITY Request Form</title>
 	<div class="title">
 		<h1>myZou SECURITY Request Form</h1>
-		<br>
 		<h2>University of Missouri - Columbia</h2>
+
 	</div>
-	<hr/>
 </head>
-<body>
+<body style="border: double black; border-width: 5px; padding: 5px; align: center;">
 	<!-- <?php echo validation_errors(); ?> -->
 	<!-- <?php echo form_open('formController'); ?> -->
 	<form action="http://localhost:8888/index.php/formController" method="POST">
-		<div align="center">
 		
 	<!-- Page 1 -->
 	
 	<div class="form-group">
-		<table id="user_info_table">
+		<table align="right" class="table-border">
 			<tbody>
 				<tr>
 					<td>	
 						<label for="username">*Username (Full legal name):</label>
 					</td>
-					<td>
+					<td id="form-control">
 						<?php echo form_error('username'); ?>
-						<input type="text" class="form-control" id="username" name="username" value="<?php echo set_value('username'); ?>" size="50" placeholder="Username" >
+						<input type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>" size="50" placeholder="Username" >
 					</td>
 					<td>
 						<label for="pawprint">*Pawprint/SSO:</label>
@@ -69,7 +93,7 @@
 					<td>	
 						<label for="title">*Title:</label>
 					</td>
-					<td>
+					<td id="form-control">
 						<?php echo form_error('title'); ?>
 						<input type="text" class="form-control" id="title" name="title" value="<?php echo set_value('title'); ?>" size="10" placeholder="Title">
 					</td>
@@ -85,7 +109,7 @@
 					<td>	
 						<label for="org">*Academic Organization:</label>
 					</td>
-					<td>
+					<td id="form-control">
 						<?php echo form_error('org'); ?>
 						<input type="text" class="form-control" id="org" name="org" value="<?php echo set_value('org'); ?>" size="32" placeholder="Organization">
 					</td>
@@ -101,7 +125,7 @@
 					<td>	
 						
 					</td>
-					<td>
+					<td id="form-control">
 						
 					</td>
 					<td>
@@ -116,12 +140,11 @@
 		</table>
 	</div>
 	
-	<hr/>
 	
 	<div class="form-group">	
-		<table id="request_table">
+		<table class="table-border">
 			<tbody>
-				<tr>
+				<tr style="border-bottom: ridge;">
 					<td>
 						<?php echo form_error('request'); ?>
 						<label>Type of request:</label>
@@ -136,7 +159,7 @@
 					</td>
 				</tr>
 				
-				<tr>
+				<tr style="border-bottom: ridge;">
 					<td>
 						<?php echo form_error('staff'); ?>
 						<label for="staff">Copy security of Current/Former Staff Member</label>
@@ -151,7 +174,7 @@
 					</td>
 				</tr>
 				
-				<tr>
+				<tr style="border-bottom: ridge;">
 					<td>
 						<label for="name">Name:</label>
 					</td>
@@ -160,7 +183,7 @@
 					</td>
 				</tr>
 				
-				<tr>
+				<tr style="border-bottom: ridge;">
 					<td>
 						<label for="position">Position:</label>
 					</td>
@@ -168,7 +191,7 @@
 						<input type="text" class="form-control" id="position" name="position">
 					</td>
 				</tr>
-				<tr>
+				<tr style="border-bottom: ridge;">
 					<td >
 						<label for="SSO">PawPrint/SSO:</label>
 					</td>
@@ -176,7 +199,7 @@
 						<input type="text" id="SSO" class="form-control" name="SSO">
 					</td>
 				</tr>
-				<tr>
+				<tr style="border-bottom: ridge;">
 					<td >
 						<label for="empID">Employee ID (if available):</label>
 					</td>
@@ -184,7 +207,7 @@
 						<input class="form-control" type="text" id="empID" name="empID">
 					</td>
 				</tr>
-				<tr>
+				<tr style="border-bottom: ridge;">
 					<td>
 						<label for="student_worker">Check if Student Worker:</label>
 					</td>
@@ -223,7 +246,7 @@
 				<tr>
 					<td>
 						<?php echo form_error('access'); ?>
-						<label>*Please describe the type of access needed (i.e. view student name, address, rosters etc.). Please be specific.</label>
+						<label><u>*Please describe the type of access needed (i.e. view student name, address, rosters etc.). Please be specific.</u></label>
 					</td>
 				</tr>
 				<tr>
@@ -240,10 +263,9 @@
 	<div class="form-group">	
 		<table id="career_table">
 			<tbody>
-				<tr>
+				<tr style="border: ridge;">
 					<td>
-						
-						<label>*Select the Academic Career(s). Please check all that apply.</label>
+						<label><u>*Select the Academic Career(s). Please check all that apply.</u></label>
 					</td>
 					<td>
 						UGRD
@@ -274,12 +296,12 @@
 		
 	<!-- Page 2 -->
 	
-	<p align="left">Select all appropriate access. Access to Admissions, Student Financials, and Financial Aid will be forwarded to the appropriate department.</p>
+	<p align="left"><u>Select all appropriate access. Access to Admissions, Student Financials, and Financial Aid will be forwarded to the appropriate department.</u></p>
 	
 	<div class="form-group">	
-		<table>
+		<table class="student-border">
 			<thead>
-				<h3>Student Records Access</h3>
+				<h3><u>Student Records Access</u></h3>
 			</thead>
 			<tbody>
 				<tr>
@@ -290,7 +312,7 @@
 						Access Type
 					</th>
 				</tr>
-				<tr>
+				<tr style="border-bottom: solid black;">
 					<th>
 						Role
 					</th>
@@ -304,7 +326,7 @@
 						Update
 					</th>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Basic Inquiry
 					</td>
@@ -320,7 +342,7 @@
 					
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Advanced Inquiry
 					</td>
@@ -336,7 +358,7 @@
 						<input type="checkbox" class="form-control" id="adv_inquiry_update" name="adv_inquiry_update" value="true">
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						3Cs
 					</td>
@@ -350,7 +372,7 @@
 						<input type="checkbox" class="form-control" id="3Cs_update" name="3Cs_update" value="true">
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Advisor Update
 					</td>
@@ -364,7 +386,7 @@
 						<input type="checkbox" class="form-control" id="advisor_update_update" name="advisor_update_update" value="true">
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Department SOC Update
 					</td>
@@ -378,7 +400,7 @@
 						<input type="checkbox" class="form-control" id="dept_SOC_update" name="dept_SOC_update" value="true">
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Service Indicators (Holds)
 					</td>
@@ -394,7 +416,7 @@
 						<input type="checkbox" class="form-control" id="service_ind_update" name="service_ind_update" value="true">
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Student Group View
 					</td>
@@ -408,7 +430,7 @@
 						
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						View Study List
 					</td>
@@ -422,7 +444,7 @@
 						
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Registrar Enrollment
 					</td>
@@ -436,7 +458,7 @@
 						<input type="checkbox" class="form-control" id="reg_enroll_update" name="reg_enroll_update" value="true">
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Advisor Student Center
 					</td>
@@ -450,7 +472,7 @@
 					
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Class Permission
 					</td>
@@ -464,7 +486,7 @@
 						<input type="checkbox" class="form-control" id="class_permission_update" name="class_permission_update" value="true">
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Class Permission View
 					</td>
@@ -478,7 +500,7 @@
 						
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Class Roster
 					</td>
@@ -492,7 +514,7 @@
 						
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Block Enrollments
 					</td>
@@ -506,7 +528,7 @@
 						<input type="checkbox" class="form-control" id="block_enroll_update" name="block_enroll_update" value="true">
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Report Manager
 					</td>
@@ -520,7 +542,7 @@
 					
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Self Service Advisor
 					</td>
@@ -536,7 +558,7 @@
 						<input type="checkbox" class="form-control" id="self_serv_update" name="self_serv_update" value="true">
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Fiscal Officer
 					</td>
@@ -550,7 +572,7 @@
 						
 					</td>
 				</tr>
-				<tr>
+				<tr class="bottom-border">
 					<td>
 						Academic Advising Profile
 					</td>
@@ -567,17 +589,17 @@
 			</tbody>
 		</table>
 	</div>
-
-	<hr/>
+	<br />
+	<hr />
 	
 	<!--Student Test Scores-->
 	
-	<p align="left">Select all appropriate access.</p>
+	<p align="left"><u>Select all appropriate access.</u></p>
 	
 	<div class="form-group">		
-		<table>
+		<table class="student-border">
 			<thead>
-				<h3>Admissions Access</h3>
+				<h3><u>Admissions Access</u></h3>
 			</thead>
 			<tbody>
 				<tr>
@@ -588,21 +610,21 @@
                         <input id="all_tests" type="checkbox" name="all_tests" value="ture" class="form-control">Access to All Test Scores
                     </th>
 				</tr>
-				<tr>
+				<tr style="border: ridge;">
 					<td><input id="act"    type="checkbox" name="act"      value="true" class="form-control">ACT</td>
 					<td><input id="sat"    type="checkbox" name="sat"      value="true" class="form-control">SAT</td>
 					<td><input id="gre"    type="checkbox" name="gre"      value="true" class="form-control">GRE</td>
 					<td><input id="gmat"   type="checkbox" name="gmat"     value="true" class="form-control">GMAT</td>
 					<td><input id="tofel"  type="checkbox" name="tofel"    value="true" class="form-control">TOFEL</td>
 				</tr>
-				<tr>
+				<tr style="border: ridge;">
 					<td><input id="ielts"  type="checkbox" name="ielts"    value="true" class="form-control">IELTS</td>
 					<td><input id="lsat"   type="checkbox" name="lsat"     value="true" class="form-control">LSAT</td>
 					<td><input id="mcat"   type="checkbox" name="mcat"     value="true" class="form-control">MCAT</td>
 					<td><input id="ap"     type="checkbox" name="ap"       value="true"   class="form-control">AP</td>
 					<td><input id="clep"   type="checkbox" name="clep"     value="true" class="form-control">CLEP</td>
 				</tr>
-				<tr>
+				<tr style="border: ridge;">
 					<td><input id="ged"    type="checkbox" name="ged" value="true" class="form-control">GED</td>
 					<td><input id="millers" type="checkbox" name="millers" value="true" class="form-control">MILLERS</td>
 					<td><input id="prax"   type="checkbox" name="prax" value="true" class="form-control">PRAX</td>
@@ -616,9 +638,9 @@
 	<hr/>	
 	
 	<div class="form-group">
-		<table>
+		<table class="student-border">
 			<thead>
-				<h3>Student Financials (Cashiers) Access</h3>
+				<h3><u>Student Financials (Cashiers) Access</u></h3>
 			<thead>
 			<tbody>
 				<tr>
@@ -643,7 +665,7 @@
 						Update
 					</th>
 				</tr>
-				<tr>
+				<tr style="border: ridge;">
 					<td>
 						SF General Inquiry
 					</td>
@@ -657,7 +679,7 @@
 					
 					</td>
 				</tr>
-				<tr>
+				<tr style="border: ridge;">
 					<td>
 						SF Cash Group Post
 					</td>
@@ -677,9 +699,9 @@
 	<hr/>
 	
 	<div class="form-group">
-		<table>
+		<table class="student-border">
 			<thead>
-				<h3>Student Financials Aid Access</h3>
+				<h3><u>Student Financials Aid Access</u></h3>
 			<thead>
 			<tbody>
 				<tr>
@@ -704,7 +726,7 @@
 						Update
 					</th>
 				</tr>
-				<tr>
+				<tr style="border: ridge;">
 					<td>
 						FA Cash
 					</td>
@@ -718,7 +740,7 @@
 					
 					</td>
 				</tr>
-				<tr>
+				<tr style="border: ridge;">
 					<td>
 						SF Cash Group Post
 					</td>
@@ -740,12 +762,12 @@
 	
 	<!-- still needs formatting-->
 	<div class="form-group">
-		<table>
+		<table class="student-border">
 			<tbody>
-				<tr>
-					<td><h3>Authorization</h3></td>
-					<td>Return to:	Student Information Systems 130 Jesse Hall</td>
-				</tr>
+				<thead>
+					<h3><u>Authorization</u></h3>
+					<p>Return to:	Student Information Systems 130 Jesse Hall</p>
+				</thead>
 				<tr>
 					<td colspan="2">By signing, I understand any access given me is for University purposes as part of my job responsibilities. I am
 						responsible for exercising due care to protect this information from unauthorized discloser by safeguarding my
@@ -773,9 +795,9 @@
 	
 	<!-- still needs formatting-->
 	<div class="form-group">
-		<table>
+		<table class="student-border">
 			<thead>
-					<h3>Reserved Access</h3>
+					<h3><u>Reserved Access</u></h3>
 			<thead>
 			<tbody>
 				<tr>
@@ -798,7 +820,7 @@
                         Update
                     </th>
 				</tr>
-				<tr>
+				<tr style="border: ridge;">
 					<td>Immunization view</td>
 					<td>
                         <input class="form-control" id="immunization_view_view" type="checkbox" name="immunization_view_view" value="true"></input>
@@ -816,7 +838,7 @@
                         <input class="form-control" id="accomodate_update" type="checkbox" name="accomodate_update" value="true"></input>
                     </td>
 				</tr>
-				<tr>
+				<tr style="border: ridge;">
 					<td>
                         Transfer Credit Admission
                     </td>
@@ -836,7 +858,7 @@
                         <input class="form-control" id="support_staff_update" type="checkbox" name="support_staff_update" value="true"></input>
                     </td>
 				</tr>
-				<tr>
+				<tr style="border: ridge;">
 					<td>
                         Relationships
                     </td>
@@ -856,7 +878,7 @@
                         <input class="form-control" id="advance_standing_update" type="checkbox" name="advance_standing_update" value="true"></input>
                     </td>
 				</tr>
-				<tr>
+				<tr style="border: ridge;">
 					<td>
                         Student Groups
                     </td>
