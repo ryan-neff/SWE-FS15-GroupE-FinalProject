@@ -22,7 +22,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
    		}
    		
-   		validate and store register data in db 
+   		//validate and store register data in db 
    		
    		/* public function new_user_registration() {
    			
