@@ -17,7 +17,7 @@ CREATE TABLE user (
 	campusAddress varchar(100),
 	academicOrg varchar(32),
 	isStudentWorker boolean, DEFAULT FALSE,
-	isUGRD boolean DEFAULT false,
+	isUGRD boolean DEFAULT FALSE,
 	isGRAD boolean DEFAULT FALSE,
 	isMED boolean DEFAULT FALSE,
 	isVETMED boolean DEFAULT FALSE,
