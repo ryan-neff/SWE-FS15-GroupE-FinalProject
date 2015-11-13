@@ -143,7 +143,7 @@
 <body style="border: double black; border-width: 5px; padding: 5px; align: center;">
 	<!-- <?php echo validation_errors(); ?> -->
 	
-	<?php echo form_open('index.php/formController'); ?>
+	<?php echo form_open('index.php/formController/submitRequest'); ?>
 	<!-- Page 1 -->
 	
 	<div class="form-group">
@@ -327,7 +327,7 @@
 				</tr>
 				<tr>
 					<td>
-						<textarea id="access_needed" name="access" class="form-control" rows="4" value="<?php echo set_value('access'); ?>"></textarea>
+						<textarea id="access_needed" name="access" class="form-control" rows="4" value=""><?php echo set_value('access'); ?></textarea>
 					</td>
 				</tr>
 			</tbody>
@@ -345,23 +345,23 @@
 					</td>
 					<td>
 						UGRD
-						<input type="checkbox" class="form-control" id="ugrd" name="ugrd" value="true" <?php echo set_checkbox('ugrd', 'true');?> >
+						<input type="checkbox" class="form-control" id="ugrd" name="ugrd" value="true" />
 					</td>
 					<td>
 						GRAD
-						<input type="checkbox" class="form-control" id="grad" name="grad" value="true" <?php echo set_checkbox('grad', 'true');?> >
+						<input type="checkbox" class="form-control" id="grad" name="grad" value="true" <?php echo set_checkbox('grad', 'true');?> />
 					</td>
 					<td>
 						MED
-						<input type="checkbox" class="form-control" id="med" name="med" value="true" <?php echo set_checkbox('med', 'true');?> >
+						<input type="checkbox" class="form-control" id="med" name="med" value="true" <?php echo set_checkbox('med', 'true');?> />
 					</td>
 					<td>
 						VET MED
-						<input type="checkbox" class="form-control" id="vetMed" name="vetMed" value="true" <?php echo set_checkbox('vetMed', 'true');?> >
+						<input type="checkbox" class="form-control" id="vetMed" name="vetMed" value="true" <?php echo set_checkbox('vetMed', 'true');?> />
 					</td>
 					<td>
 						LAW
-						<input type="checkbox" class="form-control" id="law" name="law" value="true" <?php echo set_checkbox('law', 'true');?> >
+						<input type="checkbox" class="form-control" id="law" name="law" value="true" <?php echo set_checkbox('law', 'true');?> />
 					</td>
 				</tr>
 			</tbody>
