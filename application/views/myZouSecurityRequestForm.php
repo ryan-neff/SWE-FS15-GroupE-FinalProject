@@ -142,10 +142,8 @@
 </head>
 <body style="border: double black; border-width: 5px; padding: 5px; align: center;">
 	<!-- <?php echo validation_errors(); ?> -->
-	<!-- <?php echo form_open('formController'); ?> -->
-    
-	<form action="http://localhost:8888/index.php/formController" method="POST">
-		
+	
+	<?php echo form_open('index.php/formController'); ?>
 	<!-- Page 1 -->
 	
 	<div class="form-group">
