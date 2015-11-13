@@ -2,6 +2,32 @@
 <html>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        
+        $(document).ready(function(){
+            $('#all_tests').click(function () {
+
+                if ($(this).is(':checked')) {
+                    $('#act,#sat,#gre,#gmat,#tofel,#ielts,#lsat,#mcat,#ap,#clep,#ged,#millers,#prax,#plamu,#base').prop('checked', true);
+
+                } else {
+                    $('#act,#sat,#gre,#gmat,#tofel,#ielts,#lsat,#mcat,#ap,#clep,#ged,#millers,#prax,#plamu,#base').prop('checked', false);
+                }
+
+            });
+
+            $('#act,#sat,#gre,#gmat,#tofel,#ielts,#lsat,#mcat,#ap,#clep,#ged,#millers,#prax,#plamu,#base').click(function () {
+
+                if ($(this).is(':checked')) {
+                    } else {
+                        $('#all_tests').prop('checked', false);
+                }
+
+            });
+        });
+        
+    </script>
     <style>
 	   div.container {
             margin: 0;
@@ -659,7 +685,7 @@
                         Check which test(s) access is to be granted
                     </th>
 					<th colspan="2">
-                        <input id="all_tests" type="checkbox" name="all_tests" value="ture" class="form-control">Access to All Test Scores
+                        <input id="all_tests" type="checkbox" name="all_tests" value="true" class="form-control">Access to All Test Scores
                     </th>
 				</tr>
 				<tr style="border: ridge;">
@@ -673,7 +699,7 @@
 					<td><input id="ielts"  type="checkbox" name="ielts"    value="true" class="form-control">IELTS</td>
 					<td><input id="lsat"   type="checkbox" name="lsat"     value="true" class="form-control">LSAT</td>
 					<td><input id="mcat"   type="checkbox" name="mcat"     value="true" class="form-control">MCAT</td>
-					<td><input id="ap"     type="checkbox" name="ap"       value="true"   class="form-control">AP</td>
+					<td><input id="ap"     type="checkbox" name="ap"       value="true" class="form-control">AP</td>
 					<td><input id="clep"   type="checkbox" name="clep"     value="true" class="form-control">CLEP</td>
 				</tr>
 				<tr style="border: ridge;">
