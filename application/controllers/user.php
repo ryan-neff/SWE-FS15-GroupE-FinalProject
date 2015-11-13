@@ -22,7 +22,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
    		}
    		
-   		validate and store register data in db 
+   		//validate and store register data in db 
    		
    		/* public function new_user_registration() {
    			
@@ -82,10 +82,13 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					
    					$result = $this->UserModel->login($data);
    					
+            //comment
    					if ($result == TRUE) {
    						$username = $this->input->post('username');
+
    						$result2 = $this->UserModel->read_user_info($username);
    						if ($result2 == false) {
+
    							$session_data = array(
    								'username' => $data['username'],
    							);
