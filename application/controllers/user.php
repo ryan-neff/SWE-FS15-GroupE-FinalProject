@@ -25,8 +25,10 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    		//new registration function 
 public function new_user_registration() {
    			//correct form
-   			$this->form_validation->set_rules('fullName', 'Full Name', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('pawprint', 'Pawprint', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('firstName', 'First Name', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('userName', 'User Name', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('pawprint', 'Pawprint', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('title', 'Title', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('phoneNumber', 'Phone Number', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('FERPAscore', 'FERPA Score', 'trim|required|xss_clean');
@@ -37,8 +39,8 @@ public function new_user_registration() {
    			$this->form_validation->set_rules('isMED', 'Is Med', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('isVETMED', 'Is VetMed', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('isLAW', 'Is Law', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('password', 'Password', 'trim|required|matches[retypePassword]');
-   			$this->form_validation->set_rules('retypePassword', 'Retype Password', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('createPassword', 'Password', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'trim|required|matches[password]|xss_clean');
    			
 
   			
@@ -92,8 +94,8 @@ public function new_user_registration() {
    		
 public function check_login() {
    		
-   			$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('loginUsername', 'Username', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('loginPassword', 'Password', 'trim|required|xss_clean');
    			
    			if ($this->form_validation->run() == FALSE) {
    				if(isset($this->session->userdata['logged_in'])) {
