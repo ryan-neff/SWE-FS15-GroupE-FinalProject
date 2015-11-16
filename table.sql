@@ -16,7 +16,7 @@ CREATE TABLE user (
 	FERPAscore float(5,2),
 	campusAddress varchar(100),
 	academicOrg varchar(32),
-	isStudentWorker boolean, DEFAULT FALSE,
+	isStudentWorker boolean DEFAULT FALSE,
 	isUGRD boolean DEFAULT FALSE,
 	isGRAD boolean DEFAULT FALSE,
 	isMED boolean DEFAULT FALSE,
