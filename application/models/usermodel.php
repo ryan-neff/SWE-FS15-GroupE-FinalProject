@@ -60,23 +60,12 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         }
       }
 
-    public function read_user_info($username){
-        return FALSE; //temporary
-    }
+    //this can go//public function read_user_info($username){
+        //return FALSE; //temporary
+   // }
 
-     public function get_user_data()
-     {
-     	$query = $this->db->query('SELECT fullName, title FROM user');
-
-     	foreach ($query->result() as $row) {
-     		echo $row->fullName;
-     		echo ("<br>");
-     		echo $row->title;
-     	}
-
-     	echo ("<br>");
-     	echo 'Total Results: ' . $query->num_rows();
-     }
+	//Functions needed for registration: insert_user 
+	//									 insert_authen 
 
 
 }
