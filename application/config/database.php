@@ -52,7 +52,7 @@ $config['hostname'] = 'localhost';
 $config['port'] = 8889;
 $config['username'] = 'root';
 $config['password'] = 'root';
-$config['database'] = 'group_e';
+$config['database'] = 'groupe';
 $config['dbdriver'] = 'mysqli';
 $config['dbprefix'] = '';
 $config['pconnect'] = TRUE;
@@ -61,6 +61,22 @@ $config['cache_on'] = FALSE;
 $config['cachedir'] = '';
 $config['char_set'] = 'utf8';
 $config['dbcollat'] = 'utf8_general_ci';
+
+/*ONLY UNCOMMENT FOR OPENSHIFT DB USAGE 
+$config['hostname'] = getenv('OPENSHIFT_MYSQL_DB_HOST');
+$config['port'] = getenv('OPENSHIFT_MYSQL_DB_PORT');
+$config['username'] = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+$config['password'] = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+$config['database'] = getenv('OPENSHIFT_APP_NAME');	
+$config['dbdriver'] = 'mysqli';
+$config['dbprefix'] = '';
+$config['pconnect'] = TRUE;
+$config['db_debug'] = TRUE;
+$config['cache_on'] = FALSE;
+$config['cachedir'] = getenv('OPENSHIFT_DATA_DIR') . 'storage/framework/dbcache';
+$config['char_set'] = 'utf8';
+$config['dbcollat'] = 'utf8_general_ci';
+*/
 $this->load->database($config);
 
 /* End of file database.php */

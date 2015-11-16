@@ -1,61 +1,138 @@
 <!DOCTYPE html>
 <html>
-<style>
-	table {
-		width: 90%;
-		align: center;
-		float: left;
-		border-collapse: collapse;
-		padding: 15px;
-	}
-	
-	table-form {
-		
-	}
-	
-	.table-border {
-		align: center;
-		border-top: solid black;
-		border-bottom: solid black;
-	}
-	
-	.student-border {
-		border: solid black;
-	}
-	
-	.bottom-border {
-		border-bottom: dotted grey;
-		border-width: 2px;
-	}
-	
-	#form-control {
-		border-right: solid black;
-		padding: 10px;
-	}
-	
-	tr {
-		
-		padding-bottom: 1em;
-	}
-	
-	td {
-		padding: 15px;
-	}
-	
-	hr {
-		width: 90%;
-		size: 2px; 
-		border: solid black;
-	}
-	
-	.title {
-		align: center;
-		text-align: center;
-		width: 100%;
-	}
-</style>
 <head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        
+        $(document).ready(function(){
+            $('#all_tests').click(function () {
+
+                if ($(this).is(':checked')) {
+                    $('#act,#sat,#gre,#gmat,#tofel,#ielts,#lsat,#mcat,#ap,#clep,#ged,#millers,#prax,#plamu,#base').prop('checked', true);
+
+                } else {
+                    $('#act,#sat,#gre,#gmat,#tofel,#ielts,#lsat,#mcat,#ap,#clep,#ged,#millers,#prax,#plamu,#base').prop('checked', false);
+                }
+
+            });
+
+            $('#act,#sat,#gre,#gmat,#tofel,#ielts,#lsat,#mcat,#ap,#clep,#ged,#millers,#prax,#plamu,#base').click(function () {
+
+                if ($(this).is(':checked')) {
+                    } else {
+                        $('#all_tests').prop('checked', false);
+                }
+
+            });
+        });
+        
+    </script>
+    <style>
+	   div.container {
+            margin: 0;
+            background: yellow;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+        }
+
+        table {
+            width: 100%;
+            float: left;
+            border-collapse: collapse;
+            padding: 15px;
+        }
+
+        tr {
+            padding-bottom: 1em;
+        }
+
+        td {
+            padding: 15px;
+        }
+
+        hr {
+            width: 90%;
+            size: 3; 
+            color: black;
+        }
+
+        .title {
+            align: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .table-border {
+            align: center;
+            border-top: solid black;
+            border-bottom: solid black;
+        }
+
+        .student-border {
+            border: solid black;
+        }
+
+        .bottom-border {
+            border-bottom: dotted grey;
+            border-width: 2px;
+        }
+    
+    </style>
 	<title>myZou SECURITY Request Form</title>
 	<div class="title">
 		<h1>myZou SECURITY Request Form</h1>
@@ -65,9 +142,8 @@
 </head>
 <body style="border: double black; border-width: 5px; padding: 5px; align: center;">
 	<!-- <?php echo validation_errors(); ?> -->
-	<!-- <?php echo form_open('formController'); ?> -->
-	<form action="http://localhost:8888/index.php/formController" method="POST">
-		
+	
+	<?php echo form_open('index.php/formController/submitRequest'); ?>
 	<!-- Page 1 -->
 	
 	<div class="form-group">
@@ -251,7 +327,7 @@
 				</tr>
 				<tr>
 					<td>
-						<textarea id="access_needed" name="access" class="form-control" rows="4" value="<?php echo set_value('access'); ?>"></textarea>
+						<textarea id="access_needed" name="access" class="form-control" rows="4" value=""><?php echo set_value('access'); ?></textarea>
 					</td>
 				</tr>
 			</tbody>
@@ -269,23 +345,23 @@
 					</td>
 					<td>
 						UGRD
-						<input type="checkbox" class="form-control" id="ugrd" name="ugrd" value="true" <?php echo set_checkbox('ugrd', 'true');?> >
+						<input type="checkbox" class="form-control" id="ugrd" name="ugrd" value="true" />
 					</td>
 					<td>
 						GRAD
-						<input type="checkbox" class="form-control" id="grad" name="grad" value="true" <?php echo set_checkbox('grad', 'true');?> >
+						<input type="checkbox" class="form-control" id="grad" name="grad" value="true" <?php echo set_checkbox('grad', 'true');?> />
 					</td>
 					<td>
 						MED
-						<input type="checkbox" class="form-control" id="med" name="med" value="true" <?php echo set_checkbox('med', 'true');?> >
+						<input type="checkbox" class="form-control" id="med" name="med" value="true" <?php echo set_checkbox('med', 'true');?> />
 					</td>
 					<td>
 						VET MED
-						<input type="checkbox" class="form-control" id="vetMed" name="vetMed" value="true" <?php echo set_checkbox('vetMed', 'true');?> >
+						<input type="checkbox" class="form-control" id="vetMed" name="vetMed" value="true" <?php echo set_checkbox('vetMed', 'true');?> />
 					</td>
 					<td>
 						LAW
-						<input type="checkbox" class="form-control" id="law" name="law" value="true" <?php echo set_checkbox('law', 'true');?> >
+						<input type="checkbox" class="form-control" id="law" name="law" value="true" <?php echo set_checkbox('law', 'true');?> />
 					</td>
 				</tr>
 			</tbody>
@@ -607,7 +683,7 @@
                         Check which test(s) access is to be granted
                     </th>
 					<th colspan="2">
-                        <input id="all_tests" type="checkbox" name="all_tests" value="ture" class="form-control">Access to All Test Scores
+                        <input id="all_tests" type="checkbox" name="all_tests" value="true" class="form-control">Access to All Test Scores
                     </th>
 				</tr>
 				<tr style="border: ridge;">
@@ -621,7 +697,7 @@
 					<td><input id="ielts"  type="checkbox" name="ielts"    value="true" class="form-control">IELTS</td>
 					<td><input id="lsat"   type="checkbox" name="lsat"     value="true" class="form-control">LSAT</td>
 					<td><input id="mcat"   type="checkbox" name="mcat"     value="true" class="form-control">MCAT</td>
-					<td><input id="ap"     type="checkbox" name="ap"       value="true"   class="form-control">AP</td>
+					<td><input id="ap"     type="checkbox" name="ap"       value="true" class="form-control">AP</td>
 					<td><input id="clep"   type="checkbox" name="clep"     value="true" class="form-control">CLEP</td>
 				</tr>
 				<tr style="border: ridge;">
