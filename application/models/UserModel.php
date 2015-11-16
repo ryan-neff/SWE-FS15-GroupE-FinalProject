@@ -39,19 +39,25 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
       //checks input from the user to validate login
       public function login($user_data){
 
-        $this->db->select('PawprintSSO','hashedSalt','hasedPassword');
+        $this->db->select('PawprintSSO,hashedSalt,hashedPassword');
+        $this->db->where('PawprintSSO', $user_data['username']);
         $this->db->from('authentication');
         $query = $this->db->get();
 
-        foreach ($query->result() as $row) {
-          $sso = $row->PawprintSSO;
-          $salt = $row->hashedSalt;
-          $password = $row->hasedPassword;
+		//echo $query->result_array();
+		//print_r ($query->result_array());
+		
+        foreach ($query->result_array() as $row) {
+          $sso = $row['PawprintSSO'];
+          $salt = $row['hashedSalt'];
+          $password = $row['hashedPassword'];
         }
 
         if(($user_data['username'] == $sso) && sha1($salt.$user_data['password']) == $password){
           return TRUE;
-        } 
+        } else {
+        	return FALSE; 
+        }
       }
 
     public function read_user_info($username){
