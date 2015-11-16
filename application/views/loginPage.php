@@ -63,26 +63,40 @@
                 </tr>
                 <tr>
                     <td>
-                    
-                    <?php 
-                    	echo form_open('index.php/user/check_login');
-                    ?> 
-                            Username: <input id="username" class="form-control" type='text' name='username'/> <br /><br />
+                        <form name ="login" action="" method="POST">
+                            Pawprint: <input id="pawprint" class="form-control" type='text' name='pawprint'/> <br /><br />
                             Password: <input id="password" class="form-control" type='password' name='password'/><br /><br />
                             <input id="submit_login" class="btn btn-default" type='submit' name='submit_login' value='Login' /><br /><br />
                         </form>
                     </td>
                     <td>
-                        	<?php
-                        		echo form_open('index.php/user/new_user_registration');
-                        	?>
-                        
+                        <form name="registration" action="" method="POST">
                             <label for="firstName">First Name: </label>
                             <input id="firstName" class="form-control" type="text" name="firstName"></input><br />
                             <label for="lastName">Last Name: </label>
                             <input id="lastName" class="form-control" type="text" name="lastName"></input><br />
-                            <label for="userName">Create Username: </label>
-                            <input id="userName" class="form-control" type="text" name="userName"></input><br />
+                            <label for="empID">Employee ID: </label>
+                            <input id="empID" class="form-control" type="text" name="empID"></input><br />
+                            <label for="pawprint">Enter Pawprint: </label>
+                            <input id="pawprint" class="form-control" type="text" name="pawprint"></input><br />
+                            <label for="title">Title: </label>
+                            <input id="title" class="form-control" type="text" name="title"></input><br />
+                            <label for="phone">Phone#: </label>
+                            <input id="phone" class="form-control" type="text" name="phone"></input><br />
+                            <label for="ferpa">FERPA Score: </label>
+                            <input id="ferpa" class="form-control" type="text" name="ferpa"></input><br />
+                            <label for="campusAddress">Campus Address: </label>
+                            <input id="campusAddress" class="form-control" type="text" name="campusAddress"></input><br />
+                            <label for="academicOrg">Academic Organization: </label>
+                            <input id="campusAddress" class="form-control" type="text" name="campusAddress"></input><br />
+                            <label for="education">Education</label>
+                            <select id="education" class="form-control" name="education">
+                            	<option value="ugrad">Under Grad</option>
+                            	<option value="grad">Graduate</option>
+                            	<option value="med">Medical</option>
+                            	<option value="vetMed">Vet Medical</option>
+                            	<option value="law">Law</option>
+                            </select><br/>
                             <label for="createPassword">Create Password: </label>
                             <input id="createPassword" class="form-control" type="text" name="createPassword"></input><br />
                             <label for="retypePassword">Retype Password: </label>
