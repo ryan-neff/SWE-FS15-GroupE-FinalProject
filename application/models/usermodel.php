@@ -11,7 +11,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 	//takes array of user data to be stored in user table in the db
 	public function insert_user($user_data){
-         $this->db->insert('securityRequests.user',$user_data);
+         if($this->db->insert('user',$user_data)){
+          return TRUE;
+         }
 	}
 
 	public function insert_request($request_data){
@@ -19,8 +21,10 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 	}
 
 	//takes array of user authentication and inserts it into the db
-	public function insert_authentication($auth_data){
-		$this->db->insert('securityRequests.authentication',$auth_data);
+	public function insert_authen($auth_data){
+		if($this->db->insert('authentication',$auth_data)){
+      return TRUE;
+    }
 	}
 
 	//updates fields of the rest of the user table once filled out 
