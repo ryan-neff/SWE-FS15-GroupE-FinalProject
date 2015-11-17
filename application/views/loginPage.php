@@ -87,6 +87,10 @@
                              <?php echo form_error('lastName'); ?>
                             <input id="lastName" class="form-control" type="text" name="lastName"></input><br />
                              
+                             <label for="email">Email: </label>
+                             <?php echo form_error('email'): ?>
+                             <input id="email" class="form-control" type="text" name="email"></input><br />
+                             
                             <label for="empID">Employee ID: </label>
                             <input id="empID" class="form-control" type="text" name="empID"></input><br />
                             

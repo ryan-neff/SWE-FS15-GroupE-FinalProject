@@ -42,7 +42,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    			$this->form_validation->set_message('checkSelectBox', 'You have to select something other than the default');
 
         $this->form_validation->set_rules('createPassword', 'Password', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'trim|required|matches[password]|xss_clean');
+   			$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'trim|required|matches[createPassword]|xss_clean');
    			
 
   			
@@ -87,8 +87,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
           }
 
    				$user_data = array (
+            'pawPrintSSO' => $this->input->post('pawprint'),
    					'fullName' => $this->input->post('fullName'),
-   					'pawprint' => $this->input->post('pawprint'),
    					'title' => $this->input->post('title'),
    					'phoneNumber' => $this->input->post('phoneNumber'),
    					'FERPAscore' => $this->input->post('FERPAscore'),
@@ -108,7 +108,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 					$pwHash = sha1($salt.$password);
 					
 					$authen_data = array (
-						'pawprint' => $this->input->post('pawprint'),
+						'pawPrintSSO' => $this->input->post('pawprint'),
 						'hashedSalt' => $salt,
 						'hashedPassword' => $pwHash
 					);
@@ -118,7 +118,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					
    					   					
    				if ($result_register && $result_authen== TRUE) {
-   						$this->load->view('myZouSecuirtyRequestForm', $user_data);
+   						$this->load->view('myZouSecurityRequestForm', $user_data);
    				} 
           else {
    						$this->load->view('loginPage', $user_data);
