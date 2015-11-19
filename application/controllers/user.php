@@ -31,20 +31,23 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    			//correct form
    			$this->form_validation->set_rules('firstName', 'First Name', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required|xss_clean');
-        	$this->form_validation->set_rules('pawPrintSSO', 'Pawprint', 'trim|required|xss_clean');
+        	$this->form_validation->set_rules('pawprint', 'Pawprint', 'trim|required|xss_clean');
+        	$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
+        	$this->form_validation->set_rules('empID', 'Employee ID', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('title', 'Title', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('FERPAscore', 'FERPA Score', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('ferpa', 'FERPA Score', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('campusAddress', 'Campus address', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('academicOrg', 'Academic Organization', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('education', 'Education Selection', 'trim|required|callback_checkSelectBox');
+   			$this->form_validation->set_rules('education', 'Education Selection', 'callback_checkSelectBox');
    			$this->form_validation->set_message('checkSelectBox', 'You have to select something other than the default');
 			$this->form_validation->set_rules('createPassword', 'Password', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'trim|required|matches[createPassword]|xss_clean');
+   			$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'trim|required|matches[createPassword]');
    			
 
   			
    			if ($this->form_validation->run() == FALSE) {
+   				echo "Form validation rules weren't met!!!!";
    				$this->load->view('loginPage');
    			} 
         else {
@@ -90,13 +93,13 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
           
 
    				$user_data = array (
-            		'pawPrintSSO' => $this->input->post('pawPrintSSO'),
+            		'pawPrintSSO' => $this->input->post('pawprint'),
+   					'EmpID' => $this->input->post('empID'),
    					'fullName' => $fullName,
-   					'email' => $this->input->post('email'),
-   					'empID' => $this->input->post('empID'),
    					'title' => $this->input->post('title'),
    					'phoneNumber' => $this->input->post('phone'),
-   					'FERPAscore' => $this->input->post('FERPAscore'),
+   					'email' => $this->input->post('email'),				
+   					'FERPAscore' => $this->input->post('ferpa'),
    					'campusAddress' => $this->input->post('campusAddress'),
    					'academicOrg' => $this->input->post('academicOrg'),
    					'isUGRD' => $isUGRD,
@@ -113,7 +116,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 					$pwHash = sha1($salt.$password);
 					
 					$authen_data = array (
-						'pawPrintSSO' => $this->input->post('pawPrintSSO'),
+						'pawPrintSSO' => $this->input->post('pawprint'),
 						'hashedSalt' => $salt,
 						'hashedPassword' => $pwHash
 					);
@@ -124,6 +127,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    			
    					   					
    				if ($result_register && $result_authen== TRUE) {
+   						echo "Registration successfull!";
    						$this->load->view('myZouSecurityRequestForm', $user_data);
    				} 
           		else {
@@ -141,24 +145,24 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    			  if(isset($this->session->userdata['logged_in'])) {
    					$this->load->view('myZouSecurityRequestForm');
    		
-   				} 
-
-          else {
+   				} else {
+					
    					$this->load->view('loginPage');
-   				}
+   					}
    			
    			} 
         else {
    			
    				$data = array(
-   					'username' => $this->input->post('username'),
-   					'password' => $this->input->post('password')
+   					'username' => $this->input->post('loginUsername'),
+   					'password' => $this->input->post('loginPassword')
    				);
+
    					
    				$result = $this->UserModel->login($data);
-
+			
    				if ($result == TRUE) {
-   					$username = $this->input->post('username');
+   					$username = $this->input->post('loginUsername');
 
 
 						$session_data = array(
@@ -169,7 +173,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 						$this->session->set_userdata('logged_in', $session_data);
 						$this->load->view('myZouSecurityRequestForm');
 					} 
-          else {
+          		else {
    							$this->load->view('loginPage'); 
    				}
    			}
