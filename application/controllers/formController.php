@@ -41,7 +41,7 @@ class FormController extends CI_Controller {
 			$this->load->view('myZouSecurityRequestForm');
 		}
 		else{
-		
+			
 			/* -------------------------------------------------
 			   gather user submission data from name attribute
 			*/
@@ -210,11 +210,9 @@ class FormController extends CI_Controller {
 				$academicAdvisingProfile = 1;
 			else
 				$academicAdvisingProfile = 0;
-			/*--------------------------------------------------*/
 
 			/*view test scores*/
-			
-			/*all test scores 
+			/*all test scores */
 			if($this->input->post('all_tests') == "true") 
 			{
 				$viewACT=1
@@ -309,9 +307,9 @@ class FormController extends CI_Controller {
 				else
 					$viewBASE=0;
 			}
-			--------------------------------------------------*/
+			/*--------------------------------------------------*/
 
-			/*student financials (cashiers)
+			/*student financials (cashiers)*/
 			if($this->input->post('sf_general_inq')=="true")
 				$SFGenInq = 1;
 			else
@@ -336,9 +334,9 @@ class FormController extends CI_Controller {
 				$FANonFinancialAidStaff = 1;
 			else
 				$FANonFinancialAidStaff=0;
-			--------------------------------------------------*/
+			/*--------------------------------------------------*/
 			
-			/*reserved access:
+			/*reserved access:*/
 			if($this->input->post('immunization_view_view')=="true")
 				$immunizationViewView = 1;
 			else
@@ -398,8 +396,74 @@ class FormController extends CI_Controller {
 				$studentGroupsUpdate = 1;
 			else
 				$studentGroupsUpdate = 0;
-			--------------------------------------------------*/
+			/*--------------------------------------------------*/
+
+
+			$request_data = array(
+				'SubmittedBy' => $pawprint,
+				//%F = Year-month-day %T = hour:min:sec
+				'dateSubmitted' => srftime("%F,%T");
+				'isNew' => $isNew;
+				'isCopy' => $isCopy;
+				'isValidFERPA' => $isValidFERPA;
+				'isStudentWorker' => $isStudentWorker;
+				'accessDesc' => $accessDesc;
+				'basicInq' => $basicInq;
+				'advancedInqView' => $advancedInqView;
+				'advancedInqUpdate' => $advancedInqUpdate;
+				'3CsView' => $threeCsView;
+				'3CsUpdate' => $threeCsUpdate;
+				'advisorUpdate' => $advisorUpdate;
+				'deptSOCUpdate' => $deptSOCUpdate;
+				'serviceIndicatorsView' => $serviceIndicatorsView;
+				'serviceIndicatorsUpdate' => $serviceIndicatorsUpdate;
+				'studentGroupsView' => $studentGroupsView;
+				'studentGroupsUpdate' => $studentGroupsUpdate;
+				'studyList' => $studyList;
+				'registrarEnrollView' => $registrarEnrollView;
+				'registrarEnrollUpdate' => $registerEnrollUpdate;
+				'advisorStudCent' => $advisorStudCent;
+				'classPermView' => $classPermView;
+				'classPermUpdate' => $classPermUpdate;
+				'classRoster' => $classRoster;
+				'blockEnrollView' => $blockEnrollView;
+				'blockEnrollUpdate' => $blockEnrollUpdate;
+				'reportManager' => $reportManager;
+				'selfServiceAdvisor' => $selfServiceAdvisor;
+				'fiscalOfficer' => $fiscalOfficer;
+				'academicAdvisingProfile' => $academicAdvisingProfile;
+				'viewACT' => $viewACT;
+				'viewSAT' => $viewSAT;
+				'viewGRE' => $viewGRE;
+				'viewTOFEL' => $viewTOFEL;
+				'viewIELTS' => $viewIELTS;
+				'viewLSAT' => $viewLSAT;
+				'viewMCAT' => $viewMCAT;
+				'viewAP' => $viewAP;
+				'viewCLEP' => $viewCLEP;
+				'viewGED' => $viewGED;
+				'viewMILLERS' => $viewMILLERS;
+				'viewPRAX' => $viewPRAX;
+				'viewPLAMU' => $viewPLAMU;
+				'viewBASE' => $viewBASE;
+				'SFGenInq' => $SFGenInq;
+				'SFCashGrpPostView' => $SFCashGrpPostView;
+				'SFCashGrpPostUpdate' => $SFCashGrpPostUpdate;
+				'FACash' => $FACash;
+				'FANonFinancialAidStaff' => $FANonFinancialAidStaff;
+				'immunizationViewView' => $immunizationViewView;
+				'immunizationViewUpdate' => $immunizationViewUpdate;
+				'transferCredAdmissionView' => $transferCredAdmissionView;
+				'transferCredAdmissionUpdate' => $transferCredAdmissionUpdate;
+				'relationshipsView' => $relationshipsView;
+				'relationshipsUpdate' => $relationshipsUpdate;
+				'accommodateUpdate' => $accommodateUpdate;
+				'supportStaffView' => $supportStaffView;
+				'advanceStandingReportView' => $advanceStandingReportView;
+				'advanceStandingReportUpdate' => $advanceStandingReportUpdate;
+			);
 			
+			$this->UserModel->insert_request($request_data);
 
 			$this->load->view('loginPage');
 		}	
