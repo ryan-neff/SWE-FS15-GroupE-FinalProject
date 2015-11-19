@@ -67,7 +67,7 @@
                         <?php echo form_open('index.php/user/check_login');?>
                             <!-- add error messages -->
                             <?php echo form_error('loginUsername'); ?>
-                            Username: <input id="login_username" class="form-control" type='text' name='loginUsername'/> <br /><br />
+                            Pawprint/SSO: <input id="login_username" class="form-control" type='text' name='loginUsername'/> <br /><br />
                             
                             <!-- add error messages -->
                             <?php echo form_error('loginPassword'); ?>
@@ -88,7 +88,7 @@
                             <input id="lastName" class="form-control" type="text" name="lastName"></input><br />
                              
                              <label for="email">Email: </label>
-                             <?php echo form_error('email'): ?>
+                             <?php echo form_error('email'); ?>
                              <input id="email" class="form-control" type="text" name="email"></input><br />
                              
                             <label for="empID">Employee ID: </label>
