@@ -470,7 +470,7 @@ class FormController extends CI_Controller {
 
 			//test if request insert was successful
 			if ($insertRequest == TRUE) 
-   					$this->load->view('receiptPage');
+   					$this->load->view('homePage');
           	else
    					$this->load->view('myZouSecurityRequestForm', $request_data);
 		}	
