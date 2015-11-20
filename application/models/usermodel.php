@@ -17,7 +17,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 	}
 
 	public function insert_request($request_data){
-		$this->db->insert('securityRequests.request',$request_data);
+		if($this->db->insert('request',$request_data)){
+      return TRUE;
+    }
 	}
 
 	//takes array of user authentication and inserts it into the db
