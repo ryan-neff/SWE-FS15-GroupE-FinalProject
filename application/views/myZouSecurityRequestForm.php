@@ -131,7 +131,12 @@
             border-bottom: dotted grey;
             border-width: 2px;
         }
-    
+    	.error{
+
+    		color:red;
+    		font-weight: bold;
+    		font-size:40px;
+    	}
     </style>
 	<title>myZou SECURITY Request Form</title>
 	<div class="title">
@@ -140,6 +145,7 @@
 
 	</div>
 </head>
+
 <body style="border: double black; border-width: 5px; padding: 5px; align: center;">
 	<!-- <?php echo validation_errors(); ?> -->
 	
