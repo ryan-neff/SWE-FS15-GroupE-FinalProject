@@ -215,21 +215,21 @@ class FormController extends CI_Controller {
 			/*all test scores */
 			if($this->input->post('all_tests') == "true") 
 			{
-				$viewACT=1
-				$viewSAT=1
-				$viewGRE=1
-				$viewGMAT=1
-				$viewTOFEL=1
-				$viewIELTS=1
-				$viewLSAT=1
-				$viewMCAT=1
-				$viewAP=1
-				$viewCLEP=1
-				$viewGED=1
-				$viewMILLERS=1
-				$viewPRAX=1
-				$viewPLAMU=1
-				$viewBASE=1
+				$viewACT=1;
+				$viewSAT=1;
+				$viewGRE=1;
+				$viewGMAT=1;
+				$viewTOFEL=1;
+				$viewIELTS=1;
+				$viewLSAT=1;
+				$viewMCAT=1;
+				$viewAP=1;
+				$viewCLEP=1;
+				$viewGED=1;
+				$viewMILLERS=1;
+				$viewPRAX=1;
+				$viewPLAMU=1;
+				$viewBASE=1;
 			}
 			else{
 				if($this->input->post('act')=="true")
@@ -465,8 +465,7 @@ class FormController extends CI_Controller {
 			
 			$this->UserModel->insert_request($request_data);
 
-			$this->load->view('loginPage');
+			$this->load->view('receiptPage');
 		}	
 	}
 }
-
