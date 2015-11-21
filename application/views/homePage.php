@@ -52,7 +52,7 @@
                             </small>
                             <br>
                             <br>
-                            <input id="begin_registration" class="btn btn-default" type='submit' name='begin_registration' value='Request' /> 
+                            <a href="loadRequestForm"><input id="begin_registration" class="btn btn-default" type='submit' name='begin_registration' value='Request' /></a>
                         </h3>
                     </th>
                 </tr>

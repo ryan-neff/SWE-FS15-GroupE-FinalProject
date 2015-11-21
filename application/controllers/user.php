@@ -18,8 +18,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    	  public function index(){
         
    			$this->load->view('loginPage');
-   		}
-   		
+      }
+    
+        public function loadRequestForm(){
+            $this->load->view('myZouSecurityRequestForm');
+        }
    		/* 
        |  The following function will be used for creating a login feature for the user
        |  ------------------------------------------------------------------------------------
@@ -29,28 +32,28 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
       */
       public function new_user_registration() {
    			//correct form
-   			$this->form_validation->set_rules('firstName', 'First Name', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required|xss_clean');
-        	$this->form_validation->set_rules('pawprint', 'Pawprint', 'trim|required|xss_clean');
-        	$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
-        	$this->form_validation->set_rules('empID', 'Employee ID', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('title', 'Title', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('ferpa', 'FERPA Score', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('campusAddress', 'Campus address', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('academicOrg', 'Academic Organization', 'trim|required|xss_clean');
+   			$this->form_validation->set_rules('firstName', 'First Name', 'trim|required||alpha|min_length[4]|max_length[25]|xss_clean');
+   			$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required||alpha|min_length[4]|max_length[25]|xss_clean');
+        	$this->form_validation->set_rules('pawprint', 'Pawprint', 'trim|required||apha_numeric|exact_length[6]|xss_clean');
+        	$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[50]|xss_clean');
+        	$this->form_validation->set_rules('empID', 'Employee ID', 'trim|required|integer|exact_length[8]|xss_clean');
+   			$this->form_validation->set_rules('title', 'Title', 'trim|required|max_length[10]|xss_clean');
+   			$this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|integer|exact_length[10]|xss_clean');
+   			$this->form_validation->set_rules('ferpa', 'FERPA Score', 'trim|required||decimal|max_length[6]|less_than[100.01]|xss_clean');
+   			$this->form_validation->set_rules('campusAddress', 'Campus address', 'trim|required|max_length[100]|xss_clean');
+   			$this->form_validation->set_rules('academicOrg', 'Academic Organization', 'trim|required|max_length[32]|xss_clean');
    			$this->form_validation->set_rules('education', 'Education Selection', 'callback_checkSelectBox');
    			$this->form_validation->set_message('checkSelectBox', 'You have to select something other than the default');
 			$this->form_validation->set_rules('createPassword', 'Password', 'trim|required|xss_clean');
-   			$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'trim|required|matches[createPassword]');
-   			
-
+   			$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'trim|required|matches[createPassword]|xss_clean');
+   	        
   			
-   			if ($this->form_validation->run() == FALSE) {
-   				echo "Form validation rules weren't met!!!!";
-   				$this->load->view('loginPage');
-   			} 
+        if ($this->form_validation->run() == FALSE) {
+            echo "Form validation rules weren't met!!!!";
+            $this->load->view('loginPage');
+        } 
         else {
+          
           if($this->input->post('education') == "ugrd"){
             $isUGRD = 1;
             $isGRAD = 0;
@@ -90,8 +93,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
           $fist = $this->input->post('firstName');
           $last = $this->input->post('lastName');
           $fullName = $fist.$last;
-          
-
+          $isStudentWorker = 0;
+            
    				$user_data = array (
             		'pawPrintSSO' => $this->input->post('pawprint'),
    					'EmpID' => $this->input->post('empID'),
@@ -102,7 +105,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					'FERPAscore' => $this->input->post('ferpa'),
    					'campusAddress' => $this->input->post('campusAddress'),
    					'academicOrg' => $this->input->post('academicOrg'),
-   					'isUGRD' => $isUGRD,
+   					'isStudentWorker' => $isStudentWorker,
+                    'isUGRD' => $isUGRD,
    					'isGRAD' => $isGRAD,
    					'isMED' => $isMED,
    					'isVETMED' => $isVETMED,
@@ -126,12 +130,12 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    				
    			
    					   					
-   				if ($result_register && $result_authen== TRUE) {
+   				if ($result_register== TRUE && $result_authen== TRUE) {
    						echo "Registration successfull!";
    						$this->load->view('homePage', $user_data);
    				} 
           		else {
-   						$this->load->view('loginPage', $user_data);
+   						$this->load->view('loginPage');
    				}
    			}//end else		
    	  }//end registration funciton 
@@ -178,7 +182,8 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    				}
    			}
    		}//end login funciton 
-   		
+   	
+        
         
       public function checkSelectBox($selection){
         return $selection == "false" ? FALSE : TRUE;
