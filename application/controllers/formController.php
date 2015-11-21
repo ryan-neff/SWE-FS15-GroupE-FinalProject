@@ -30,6 +30,87 @@ class FormController extends CI_Controller {
 		$this->form_validation->set_rules('ferpa', 'FERPA Score', 'required|decimal|max_length[6]|less_than[100.01]');		
 		$this->form_validation->set_rules('access', 'Access Description', 'required|max_length[256]');
 		
+        //vallidation for checkboxes
+        $this->form_validation->set_rules('student_worker', 'checkbox_title', 'trim');
+
+        $this->form_validation->set_rules('ugrd', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('grad', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('med', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('vetMed', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('law', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('basic_inquiry', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('adv_inquiry_view', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('adv_inquiry_update', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('3Cs_view', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('3Cs_update', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('advisor_update_update', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('dept_SOC_update', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('service_ind_view', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('service_ind_update', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('student_group_view', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('study_list_view', 'checkbox_title', 'trim');
+        
+         $this->form_validation->set_rules('reg_enroll_view', 'checkbox_title', 'trim');
+        
+        $this->form_validation->set_rules('reg_enroll_update', 'checkbox_title', 'trim');
+
+        
+        $this->form_validation->set_rules('adv_center_view', 'checkbox_title', 'trim');
+
+        
+        
+        $this->form_validation->set_rules('class_permission_update', 'checkbox_title', 'trim');
+
+        
+        $this->form_validation->set_rules('class_permission_view', 'checkbox_title', 'trim');
+
+        
+        
+        $this->form_validation->set_rules('class_roster_view', 'checkbox_title', 'trim');
+
+        
+        
+        $this->form_validation->set_rules('block_enroll_view', 'checkbox_title', 'trim');
+
+        
+        
+        $this->form_validation->set_rules('block_enroll_update', 'checkbox_title', 'trim');
+
+        
+        $this->form_validation->set_rules('report_mgr_view', 'checkbox_title', 'trim');
+
+        
+        
+        $this->form_validation->set_rules('self_serv_update', 'checkbox_title', 'trim');
+
+        
+        
+        $this->form_validation->set_rules('fisc_off_view', 'checkbox_title', 'trim');
+
+        
+        
+         $this->form_validation->set_rules('ac_adv_profile_update', 'checkbox_title', 'trim');
+
+        
+        
+        
+
+        
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
 		/* -------------------------------------------------
@@ -41,35 +122,32 @@ class FormController extends CI_Controller {
 			$this->load->view('myZouSecurityRequestForm');
 		}
 		else{
-			
-			/* -------------------------------------------------
-			   gather user submission data from name attribute
+			/*gather user submission data from name attribute*/
 			$fullName = $this->input->post('username');
 			$pawPrintSSO = $this->input->post('pawprint');
 			$title = $this->input->post('title');
 			$EmpID = $this->input->post('emp_ID');
 			$academicOrg = $this->input->post('org');
 			$campusAddress = $this->input->post('address');
-			$phoneNumber = $this->input->post('phone');
-			---------------------------------------------------*/	
+			$phoneNumber = $this->input->post('phone');	
 			
-			if($this->input->post('ugrd') == true)
+			if($this->input->post('ugrd') == "true")
 				$isUGRD = 1;
 			else
 				$isUGRD = 0;
-			if($this->input->post('grad') == true)
+			if($this->input->post('grad') == "true")
 				$isGRAD = 1;
 			else
 				$isGRAD = 0;
-			if($this->input->post('med') == true)
+			if($this->input->post('med') == "true")
 				$isMED = 1;
 			else
 				$isMED = 0;
-			if($this->input->post('vetMed') == true)
+			if($this->input->post('vetMed') == "true")
 				$isVETMED = 1;
 			else
 				$isVETMED = 0;
-			if($this->input->post('law') == true)
+			if($this->input->post('law') == "true")
 				$isLAW = 1;
 			else
 				$isLAW = 0;
@@ -89,7 +167,11 @@ class FormController extends CI_Controller {
 			else
 				$isValidFERPA = 0;
 			
-			$isStudentWorker = $this->input->post('student_worker');	
+            if($this->input->post('student_worker') == "true"){
+                $isStudentWorker = 1;
+            }	
+            else
+				$isStudentWorker = 0;
 
 			$accessDesc = $this->input->post('access');
 			
@@ -401,15 +483,14 @@ class FormController extends CI_Controller {
 				$studentGroupsUpdate = 0;
 		
 
-			$now = srftime("%F,%T");
+			$now = gmstrftime("%F,%T");
 			$request_data = array(
-				'submittedBy' => $pawprint,
+				'submittedBy' => $pawPrintSSO,
 				//%F = Year-month-day %T = hour:min:sec
 				'dateSubmitted' => $now,
 				'isNew' => $isNew,
 				'isCopy' => $isCopy,
 				'isValidFERPA' => $isValidFERPA,
-				'isStudentWorker' => $isStudentWorker,
 				'accessDesc' => $accessDesc,
 				'basicInq' => $basicInq,
 				'advancedInqView' => $advancedInqView,
@@ -424,7 +505,7 @@ class FormController extends CI_Controller {
 				'studentGroupsUpdate' => $studentGroupsUpdate,
 				'studyList' => $studyList,
 				'registrarEnrollView' => $registrarEnrollView,
-				'registrarEnrollUpdate' => $registerEnrollUpdate,
+				'registrarEnrollUpdate' => $registrarEnrollUpdate,
 				'advisorStudCent' => $advisorStudCent,
 				'classPermView' => $classPermView,
 				'classPermUpdate' => $classPermUpdate,
@@ -438,6 +519,7 @@ class FormController extends CI_Controller {
 				'viewACT' => $viewACT,
 				'viewSAT' => $viewSAT,
 				'viewGRE' => $viewGRE,
+                'viewGMAT' => $viewGMAT,
 				'viewTOFEL' => $viewTOFEL,
 				'viewIELTS' => $viewIELTS,
 				'viewLSAT' => $viewLSAT,
@@ -462,17 +544,18 @@ class FormController extends CI_Controller {
 				'relationshipsUpdate' => $relationshipsUpdate,
 				'accommodateUpdate' => $accommodateUpdate,
 				'supportStaffView' => $supportStaffView,
+                'supportStaffUpdate' => $supportStaffUpdate,
 				'advanceStandingReportView' => $advanceStandingReportView,
 				'advanceStandingReportUpdate' => $advanceStandingReportUpdate
 			);
 			
-			$insertRequest = $this->UserModel->insert_request($request_data);
+			  $insertRequest = $this->UserModel->insert_request($request_data);
 
 			//test if request insert was successful
 			if ($insertRequest == TRUE) 
-   					$this->load->view('homePage');
+   					$this->load->view('receiptPage');
           	else
-   					$this->load->view('myZouSecurityRequestForm', $request_data);
+   					$this->load->view('myZouSecurityRequestForm', $now);
 		}	
 	}
 }
