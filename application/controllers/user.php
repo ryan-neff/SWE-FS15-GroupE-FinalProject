@@ -128,7 +128,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					   					
    				if ($result_register && $result_authen== TRUE) {
    						echo "Registration successfull!";
-   						$this->load->view('myZouSecurityRequestForm', $user_data);
+   						$this->load->view('homePage', $user_data);
    				} 
           		else {
    						$this->load->view('loginPage', $user_data);
@@ -143,7 +143,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    			
    			if ($this->form_validation->run() == FALSE) {
    			  if(isset($this->session->userdata['logged_in'])) {
-   					$this->load->view('myZouSecurityRequestForm');
+   					$this->load->view('homePage');
    		
    				} else {
 					
@@ -171,7 +171,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 						
 						//add user data in session
 						$this->session->set_userdata('logged_in', $session_data);
-						$this->load->view('myZouSecurityRequestForm');
+						$this->load->view('homePage');
 					} 
           		else {
    							$this->load->view('loginPage'); 
