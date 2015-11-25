@@ -13,13 +13,35 @@ class FormController extends CI_Controller {
 		
 		$this->load->view('myZouSecurityRequestForm');
 	}
+    
+    function loadRequestForm(){
+        $this->load->view('myZouSecurityRequestForm');
+    }
+    
 
-	function submitRequest() {
+    public function viewProfile(){
+            
+            $this->load->view('homePage');
+            $user_data = $this->session->all_userdata();
+            print_r($user_data);
+         
+    }
+   
+    public function logoutUser(){
+          $sess_data = array('username' => '');
+          $this->session->unset_userdata('logged_in', $sess_data);
+          $this->session->sess_destroy();
+          $user_data = $this->session->all_userdata();
+          
+          $this->load->view('loginPage');
+      }
+	
+    function submitRequest() {
 		
 		/* -------------------------------------------------
 	   		Each required user submisson field has a validation rule
 	   	-----------------------------------------------*/
-		$this->form_validation->set_rules('username', 'Username', 'required|alpha|min_length[4]|max_length[50]');
+		$this->form_validation->set_rules('username', 'Username', 'required|min_length[4]|max_length[50]');
 		$this->form_validation->set_rules('pawprint', 'Pawprint', 'required|apha_numeric|exact_length[6]');
 		$this->form_validation->set_rules('title', 'Title', 'required|alpha|max_length[10]');
 		$this->form_validation->set_rules('emp_ID', 'Employee Id', 'required|integer|exact_length[8]');
@@ -32,84 +54,69 @@ class FormController extends CI_Controller {
 		
         //vallidation for checkboxes
         $this->form_validation->set_rules('student_worker', 'checkbox_title', 'trim');
-
         $this->form_validation->set_rules('ugrd', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('grad', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('med', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('vetMed', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('law', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('basic_inquiry', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('adv_inquiry_view', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('adv_inquiry_update', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('3Cs_view', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('3Cs_update', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('advisor_update_update', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('dept_SOC_update', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('service_ind_view', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('service_ind_update', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('student_group_view', 'checkbox_title', 'trim');
-        
         $this->form_validation->set_rules('study_list_view', 'checkbox_title', 'trim');
-        
-         $this->form_validation->set_rules('reg_enroll_view', 'checkbox_title', 'trim');
-        
+        $this->form_validation->set_rules('reg_enroll_view', 'checkbox_title', 'trim');
         $this->form_validation->set_rules('reg_enroll_update', 'checkbox_title', 'trim');
-
-        
-        $this->form_validation->set_rules('adv_center_view', 'checkbox_title', 'trim');
-
-        
-        
+        $this->form_validation->set_rules('adv_center_view', 'checkbox_title', 'trim');  
         $this->form_validation->set_rules('class_permission_update', 'checkbox_title', 'trim');
-
-        
         $this->form_validation->set_rules('class_permission_view', 'checkbox_title', 'trim');
-
-        
-        
         $this->form_validation->set_rules('class_roster_view', 'checkbox_title', 'trim');
-
-        
-        
         $this->form_validation->set_rules('block_enroll_view', 'checkbox_title', 'trim');
-
-        
-        
         $this->form_validation->set_rules('block_enroll_update', 'checkbox_title', 'trim');
-
-        
         $this->form_validation->set_rules('report_mgr_view', 'checkbox_title', 'trim');
-
-        
-        
         $this->form_validation->set_rules('self_serv_update', 'checkbox_title', 'trim');
-
-        
-        
         $this->form_validation->set_rules('fisc_off_view', 'checkbox_title', 'trim');
-
+        $this->form_validation->set_rules('ac_adv_profile_update', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('all_tests', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('act', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('sat', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('gre', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('gmat', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('tofel', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('ielts', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('lsat', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('mcat', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('ap', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('clep', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('ged', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('millers', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('prax', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('plamu', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('base', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('sf_general_inq', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('sf_cash_grp_view', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('sf_cash_grp_update', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('fa_cash_view', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('fa_cash_view', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('fa_non_fin_aid_staff', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('immunization_view_view', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('immunization_view_update', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('accomodate_update', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('transfer_view', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('transfer_update', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('support_staff_view', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('support_staff_update', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('relationship_view', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('relationship_update', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('advance_standing_view', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('advance_standing_update', 'checkbox_title', 'trim');
+        $this->form_validation->set_rules('student_group_update', 'checkbox_title', 'trim');
         
-        
-         $this->form_validation->set_rules('ac_adv_profile_update', 'checkbox_title', 'trim');
-
-        
-        
-        
-
         
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
@@ -482,8 +489,8 @@ class FormController extends CI_Controller {
 			else
 				$studentGroupsUpdate = 0;
 		
-
-			$now = gmstrftime("%F,%T");
+            ini_set( 'date.timezone', 'America/Chicago' );
+			$now = strftime("%F,%T");
 			$request_data = array(
 				'submittedBy' => $pawPrintSSO,
 				//%F = Year-month-day %T = hour:min:sec

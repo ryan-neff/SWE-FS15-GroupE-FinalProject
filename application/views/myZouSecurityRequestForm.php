@@ -137,6 +137,9 @@
     		font-weight: oblique;
     		font-size:20px;
     	}
+        input[type=checkbox]{
+            padding:12px;
+        }
     </style>
 	<title>myZou SECURITY Request Form</title>
 	<div class="title">
@@ -210,7 +213,7 @@
 						
 					</td>
 					<td>
-						<label for="address">*Phone number:</label>
+						<label for="phone">*Phone number:</label>
 					</td>
 					<td>
 						<?php echo form_error('phone'); ?>
@@ -688,29 +691,29 @@
                         Check which test(s) access is to be granted
                     </th>
 					<th colspan="2">
-                        <input id="all_tests" type="checkbox" name="all_tests" value="true" class="form-control">Access to All Test Scores
+                        <input id="all_tests" type="checkbox" name="all_tests" value="true" class="form-control" <?php echo set_checkbox('all_tests', 'true');?>>Access to All Test Scores
                     </th>
 				</tr>
 				<tr style="border: ridge;">
-					<td><input id="act"    type="checkbox" name="act"      value="true" class="form-control">ACT</td>
-					<td><input id="sat"    type="checkbox" name="sat"      value="true" class="form-control">SAT</td>
-					<td><input id="gre"    type="checkbox" name="gre"      value="true" class="form-control">GRE</td>
-					<td><input id="gmat"   type="checkbox" name="gmat"     value="true" class="form-control">GMAT</td>
-					<td><input id="tofel"  type="checkbox" name="tofel"    value="true" class="form-control">TOFEL</td>
+					<td><input id="act" type="checkbox" name="act" value="true" class="form-control" <?php echo set_checkbox('act', 'true');?>>ACT</td>
+					<td><input id="sat" type="checkbox" name="sat" value="true" class="form-control" <?php echo set_checkbox('sat', 'true');?>>SAT</td>
+					<td><input id="gre" type="checkbox" name="gre" value="true" class="form-control" <?php echo set_checkbox('gre', 'true');?>>GRE</td>
+					<td><input id="gmat" type="checkbox" name="gmat" value="true" class="form-control" <?php echo set_checkbox('gmat', 'true');?>>GMAT</td>
+					<td><input id="tofel" type="checkbox" name="tofel" value="true" class="form-control" <?php echo set_checkbox('tofel', 'true');?>>TOFEL</td>
 				</tr>
 				<tr style="border: ridge;">
-					<td><input id="ielts"  type="checkbox" name="ielts"    value="true" class="form-control">IELTS</td>
-					<td><input id="lsat"   type="checkbox" name="lsat"     value="true" class="form-control">LSAT</td>
-					<td><input id="mcat"   type="checkbox" name="mcat"     value="true" class="form-control">MCAT</td>
-					<td><input id="ap"     type="checkbox" name="ap"       value="true" class="form-control">AP</td>
-					<td><input id="clep"   type="checkbox" name="clep"     value="true" class="form-control">CLEP</td>
+					<td><input id="ielts" type="checkbox" name="ielts" value="true" class="form-control" <?php echo set_checkbox('ielts', 'true');?>>IELTS</td>
+					<td><input id="lsat" type="checkbox" name="lsat" value="true" class="form-control" <?php echo set_checkbox('lsat', 'true');?>>LSAT</td>
+					<td><input id="mcat" type="checkbox" name="mcat" value="true" class="form-control" <?php echo set_checkbox('mcat', 'true');?>>MCAT</td>
+					<td><input id="ap" type="checkbox" name="ap" value="true" class="form-control" <?php echo set_checkbox('ap', 'true');?>>AP</td>
+					<td><input id="clep" type="checkbox" name="clep" value="true" class="form-control" <?php echo set_checkbox('clep', 'true');?>>CLEP</td>
 				</tr>
 				<tr style="border: ridge;">
-					<td><input id="ged"    type="checkbox" name="ged" value="true" class="form-control">GED</td>
-					<td><input id="millers" type="checkbox" name="millers" value="true" class="form-control">MILLERS</td>
-					<td><input id="prax"   type="checkbox" name="prax" value="true" class="form-control">PRAX</td>
-					<td><input id="plamu"  type="checkbox" name="plamu" value="true" class="form-control">PLA-MU</td>
-					<td><input id="base"   type="checkbox" name="base" value="true" class="form-control">BASE</td>
+					<td><input id="ged" type="checkbox" name="ged" value="true" class="form-control" <?php echo set_checkbox('ged', 'true');?>>GED</td>
+					<td><input id="millers" type="checkbox" name="millers" value="true" class="form-control" <?php echo set_checkbox('millers', 'true');?>>MILLERS</td>
+					<td><input id="prax" type="checkbox" name="prax" value="true" class="form-control" <?php echo set_checkbox('prax', 'true');?>>PRAX</td>
+					<td><input id="plamu" type="checkbox" name="plamu" value="true" class="form-control" <?php echo set_checkbox('plamu', 'true');?>>PLA-MU</td>
+					<td><input id="base" type="checkbox" name="base" value="true" class="form-control" <?php echo set_checkbox('base', 'true');?>>BASE</td>
 				</tr>
 			</tbody>
 		</table>
@@ -754,7 +757,7 @@
 						For staff outside of the Cashiers Office
 					</td>
 					<td>
-						<input id="sf_general_inq" type="checkbox" class="form-control" name="sf_general_inq" value="true">
+						<input id="sf_general_inq" type="checkbox" class="form-control" name="sf_general_inq" value="true" <?php echo set_checkbox('sf_general_inq', 'true');?> />
 					</td>
 					<td>
 					
@@ -768,9 +771,10 @@
 						Also known as "Cost Centers" (for areas that want to apply charges)
 					</td>
 					<td>
-						<input id="sf_cash_grp_view" type="checkbox" class="form-control" name="sf_cash_grp_view" value="true"></td>
+						<input id="sf_cash_grp_view" type="checkbox" class="form-control" name="sf_cash_grp_view" value="true" <?php echo set_checkbox('sf_cash_grp_view', 'true');?> />
+                    </td>
 					<td>
-						<input id="sf_cash_grp__update" type="checkbox" class="form-control" name="sf_cash_grp__update" value="true">
+						<input id="sf_cash_grp_update" type="checkbox" class="form-control" name="sf_cash_grp_update" value="true" <?php echo set_checkbox('sf_cash_grp_update', 'true');?> />
 					</td>
 				</tr>
 			</tbody>
@@ -815,7 +819,7 @@
 						View a student's financial aid awards and budget
 					</td>
 					<td>
-						<input id="fa_cash_view" type="checkbox" name="fa_cash_view" value="true" class="form-control">
+						<input id="fa_cash_view" type="checkbox" name="fa_cash_view" value="true" class="form-control" <?php echo set_checkbox('fa_cash_view', 'true');?> />
 					</td>
 					<td>
 					
@@ -829,7 +833,7 @@
 						Also known as "Cost Centers" (for areas that want to apply charges)
 					</td>
 					<td>
-						<input id="fa_non_fin_aid_staff" type="checkbox" name="fa_non_fin_aid_staff" value="true" class="form-control">
+						<input id="fa_non_fin_aid_staff" type="checkbox" name="fa_non_fin_aid_staff" value="true" class="form-control" <?php echo set_checkbox('fa_non_fin_aid_staff', 'true');?> />
 					</td>
 					<td>
 					
@@ -904,10 +908,10 @@
 				<tr style="border: ridge;">
 					<td>Immunization view</td>
 					<td>
-                        <input class="form-control" id="immunization_view_view" type="checkbox" name="immunization_view_view" value="true"></input>
+                        <input class="form-control" id="immunization_view_view" type="checkbox" name="immunization_view_view" value="true" <?php echo set_checkbox('immunization_view_view', 'true');?> />
                     </td>
 					<td>
-                        <input class="form-control" id="immunization_view_update" type="checkbox" name="immunization_view_update" value="true"></input>
+                        <input class="form-control" id="immunization_view_update" type="checkbox" name="immunization_view_update" value="true" <?php echo set_checkbox('immunization_view_update', 'true');?> />
                     </td>
 					<td>
                         Accommodate (Student Health)
@@ -916,7 +920,7 @@
         
                     </td>
 					<td>
-                        <input class="form-control" id="accomodate_update" type="checkbox" name="accomodate_update" value="true"></input>
+                        <input class="form-control" id="accomodate_update" type="checkbox" name="accomodate_update" value="true" <?php echo set_checkbox('accomodate_update', 'true');?> />
                     </td>
 				</tr>
 				<tr style="border: ridge;">
@@ -924,19 +928,19 @@
                         Transfer Credit Admission
                     </td>
 					<td>
-                        <input class="form-control" id="transfer_view" type="checkbox" name="transfer_view" value="true"></input>
+                        <input class="form-control" id="transfer_view" type="checkbox" name="transfer_view" value="true" <?php echo set_checkbox('transfer_view', 'true');?> />
                     </td>
 					<td>
-                        <input class="form-control" id="transfer_update" type="checkbox" name="transfer_update" value="true"></input>
+                        <input class="form-control" id="transfer_update" type="checkbox" name="transfer_update" value="true" <?php echo set_checkbox('transfer_update', 'true');?> />
                     </td>
 					<td>
                         Support Staff (Registrar's Office)
                     </td>
 					<td>
-                        <input class="form-control" id="support_staff_view" type="checkbox" name="support_staff_view" value="true"></input>
+                        <input class="form-control" id="support_staff_view" type="checkbox" name="support_staff_view" value="true" <?php echo set_checkbox('support_staff_view', 'true');?> />
                     </td>
 					<td>
-                        <input class="form-control" id="support_staff_update" type="checkbox" name="support_staff_update" value="true"></input>
+                        <input class="form-control" id="support_staff_update" type="checkbox" name="support_staff_update" value="true" <?php echo set_checkbox('support_staff_update', 'true');?> />
                     </td>
 				</tr>
 				<tr style="border: ridge;">
@@ -944,19 +948,19 @@
                         Relationships
                     </td>
 					<td>
-                        <input class="form-control" id="relationship_view" type="checkbox" name="relationship_view" value="true"></input>
+                        <input class="form-control" id="relationship_view" type="checkbox" name="relationship_view" value="true" <?php echo set_checkbox('relationship_view', 'true');?> />
                     </td>
 					<td>
-                        <input class="form-control" id="relationship_update" type="checkbox" name="relationship_update" value="true"></input>
+                        <input class="form-control" id="relationship_update" type="checkbox" name="relationship_update" value="true" <?php echo set_checkbox('relationship_update', 'true');?> />
                     </td>
 					<td>
                         Advance Standing Report
                     </td>
 					<td>
-                        <input class="form-control" id="advance_standing_view" type="checkbox" name="advance_standing_view" value="true"></input>
+                        <input class="form-control" id="advance_standing_view" type="checkbox" name="advance_standing_view" value="true" <?php echo set_checkbox('advance_standing_view', 'true');?> />
                     </td>
 					<td>
-                        <input class="form-control" id="advance_standing_update" type="checkbox" name="advance_standing_update" value="true"></input>
+                        <input class="form-control" id="advance_standing_update" type="checkbox" name="advance_standing_update" value="true" <?php echo set_checkbox('advance_standing_update', 'true');?> />
                     </td>
 				</tr>
 				<tr style="border: ridge;">
@@ -967,7 +971,7 @@
                     
                     </td>
 					<td>
-                        <input class="form-control" id="student_group_update" type="checkbox" name="student_group_update" value="true"></input>
+                        <input class="form-control" id="student_group_update" type="checkbox" name="student_group_update" value="true" <?php echo set_checkbox('student_group_update', 'true');?> />
                     </td>
 					<td>
 
@@ -989,5 +993,9 @@
 	
 	</div>
 	</form>
+
+    <form>
+         <input type="button" class="btn btn-default" value="Print" onclick="window.print()" />
+      </form>
 </body>
 </html>

@@ -10,6 +10,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         $this->load->helper('form'); //form helper
         $this->load->library('form_validation'); //form validation library
         $this->load->library('session');
+          
       }
 
    		
@@ -19,11 +20,14 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         
    			$this->load->view('loginPage');
       }
-    
         public function loadRequestForm(){
-            $this->load->view('myZouSecurityRequestForm');
-        }
-   		/* 
+        
+   			$this->load->view('myZouSecurityRequestForm');
+      }
+    
+        
+       
+       /* 
        |  The following function will be used for creating a login feature for the user
        |  ------------------------------------------------------------------------------------
        |   Takes the pawprint (SSO) and desired password from the user input. 
@@ -35,7 +39,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    			$this->form_validation->set_rules('firstName', 'First Name', 'trim|required||alpha|min_length[4]|max_length[25]|xss_clean');
    			$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required||alpha|min_length[4]|max_length[25]|xss_clean');
         	$this->form_validation->set_rules('pawprint', 'Pawprint', 'trim|required||apha_numeric|exact_length[6]|xss_clean');
-        	$this->form_validation->set_rules('email', 'Email', 'trim|required|max_length[50]|xss_clean');
+        	$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[50]|xss_clean');
         	$this->form_validation->set_rules('empID', 'Employee ID', 'trim|required|integer|exact_length[8]|xss_clean');
    			$this->form_validation->set_rules('title', 'Title', 'trim|required|max_length[10]|xss_clean');
    			$this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|integer|exact_length[10]|xss_clean');
@@ -46,10 +50,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    			$this->form_validation->set_message('checkSelectBox', 'You have to select something other than the default');
 			$this->form_validation->set_rules('createPassword', 'Password', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'trim|required|matches[createPassword]|xss_clean');
+          
+          $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
    	        
   			
         if ($this->form_validation->run() == FALSE) {
-            echo "Form validation rules weren't met!!!!";
             $this->load->view('loginPage');
         } 
         else {
@@ -143,8 +148,11 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
       
       public function check_login() {
         $this->form_validation->set_rules('loginUsername', 'Username', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('loginPassword', 'Password', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('loginPassword', 'Password', 'trim|required|xss_clean|callback_validateCreds['.$this->input->post('loginUsername').']');
+        $this->form_validation->set_message('validateCreds', 'The username or password is incorrect');
    			
+          $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+          
    			if ($this->form_validation->run() == FALSE) {
    			  if(isset($this->session->userdata['logged_in'])) {
    					$this->load->view('homePage');
@@ -155,7 +163,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					}
    			
    			} 
-        else {
+            else {
    			
    				$data = array(
    					'username' => $this->input->post('loginUsername'),
@@ -171,6 +179,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 						$session_data = array(
 							'username' => $data['username'],
+                            //'logged_in' => TRUE
 						);
 						
 						//add user data in session
@@ -181,14 +190,40 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    							$this->load->view('loginPage'); 
    				}
    			}
-   		}//end login funciton 
+      }//end login funciton 
    	
+      public function logoutUser(){
+          $sess_data = array('username' => '');
+          $this->session->unset_userdata('logged_in', $sess_data);
+          $this->session->sess_destroy();
+          $user_data = $this->session->all_userdata();
+          
+          $this->load->view('loginPage');
+      }
         
+      public function viewProfile(){
+            
+            $this->load->view('homePage');
+            $user_data = $this->session->all_userdata();
+            print_r($user_data);
+         
+      }  
         
       public function checkSelectBox($selection){
         return $selection == "false" ? FALSE : TRUE;
-      } //end select validation funciton 
-       
+      } //end select validation funciton  
+    
+      public function validateCreds($password,$username){
+        $data = array(
+   					'username' => $password,
+   					'password' => $username
+   				);
+
+   					
+   	    return $this->UserModel->login($data);
+      } //end login validation funciton 
+     
+        
 
       /*  
       |	Once the user has filled in the remainder of the data neccesary to fill the 
