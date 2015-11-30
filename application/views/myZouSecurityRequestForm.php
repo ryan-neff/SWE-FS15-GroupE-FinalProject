@@ -988,7 +988,7 @@
 	</div>		
 	
 	<hr/>
-	<div style="text-align:center;">
+	<div align="center">
 	<input id="Submit" type="Submit" class="btn btn-default" value ="Submit" name="Submit">
 	
 	</form>
