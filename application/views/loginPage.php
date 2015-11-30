@@ -29,6 +29,16 @@
                 text-align: center;
                 width: 100%;
             }
+            .error{
+
+                color:#ff3333;
+                font-weight: oblique;
+                font-size:20px;
+    	    }
+            #loginForm{
+                position: relative;
+                top: -300px;
+            }
         </style>
 
         <title>myZou SECURITY Request Login</title>
@@ -62,121 +72,71 @@
                     </td>
                 </tr>
                 <tr>
+                    
                     <td>
-
-                        <?php echo form_open('index.php/user/check_login');?>
+                        <?php echo form_open('index.php/user/check_login','id="loginForm"');?>
                             <!-- add error messages -->
                             <?php echo form_error('loginUsername'); ?>
-                        <label for="loginUsername">Pawprint/SSO:  </label>
-                        <input id="login_username" class="form-control" type='text' name='loginUsername'/>
+                            <label for="loginUsername">Pawprint/SSO:  </label>
+                            <input id="login_username" class="form-control" type='text' name='loginUsername' value="<?php echo set_value('loginUsername'); ?>"/>
+
+                            <!-- add error messages -->
+                            <?php echo form_error('loginPassword'); ?>
+                            <label for="loginPassword">Password:  </label>
+                            <input id="login_password" class="form-control" type="password" name='loginPassword' />
+
+                            <input id="submit_login" class="btn btn-default" type='submit' name='submit_login' value='Login' />  
+                        </form>
                     </td>
+                
                     <td>
                         <?php echo form_open('index.php/user/new_user_registration'); ?>
-                        
-                        <label for="firstName">First Name: </label>
-                        <?php echo form_error('firstName'); ?>
-                        <input id="firstName" class="form-control" type="text" name="firstName"></input> 
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <!-- add error messages -->
-                        <?php echo form_error('loginPassword'); ?>
-                        <label for="loginPassword">Password:  </label>
-                        <input id="login_password" class="form-control" type='password' name='loginPassword'/>  
-                        
-                    </td>
-                    <td>
-                        <label for="lastName">Last Name: </label>
-                        <?php echo form_error('lastName'); ?>
-                        <input id="lastName" class="form-control" type="text" name="lastName"></input> 
-                    </td>
-                        </form>
-                <tr>
-                    <td>
-                        <input id="submit_login" class="btn btn-default" type='submit' name='submit_login' value='Login' />  
-                    </td>
-                    <td>
-                             <label for="email">Email: </label>
-                             <?php echo form_error('email'); ?>
-                             <input id="email" class="form-control" type="text" name="email"></input> 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    
-                    </td>
-                    <td>
-                            <label for="empID">Employee ID: </label>
-                            <input id="empID" class="form-control" type="text" name="empID"></input> 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    
-                    </td>
-                    <td>
-                            <label for="pawprint">Enter Pawprint: </label>
-                            <?php echo form_error('pawprint'); ?>
-                            <input id="pawprint" class="form-control" type="text" name="pawprint"></input>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    
-                    </td>
-                    <td>
                             <label for="title">Title: </label>
                             <?php echo form_error('title'); ?>
-                            <input id="title" class="form-control" type="text" name="title"></input>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    
-                    </td>
-                    <td>
+                            <input id="title" class="form-control" type="text" name="title" value="<?php echo set_value('title'); ?>"></input>
+                            
+                            <label for="firstName">First Name: </label>
+                            <?php echo form_error('firstName'); ?>
+                            <input id="firstName" class="form-control" type="text" name="firstName" value="<?php echo set_value('firstName'); ?>"></input> 
+
+
+                            <label for="lastName">Last Name: </label>
+                            <?php echo form_error('lastName'); ?>
+                            <input id="lastName" class="form-control" type="text" name="lastName" value="<?php echo set_value('lastName'); ?>"></input> 
+
+                            <label for="email">Email: </label>
+                            <?php echo form_error('email'); ?>
+                            <input id="email" class="form-control" type="text" name="email" value="<?php echo set_value('email'); ?>"></input> 
+
+
                             <label for="phone">Phone </label>
                             <?php echo form_error('phone'); ?>
-                            <input id="phone" class="form-control" type="text" name="phone"></input> 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
+                            <input id="phone" class="form-control" type="text" name="phone" value="<?php echo set_value('phone'); ?>"></input> 
                     
-                    </td>
-                    <td>
+                        
+                            <label for="empID">Employee ID: </label>
+                            <?php echo form_error('empID'); ?>
+                            <input id="empID" class="form-control" type="text" name="empID" value="<?php echo set_value('empID'); ?>"></input> 
+
+                            <label for="pawprint">Enter Pawprint: </label>
+                            <?php echo form_error('pawprint'); ?>
+                            <input id="pawprint" class="form-control" type="text" name="pawprint" value="<?php echo set_value('pawprint'); ?>"></input>
+
                             <label for="ferpa">FERPA Score: </label>
                             <?php echo form_error('ferpa'); ?>
-                            <input id="ferpa" class="form-control" type="text" name="ferpa"></input> 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    
-                    </td>
-                    <td>
-                            <label for="campusAddress">Campus Address: </label>
+                            <input id="ferpa" class="form-control" type="text" name="ferpa" value="<?php echo set_value('ferpa'); ?>"></input>
+
+                             <label for="campusAddress">Campus Address: </label>
                             <?php echo form_error('campusAddress'); ?>
-                            <input id="campusAddress" class="form-control" type="text" name="campusAddress"></input> 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    
-                    </td>
-                    <td>
+                            <input id="campusAddress" class="form-control" type="text" name="campusAddress" value="<?php echo set_value('campusAddress'); ?>"></input> 
+
+
+
                             <label for="academicOrg">Academic Organization: </label>
                             <?php echo form_error('academicOrg'); ?>
-                            <input id="academicOrg" class="form-control" type="text" name="academicOrg"></input> 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    
-                    </td>
-                    <td>
+                            <input id="academicOrg" class="form-control" type="text" name="academicOrg" value="<?php echo set_value('academicOrg'); ?>"></input> 
+
+
                             <label for="education">Education</label>
                             <?php echo form_error('education'); ?>
                             <select id="education" class="form-control" name="education">
@@ -186,37 +146,19 @@
                             	<option value="med">Medical</option>
                             	<option value="vetMed">Vet Medical</option>
                             	<option value="law">Law</option>
-                            </select><br/>
-                </td>
-                </tr>
-                <tr>
-                    <td>
+                            </select>
+
                     
-                    </td>
-                    <td>          
                             <label for="createPassword">Create Password: </label>
                              <?php echo form_error('createPassword'); ?>
-                            <input id="createPassword" class="form-control" type="text" name="createPassword"></input> 
-                </td>
-                </tr>
-                <tr>
-                    <td>
-                    
-                    </td>
-                    <td>
+                            <input id="createPassword" class="form-control" type="password" name="createPassword"></input> 
+
                             <label for="confirmPassword">Confirm Password: </label>
                              <?php echo form_error('confirmPassword'); ?>
-                            <input id="confirmPassword" class="form-control" type="text" name="confirmPassword"></input> 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    
-                    </td>
-                    <td>
-                        <input id="submit_registration" class="btn btn-default" type='submit' name='submit_registration' value='Register' />  
-                    </td>
-                </tr>
+                            <input id="confirmPassword" class="form-control" type="password" name="confirmPassword"></input> 
+
+                            <input id="submit_registration" class="btn btn-default" type='submit' name='submit_registration' value='Register' />  
+                            
                         </form>
                     </td>
                 </tr>

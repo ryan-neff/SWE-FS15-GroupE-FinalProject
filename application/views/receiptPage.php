@@ -48,10 +48,11 @@
                         <h3 class="title">Thank you for requesting access to myZou.
                             <br>
                             <small>
-                                Student Information Systems will process your request and grant access as necessary.
+                                Student Information Systems will process your request and grant access as necessary. Click below to return to your profile page.
                             </small>
                             <br>
                             <br>
+                             <a href="viewProfile"><input id="view_profile" class="btn btn-default" type='button' name='view_profile' value='Home Page' /></a>
                         </h3>
                     </th>
                 </tr>
