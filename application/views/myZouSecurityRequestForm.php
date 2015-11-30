@@ -131,7 +131,16 @@
             border-bottom: dotted grey;
             border-width: 2px;
         }
-    
+    	.error{
+
+    		color:#ff3333;
+    		font-weight: oblique;
+    		font-size:20px;
+    	}
+        input[type=checkbox]{
+            padding:12px;
+            width:30px;
+        }
     </style>
 	<title>myZou SECURITY Request Form</title>
 	<div class="title">
@@ -140,8 +149,8 @@
 
 	</div>
 </head>
+
 <body style="border: double black; border-width: 5px; padding: 5px; align: center;">
-	<!-- <?php echo validation_errors(); ?> -->
 	
 	<?php echo form_open('index.php/formController/submitRequest'); ?>
 	<!-- Page 1 -->
@@ -205,11 +214,11 @@
 						
 					</td>
 					<td>
-						<label for="address">*Phone number:</label>
+						<label for="phone">*Phone number:</label>
 					</td>
 					<td>
 						<?php echo form_error('phone'); ?>
-						<input type="phone" class="form-control" id="phone" name="phone" value="<?php echo set_value('phone'); ?>" placeholder="999-999-9999">
+						<input type="phone" class="form-control" id="phone" name="phone" value="<?php echo set_value('phone'); ?>" placeholder="7738769999" />
 					</td>
 				</tr>
 			</tbody>
@@ -227,11 +236,11 @@
 					</td>
 					<td>
 						New &nbsp;
-						<input type="radio" class="form-control" id="new_req" value="new" name="request">
+						<input type="radio" class="form-control" id="new_req" value="new" name="request" <?php echo set_radio('request', 'new'); ?> />
 					</td>
 					<td>
 						Additional &nbsp;
-						<input type="radio" class="form-control" id="add_req" value="add" name="request">
+						<input type="radio" class="form-control" id="add_req" value="add" name="request" <?php echo set_radio('request', 'add'); ?> />
 					</td>
 				</tr>
 				
@@ -288,7 +297,7 @@
 						<label for="student_worker">Check if Student Worker:</label>
 					</td>
 					<td colspan="2">
-						<input class="form-control" id="student_worker" name="student_worker" value="student" type="checkbox">
+						<input class="form-control" id="student_worker" name="student_worker" value="true" type="checkbox" <?php echo set_checkbox('student_worker', 'true'); ?> />
 					</td>
 				</tr>
 			</tbody>
@@ -307,7 +316,7 @@
     					To request access to the FERPA tutorial and access the FERPA quiz can be done at <a href="http://myzoutraining.missouri.edu/ferpareq.php"> myZou Training </a>.
     				</td>
     				<td>
-    					FERPA SCORE: <input class="form-control" type="text" name="ferpa" value="<?php echo set_value('ferpa'); ?>">
+    					FERPA SCORE: <input class="form-control" type="text" name="ferpa" value="<?php echo set_value('ferpa'); ?>" />
     				</td>
 				</tr>
 			</tbody>
@@ -345,11 +354,11 @@
 					</td>
 					<td>
 						UGRD
-						<input type="checkbox" class="form-control" id="ugrd" name="ugrd" value="true" />
+						<input type="checkbox" class="form-control" id="ugrd" name="ugrd" value="true" <?php echo set_checkbox('ugrd', 'true'); ?> />
 					</td>
 					<td>
 						GRAD
-						<input type="checkbox" class="form-control" id="grad" name="grad" value="true" <?php echo set_checkbox('grad', 'true');?> />
+						<input type="checkbox" class="form-control" id="grad" name="grad" value="true" <?php echo set_checkbox('grad', 'true'); ?> />
 					</td>
 					<td>
 						MED
@@ -412,7 +421,7 @@
 						degree information, programs, honors and awards, service indicators (holds) and previous schools.
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="basic_inquiry_view" name="basic_inquiry" value="true">
+						<input type="checkbox" class="form-control" id="basic_inquiry_view" name="basic_inquiry" value="true" <?php echo set_checkbox('basic_inquiry', 'true');?> />
 					</td>
 					<td>
 					
@@ -428,10 +437,10 @@
 						visa, decedant data, student enrollment, gpa, term history, 3C's, advisors, student groups.
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="adv_inquiry_view" name="adv_inquiry_view" value="true">
+						<input type="checkbox" class="form-control" id="adv_inquiry_view" name="adv_inquiry_view" value="true" <?php echo set_checkbox('adv_inquiry_view', 'true');?> />
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="adv_inquiry_update" name="adv_inquiry_update" value="true">
+						<input type="checkbox" class="form-control" id="adv_inquiry_update" name="adv_inquiry_update" value="true" <?php echo set_checkbox('adv_inquiry_update', 'true');?> />
 					</td>
 				</tr>
 				<tr class="bottom-border">
@@ -442,10 +451,10 @@
 						Checklists, Comments, Communications
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="3Cs_view" name="3Cs_view" value="true">
+						<input type="checkbox" class="form-control" id="3Cs_view" name="3Cs_view" value="true" <?php echo set_checkbox('3Cs_view', 'true');?> />
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="3Cs_update" name="3Cs_update" value="true">
+						<input type="checkbox" class="form-control" id="3Cs_update" name="3Cs_update" value="true" <?php echo set_checkbox('3Cs_update', 'true');?> />
 					</td>
 				</tr>
 				<tr class="bottom-border">
@@ -459,7 +468,7 @@
 						
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="advisor_update_update" name="advisor_update_update" value="true">
+						<input type="checkbox" class="form-control" id="advisor_update_update" name="advisor_update_update" value="true" <?php echo set_checkbox('advisor_update_update', 'true');?> />
 					</td>
 				</tr>
 				<tr class="bottom-border">
@@ -473,7 +482,7 @@
 						
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="dept_SOC_update" name="dept_SOC_update" value="true">
+						<input type="checkbox" class="form-control" id="dept_SOC_update" name="dept_SOC_update" value="true" <?php echo set_checkbox('dept_SOC_update', 'true');?> />
 					</td>
 				</tr>
 				<tr class="bottom-border">
@@ -486,10 +495,10 @@
 						from a student's record
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="service_ind_view" name="service_ind_view" value="true">
+						<input type="checkbox" class="form-control" id="service_ind_view" name="service_ind_view" value="true" <?php echo set_checkbox('service_ind_view', 'true');?> />
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="service_ind_update" name="service_ind_update" value="true">
+						<input type="checkbox" class="form-control" id="service_ind_update" name="service_ind_update" value="true" <?php echo set_checkbox('service_ind_update', 'true');?> />
 					</td>
 				</tr>
 				<tr class="bottom-border">
@@ -500,7 +509,7 @@
 						View groups a student is associated with
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="student_group_view" name="student_group_view" value="true">
+						<input type="checkbox" class="form-control" id="student_group_view" name="student_group_view" value="true" <?php echo set_checkbox('student_group_view', 'true');?> />
 					</td>
 					<td>
 						
@@ -514,7 +523,7 @@
 						View a student's class schedule
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="study_list_view" name="study_list_view" value="true">
+						<input type="checkbox" class="form-control" id="study_list_view" name="study_list_view" value="true" <?php echo set_checkbox('study_list_view', 'true');?> />
 					</td>
 					<td>
 						
@@ -528,10 +537,10 @@
 						Adding and dropping a course utilizing Enrollment Request
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="reg_enroll_view" name="reg_enroll_view" value="true">
+						<input type="checkbox" class="form-control" id="reg_enroll_view" name="reg_enroll_view" value="true" <?php echo set_checkbox('reg_enroll_view', 'true');?> />
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="reg_enroll_update" name="reg_enroll_update" value="true">
+						<input type="checkbox" class="form-control" id="reg_enroll_update" name="reg_enroll_update" value="true" <?php echo set_checkbox('reg_enroll_update', 'true');?> />
 					</td>
 				</tr>
 				<tr class="bottom-border">
@@ -542,7 +551,7 @@
 						Access to students study list, advisor, program/plan, demographic data, e-mail address
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="adv_center_view" name="adv_center_view" value="true">
+						<input type="checkbox" class="form-control" id="adv_center_view" name="adv_center_view" value="true" <?php echo set_checkbox('adv_center_view', 'true');?> />
 					</td>
 					<td>
 					
@@ -559,7 +568,7 @@
 						
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="class_permission_update" name="class_permission_update" value="true">
+						<input type="checkbox" class="form-control" id="class_permission_update" name="class_permission_update" value="true" <?php echo set_checkbox('class_permission_update', 'true');?> />
 					</td>
 				</tr>
 				<tr class="bottom-border">
@@ -570,7 +579,7 @@
 						View class permission numbers which have been created for a course
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="class_permission_view" name="class_permission_view" value="true">
+						<input type="checkbox" class="form-control" id="class_permission_view" name="class_permission_view" value="true" <?php echo set_checkbox('class_permission_view', 'true');?> />
 					</td>
 					<td>
 						
@@ -584,7 +593,7 @@
 						View students enrolled, dropped or withdrawn in a course
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="class_roster_view" name="class_roster_view" value="true">
+						<input type="checkbox" class="form-control" id="class_roster_view" name="class_roster_view" value="true" <?php echo set_checkbox('class_roster_view', 'true');?> />
 					</td>
 					<td>
 						
@@ -598,10 +607,10 @@
 						Adding and dropping a course utilizing Enrollment Request
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="block_enroll_view" name="block_enroll_view" value="true">
+						<input type="checkbox" class="form-control" id="block_enroll_view" name="block_enroll_view" value="true" <?php echo set_checkbox('block_enroll_view', 'true');?> />
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="block_enroll_update" name="block_enroll_update" value="true">
+						<input type="checkbox" class="form-control" id="block_enroll_update" name="block_enroll_update" value="true" <?php echo set_checkbox('block_enroll_update', 'true');?> />
 					</td>
 				</tr>
 				<tr class="bottom-border">
@@ -612,7 +621,7 @@
 						Assists in running various reports
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="report_mgr_view" name="report_mgr_view" value="true">
+						<input type="checkbox" class="form-control" id="report_mgr_view" name="report_mgr_view" value="true" <?php echo set_checkbox('report_mgr_view', 'true');?> />
 					</td>
 					<td>
 					
@@ -631,7 +640,7 @@
 						
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="self_serv_update" name="self_serv_update" value="true">
+						<input type="checkbox" class="form-control" id="self_serv_update" name="self_serv_update" value="true" <?php echo set_checkbox('self_serv_update', 'true');?> />
 					</td>
 				</tr>
 				<tr class="bottom-border">
@@ -642,7 +651,7 @@
 						View enrollment summary, term statistics, and UM term statistics
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="fisc_off_view" name="fisc_off_view" value="true">
+						<input type="checkbox" class="form-control" id="fisc_off_view" name="fisc_off_view" value="true" <?php echo set_checkbox('fisc_off_view', 'true');?> />
 					</td>
 					<td>
 						
@@ -659,7 +668,7 @@
 						
 					</td>
 					<td>
-						<input type="checkbox" class="form-control" id="ac_adv_profile_update" name="ac_adv_profile_update" value="true">
+						<input type="checkbox" class="form-control" id="ac_adv_profile_update" name="ac_adv_profile_update" value="true" <?php echo set_checkbox('ac_adv_profile_update', 'true');?> />
 					</td>
 				</tr>
 			</tbody>
@@ -683,29 +692,29 @@
                         Check which test(s) access is to be granted
                     </th>
 					<th colspan="2">
-                        <input id="all_tests" type="checkbox" name="all_tests" value="true" class="form-control">Access to All Test Scores
+                        <input id="all_tests" type="checkbox" name="all_tests" value="true" class="form-control" <?php echo set_checkbox('all_tests', 'true');?>>Access to All Test Scores
                     </th>
 				</tr>
 				<tr style="border: ridge;">
-					<td><input id="act"    type="checkbox" name="act"      value="true" class="form-control">ACT</td>
-					<td><input id="sat"    type="checkbox" name="sat"      value="true" class="form-control">SAT</td>
-					<td><input id="gre"    type="checkbox" name="gre"      value="true" class="form-control">GRE</td>
-					<td><input id="gmat"   type="checkbox" name="gmat"     value="true" class="form-control">GMAT</td>
-					<td><input id="tofel"  type="checkbox" name="tofel"    value="true" class="form-control">TOFEL</td>
+					<td><input id="act" type="checkbox" name="act" value="true" class="form-control" <?php echo set_checkbox('act', 'true');?>>ACT</td>
+					<td><input id="sat" type="checkbox" name="sat" value="true" class="form-control" <?php echo set_checkbox('sat', 'true');?>>SAT</td>
+					<td><input id="gre" type="checkbox" name="gre" value="true" class="form-control" <?php echo set_checkbox('gre', 'true');?>>GRE</td>
+					<td><input id="gmat" type="checkbox" name="gmat" value="true" class="form-control" <?php echo set_checkbox('gmat', 'true');?>>GMAT</td>
+					<td><input id="tofel" type="checkbox" name="tofel" value="true" class="form-control" <?php echo set_checkbox('tofel', 'true');?>>TOFEL</td>
 				</tr>
 				<tr style="border: ridge;">
-					<td><input id="ielts"  type="checkbox" name="ielts"    value="true" class="form-control">IELTS</td>
-					<td><input id="lsat"   type="checkbox" name="lsat"     value="true" class="form-control">LSAT</td>
-					<td><input id="mcat"   type="checkbox" name="mcat"     value="true" class="form-control">MCAT</td>
-					<td><input id="ap"     type="checkbox" name="ap"       value="true" class="form-control">AP</td>
-					<td><input id="clep"   type="checkbox" name="clep"     value="true" class="form-control">CLEP</td>
+					<td><input id="ielts" type="checkbox" name="ielts" value="true" class="form-control" <?php echo set_checkbox('ielts', 'true');?>>IELTS</td>
+					<td><input id="lsat" type="checkbox" name="lsat" value="true" class="form-control" <?php echo set_checkbox('lsat', 'true');?>>LSAT</td>
+					<td><input id="mcat" type="checkbox" name="mcat" value="true" class="form-control" <?php echo set_checkbox('mcat', 'true');?>>MCAT</td>
+					<td><input id="ap" type="checkbox" name="ap" value="true" class="form-control" <?php echo set_checkbox('ap', 'true');?>>AP</td>
+					<td><input id="clep" type="checkbox" name="clep" value="true" class="form-control" <?php echo set_checkbox('clep', 'true');?>>CLEP</td>
 				</tr>
 				<tr style="border: ridge;">
-					<td><input id="ged"    type="checkbox" name="ged" value="true" class="form-control">GED</td>
-					<td><input id="millers" type="checkbox" name="millers" value="true" class="form-control">MILLERS</td>
-					<td><input id="prax"   type="checkbox" name="prax" value="true" class="form-control">PRAX</td>
-					<td><input id="plamu"  type="checkbox" name="plamu" value="true" class="form-control">PLA-MU</td>
-					<td><input id="base"   type="checkbox" name="base" value="true" class="form-control">BASE</td>
+					<td><input id="ged" type="checkbox" name="ged" value="true" class="form-control" <?php echo set_checkbox('ged', 'true');?>>GED</td>
+					<td><input id="millers" type="checkbox" name="millers" value="true" class="form-control" <?php echo set_checkbox('millers', 'true');?>>MILLERS</td>
+					<td><input id="prax" type="checkbox" name="prax" value="true" class="form-control" <?php echo set_checkbox('prax', 'true');?>>PRAX</td>
+					<td><input id="plamu" type="checkbox" name="plamu" value="true" class="form-control" <?php echo set_checkbox('plamu', 'true');?>>PLA-MU</td>
+					<td><input id="base" type="checkbox" name="base" value="true" class="form-control" <?php echo set_checkbox('base', 'true');?>>BASE</td>
 				</tr>
 			</tbody>
 		</table>
@@ -749,7 +758,7 @@
 						For staff outside of the Cashiers Office
 					</td>
 					<td>
-						<input id="sf_general_inq" type="checkbox" class="form-control" name="sf_general_inq" value="true">
+						<input id="sf_general_inq" type="checkbox" class="form-control" name="sf_general_inq" value="true" <?php echo set_checkbox('sf_general_inq', 'true');?> />
 					</td>
 					<td>
 					
@@ -763,9 +772,10 @@
 						Also known as "Cost Centers" (for areas that want to apply charges)
 					</td>
 					<td>
-						<input id="sf_cash_grp_view" type="checkbox" class="form-control" name="sf_cash_grp_view" value="true"></td>
+						<input id="sf_cash_grp_view" type="checkbox" class="form-control" name="sf_cash_grp_view" value="true" <?php echo set_checkbox('sf_cash_grp_view', 'true');?> />
+                    </td>
 					<td>
-						<input id="sf_cash_grp__update" type="checkbox" class="form-control" name="sf_cash_grp__update" value="true">
+						<input id="sf_cash_grp_update" type="checkbox" class="form-control" name="sf_cash_grp_update" value="true" <?php echo set_checkbox('sf_cash_grp_update', 'true');?> />
 					</td>
 				</tr>
 			</tbody>
@@ -810,7 +820,7 @@
 						View a student's financial aid awards and budget
 					</td>
 					<td>
-						<input id="fa_cash_view" type="checkbox" name="fa_cash_view" value="true" class="form-control">
+						<input id="fa_cash_view" type="checkbox" name="fa_cash_view" value="true" class="form-control" <?php echo set_checkbox('fa_cash_view', 'true');?> />
 					</td>
 					<td>
 					
@@ -824,7 +834,7 @@
 						Also known as "Cost Centers" (for areas that want to apply charges)
 					</td>
 					<td>
-						<input id="fa_non_fin_aid_staff" type="checkbox" name="fa_non_fin_aid_staff" value="true" class="form-control">
+						<input id="fa_non_fin_aid_staff" type="checkbox" name="fa_non_fin_aid_staff" value="true" class="form-control" <?php echo set_checkbox('fa_non_fin_aid_staff', 'true');?> />
 					</td>
 					<td>
 					
@@ -899,10 +909,10 @@
 				<tr style="border: ridge;">
 					<td>Immunization view</td>
 					<td>
-                        <input class="form-control" id="immunization_view_view" type="checkbox" name="immunization_view_view" value="true"></input>
+                        <input class="form-control" id="immunization_view_view" type="checkbox" name="immunization_view_view" value="true" <?php echo set_checkbox('immunization_view_view', 'true');?> />
                     </td>
 					<td>
-                        <input class="form-control" id="immunization_view_update" type="checkbox" name="immunization_view_update" value="true"></input>
+                        <input class="form-control" id="immunization_view_update" type="checkbox" name="immunization_view_update" value="true" <?php echo set_checkbox('immunization_view_update', 'true');?> />
                     </td>
 					<td>
                         Accommodate (Student Health)
@@ -911,7 +921,7 @@
         
                     </td>
 					<td>
-                        <input class="form-control" id="accomodate_update" type="checkbox" name="accomodate_update" value="true"></input>
+                        <input class="form-control" id="accomodate_update" type="checkbox" name="accomodate_update" value="true" <?php echo set_checkbox('accomodate_update', 'true');?> />
                     </td>
 				</tr>
 				<tr style="border: ridge;">
@@ -919,19 +929,19 @@
                         Transfer Credit Admission
                     </td>
 					<td>
-                        <input class="form-control" id="transfer_view" type="checkbox" name="transfer_view" value="true"></input>
+                        <input class="form-control" id="transfer_view" type="checkbox" name="transfer_view" value="true" <?php echo set_checkbox('transfer_view', 'true');?> />
                     </td>
 					<td>
-                        <input class="form-control" id="transfer_update" type="checkbox" name="transfer_update" value="true"></input>
+                        <input class="form-control" id="transfer_update" type="checkbox" name="transfer_update" value="true" <?php echo set_checkbox('transfer_update', 'true');?> />
                     </td>
 					<td>
                         Support Staff (Registrar's Office)
                     </td>
 					<td>
-                        <input class="form-control" id="support_staff_view" type="checkbox" name="support_staff_view" value="true"></input>
+                        <input class="form-control" id="support_staff_view" type="checkbox" name="support_staff_view" value="true" <?php echo set_checkbox('support_staff_view', 'true');?> />
                     </td>
 					<td>
-                        <input class="form-control" id="support_staff_update" type="checkbox" name="support_staff_update" value="true"></input>
+                        <input class="form-control" id="support_staff_update" type="checkbox" name="support_staff_update" value="true" <?php echo set_checkbox('support_staff_update', 'true');?> />
                     </td>
 				</tr>
 				<tr style="border: ridge;">
@@ -939,19 +949,19 @@
                         Relationships
                     </td>
 					<td>
-                        <input class="form-control" id="relationship_view" type="checkbox" name="relationship_view" value="true"></input>
+                        <input class="form-control" id="relationship_view" type="checkbox" name="relationship_view" value="true" <?php echo set_checkbox('relationship_view', 'true');?> />
                     </td>
 					<td>
-                        <input class="form-control" id="relationship_update" type="checkbox" name="relationship_update" value="true"></input>
+                        <input class="form-control" id="relationship_update" type="checkbox" name="relationship_update" value="true" <?php echo set_checkbox('relationship_update', 'true');?> />
                     </td>
 					<td>
                         Advance Standing Report
                     </td>
 					<td>
-                        <input class="form-control" id="advance_standing_view" type="checkbox" name="advance_standing_view" value="true"></input>
+                        <input class="form-control" id="advance_standing_view" type="checkbox" name="advance_standing_view" value="true" <?php echo set_checkbox('advance_standing_view', 'true');?> />
                     </td>
 					<td>
-                        <input class="form-control" id="advance_standing_update" type="checkbox" name="advance_standing_update" value="true"></input>
+                        <input class="form-control" id="advance_standing_update" type="checkbox" name="advance_standing_update" value="true" <?php echo set_checkbox('advance_standing_update', 'true');?> />
                     </td>
 				</tr>
 				<tr style="border: ridge;">
@@ -962,7 +972,7 @@
                     
                     </td>
 					<td>
-                        <input class="form-control" id="student_group_update" type="checkbox" name="student_group_update" value="true"></input>
+                        <input class="form-control" id="student_group_update" type="checkbox" name="student_group_update" value="true" <?php echo set_checkbox('student_group_update', 'true');?> />
                     </td>
 					<td>
 
@@ -979,10 +989,16 @@
 	</div>		
 	
 	<hr/>
-	
+	<div align="center">
 	<input id="Submit" type="Submit" class="btn btn-default" value ="Submit" name="Submit">
 	
-	</div>
 	</form>
+
+    <form>
+    	<p><b>You should print the form out before you submit the form and take it to Jesse Hall to get the signatures that are needed.</b></p><br />
+         <input type="button" class="btn btn-default" value="Print" onclick="window.print()" />
+      </form>
+      <input type="button" class="btn btn-default" value="Authorization Slip" />
+    </div>
 </body>
 </html>
