@@ -125,8 +125,8 @@
                             <label for="ferpa">FERPA Score: </label>
                             <?php echo form_error('ferpa'); ?>
                             <input id="ferpa" class="form-control" type="text" name="ferpa" value="<?php echo set_value('ferpa'); ?>"></input>
-
-                             <label for="campusAddress">Campus Address: </label>
+							What is ferpa? Click the link to take the quiz.<a href="http://myzoutraining.missouri.edu/ferpareq.php">
+                            <label for="campusAddress">Campus Address: </label>
                             <?php echo form_error('campusAddress'); ?>
                             <input id="campusAddress" class="form-control" type="text" name="campusAddress" value="<?php echo set_value('campusAddress'); ?>"></input> 
 
