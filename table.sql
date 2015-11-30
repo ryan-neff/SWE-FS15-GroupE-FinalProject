@@ -11,7 +11,7 @@ CREATE TABLE user (
 	EmpID integer(8),
 	fullName varchar(50),
 	title varchar(10),
-	phoneNumber integer(10),
+	phoneNumber long(10),
 	email varchar(50),
 	FERPAscore float(5,2),
 	campusAddress varchar(100),
