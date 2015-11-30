@@ -988,14 +988,14 @@
 	</div>		
 	
 	<hr/>
-	
+	<div style="text-align:center;">
 	<input id="Submit" type="Submit" class="btn btn-default" value ="Submit" name="Submit">
 	
-	</div>
 	</form>
 
     <form>
          <input type="button" class="btn btn-default" value="Print" onclick="window.print()" />
       </form>
+    </div>
 </body>
 </html>
