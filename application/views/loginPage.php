@@ -114,7 +114,7 @@
                             <input id="phone" class="form-control" type="text" name="phone" value="<?php echo set_value('phone'); ?>"></input> 
                     
                         
-                            <label for="empID">Employee ID: </label>
+                            <label for="empID">University ID: </label>
                             <?php echo form_error('empID'); ?>
                             <input id="empID" class="form-control" type="text" name="empID" value="<?php echo set_value('empID'); ?>"></input> 
 
