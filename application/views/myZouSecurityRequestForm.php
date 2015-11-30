@@ -139,6 +139,7 @@
     	}
         input[type=checkbox]{
             padding:12px;
+            width:30px;
         }
     </style>
 	<title>myZou SECURITY Request Form</title>
