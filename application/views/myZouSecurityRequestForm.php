@@ -994,8 +994,10 @@
 	</form>
 
     <form>
+    	<p><b>You should print the form out before you submit the form and take it to Jesse Hall to get the signatures that are needed.</b></p><br />
          <input type="button" class="btn btn-default" value="Print" onclick="window.print()" />
       </form>
+      <input type="button" class="btn btn-default" value="Authorization Slip" />
     </div>
 </body>
 </html>
