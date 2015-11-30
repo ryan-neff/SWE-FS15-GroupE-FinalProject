@@ -17,7 +17,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 	}
 
 	public function insert_request($request_data){
-		$this->db->insert('securityRequests.request',$request_data);
+		if($this->db->insert('request',$request_data)){
+      return TRUE;
+    }
 	}
 
 	//takes array of user authentication and inserts it into the db
@@ -38,40 +40,31 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
       if($this->db->insert($user_data)){
         return TRUE;
       }
-     }
+    }
       
-      //checks input from the user to validate login
-      public function login($user_data){
+    //checks input from the user to validate login
+    public function login($user_data){
 
         $this->db->select('PawprintSSO,hashedSalt,hashedPassword');
         $this->db->where('PawprintSSO', $user_data['username']);
         $this->db->from('authentication');
         $query = $this->db->get();
-
-		//echo $query->result_array();
-		//print_r ($query->result_array());
 		
-        foreach ($query->result_array() as $row) {
-          $sso = $row['PawprintSSO'];
-          $salt = $row['hashedSalt'];
-          $password = $row['hashedPassword'];
+        
+        if($query->num_rows() > 0){ 
+            foreach ($query->result_array() as $row) {
+              $sso = $row['PawprintSSO'];
+              $salt = $row['hashedSalt'];
+              $password = $row['hashedPassword'];
+            }
+
+            if(($user_data['username'] == $sso) && sha1($salt.$user_data['password']) == $password){
+              return TRUE;
+            } else {
+                return FALSE; 
+            }
         }
-
-        if(($user_data['username'] == $sso) && sha1($salt.$user_data['password']) == $password){
-          return TRUE;
-        } else {
-        	return FALSE; 
-        }
-      }
-
-    //this can go//public function read_user_info($username){
-        //return FALSE; //temporary
-   // }
-
-	//Functions needed for registration: insert_user 
-	//									 insert_authen 
-
-
+        else return FALSE;
+    }
 }
-
 ?>
