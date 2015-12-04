@@ -21,7 +21,18 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
       }
         
       public function loadRequestForm(){
-   			$this->load->view('myZouSecurityRequestForm');
+   			//when reloading form , get userdata for auto population
+        $user = $this->session->userdata('logged_in');
+        
+        foreach($user as $key => $value){
+          $user = $value; 
+        }
+
+
+        $user_info['user_info'] = $this->UserModel->getUserInfo($user);
+
+        $this->load->view('myZouSecurityRequestForm', $user_info);
+
       }
     
         
@@ -37,9 +48,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    			//correct form
    			$this->form_validation->set_rules('firstName', 'First Name', 'trim|required||alpha|min_length[4]|max_length[25]|xss_clean');
    			$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required||alpha|min_length[4]|max_length[25]|xss_clean');
-        	$this->form_validation->set_rules('pawprint', 'Pawprint', 'trim|required||apha_numeric|exact_length[6]|xss_clean');
-        	$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[50]|xss_clean');
-        	$this->form_validation->set_rules('empID', 'Employee ID', 'trim|required|integer|exact_length[8]|xss_clean');
+        $this->form_validation->set_rules('pawprint', 'Pawprint', 'trim|required||apha_numeric|exact_length[6]|xss_clean');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[50]|xss_clean');
+        $this->form_validation->set_rules('empID', 'Employee ID', 'trim|required|integer|exact_length[8]|xss_clean');
    			$this->form_validation->set_rules('title', 'Title', 'trim|required|max_length[10]|xss_clean');
    			$this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|integer|exact_length[10]|xss_clean');
    			$this->form_validation->set_rules('ferpa', 'FERPA Score', 'trim|required||decimal|max_length[6]|less_than[100.01]|xss_clean');
@@ -47,10 +58,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    			$this->form_validation->set_rules('academicOrg', 'Academic Organization', 'trim|required|max_length[32]|xss_clean');
    			$this->form_validation->set_rules('education', 'Education Selection', 'callback_checkSelectBox');
    			$this->form_validation->set_message('checkSelectBox', 'You have to select something other than the default');
-			$this->form_validation->set_rules('createPassword', 'Password', 'trim|required|xss_clean');
+			  $this->form_validation->set_rules('createPassword', 'Password', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'trim|required|matches[createPassword]|xss_clean');
-          
-          $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
    	        
   			
         if ($this->form_validation->run() == FALSE) {
@@ -94,13 +104,13 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $isLAW = 1;
           }
           
-          $fist = $this->input->post('firstName');
+          $first = $this->input->post('firstName');
           $last = $this->input->post('lastName');
-          $fullName = $fist.$last;
+          $fullName = $first.$last;
           $isStudentWorker = 0;
             
    				$user_data = array (
-            		'pawPrintSSO' => $this->input->post('pawprint'),
+            'pawPrintSSO' => $this->input->post('pawprint'),
    					'EmpID' => $this->input->post('empID'),
    					'fullName' => $fullName,
    					'title' => $this->input->post('title'),
@@ -110,7 +120,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					'campusAddress' => $this->input->post('campusAddress'),
    					'academicOrg' => $this->input->post('academicOrg'),
    					'isStudentWorker' => $isStudentWorker,
-                    'isUGRD' => $isUGRD,
+            'isUGRD' => $isUGRD,
    					'isGRAD' => $isGRAD,
    					'isMED' => $isMED,
    					'isVETMED' => $isVETMED,
@@ -129,14 +139,18 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 						'hashedPassword' => $pwHash
 					);
    					
-   			    $result_register = $this->UserModel->insert_authen($authen_data);
+   			  $result_register = $this->UserModel->insert_authen($authen_data);
    				$result_authen = $this->UserModel->insert_user($user_data);
-   				
-   			
    					   					
    				if ($result_register== TRUE && $result_authen== TRUE) {
-   						echo "Registration successfull!";
-   						$this->load->view('homePage', $user_data);
+   						
+              $session_data = array(
+                'username' => $this->input->post('pawprint')
+              );
+            
+              //add user data in session
+              $this->session->set_userdata('logged_in', $session_data);
+   					  $this->load->view('homePage');
    				} 
           		else {
    						$this->load->view('loginPage');
