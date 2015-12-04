@@ -152,7 +152,7 @@
 
 <body style="border: double black; border-width: 5px; padding: 5px; align: center;">
 
-	<input type="button" class="btn btn-default" value="Home" name="Home" />
+	<a href="viewProfile"><input type="button" class="btn btn-default" value="Home" name="Home" /> </a>
 	
 	<?php echo form_open('index.php/formController/submitRequest'); ?>
 	<!-- Page 1 -->
