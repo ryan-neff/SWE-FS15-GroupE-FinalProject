@@ -997,8 +997,15 @@
 	</form>
 
     <form>
+<<<<<<< HEAD
     	<p><b>You should print the form out before you submit the form and take it to Jesse Hall to get the signatures that are needed.</b></p><br />
          <input type="button" class="btn btn-default" value="Print" onclick="window.print()" />
+=======
+         <input type="button" class="btn btn-default" value="Print Form" onclick="window.print()" />
+        <a href="printAuthorization"><input id="authorization_slip" class="btn btn-default" type='button' name='authorization' value='Print Authorization Slip' /></a>
+
+
+>>>>>>> skh6yf_Sprint3
       </form>
       <input type="button" class="btn btn-default" value="Authorization Slip" />
     </div>
