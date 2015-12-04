@@ -148,7 +148,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
       
       public function check_login() {
         $this->form_validation->set_rules('loginUsername', 'Username', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('loginPassword', 'Password', 'trim|required|xss_clean|callback_validateCreds['.$this->input->post('loginUsername').']');
+        $this->form_validation->set_rules('loginPassword', 'Password', 'trim|required|xss_clean');
         $this->form_validation->set_message('validateCreds', 'The username or password is incorrect');
    			
           $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
@@ -191,6 +191,16 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    				}
    			}
       }//end login funciton 
+      
+      public function printAuthorization() {
+      	$this->load->view('authorizationSlip');
+      	
+      
+      }
+      
+      public function home() {
+      	$this->load->view('homePage');
+      }
    	
       public function logoutUser(){
           $sess_data = array('username' => '');

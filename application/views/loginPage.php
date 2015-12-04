@@ -78,12 +78,12 @@
                             <!-- add error messages -->
                             <?php echo form_error('loginUsername'); ?>
                             <label for="loginUsername">Pawprint/SSO:  </label>
-                            <input id="login_username" class="form-control" type='text' name='loginUsername' value="<?php echo set_value('loginUsername'); ?>"/>
+                            <input id="login_username" class="form-control" type='text' name='loginUsername' placeholder= 'PawPrint/SSO' value="<?php echo set_value('loginUsername'); ?>"/>
 
                             <!-- add error messages -->
                             <?php echo form_error('loginPassword'); ?>
                             <label for="loginPassword">Password:  </label>
-                            <input id="login_password" class="form-control" type="password" name='loginPassword' />
+                            <input id="login_password" class="form-control" type="password" placeholder= 'Password' name='loginPassword' />
 
                             <input id="submit_login" class="btn btn-default" type='submit' name='submit_login' value='Login' />  
                         </form>
@@ -93,48 +93,53 @@
                         <?php echo form_open('index.php/user/new_user_registration'); ?>
                             <label for="title">Title: </label>
                             <?php echo form_error('title'); ?>
-                            <input id="title" class="form-control" type="text" name="title" value="<?php echo set_value('title'); ?>"></input>
+                            <input id="title" class="form-control" type="text" name="title" placeholder= 'Mr.' value="<?php echo set_value('title'); ?>"></input>
                             
                             <label for="firstName">First Name: </label>
                             <?php echo form_error('firstName'); ?>
-                            <input id="firstName" class="form-control" type="text" name="firstName" value="<?php echo set_value('firstName'); ?>"></input> 
+                            <input id="firstName" class="form-control" type="text" name="firstName" placeholder= 'John' value="<?php echo set_value('firstName'); ?>"></input> 
 
 
                             <label for="lastName">Last Name: </label>
                             <?php echo form_error('lastName'); ?>
-                            <input id="lastName" class="form-control" type="text" name="lastName" value="<?php echo set_value('lastName'); ?>"></input> 
+                            <input id="lastName" class="form-control" type="text" name="lastName" placeholder= 'Doe' value="<?php echo set_value('lastName'); ?>"></input> 
 
                             <label for="email">Email: </label>
                             <?php echo form_error('email'); ?>
-                            <input id="email" class="form-control" type="text" name="email" value="<?php echo set_value('email'); ?>"></input> 
+                            <input id="email" class="form-control" type="text" name="email" placeholder= 'johndoe@yahoo.com' value="<?php echo set_value('email'); ?>"></input> 
 
 
                             <label for="phone">Phone </label>
                             <?php echo form_error('phone'); ?>
-                            <input id="phone" class="form-control" type="text" name="phone" value="<?php echo set_value('phone'); ?>"></input> 
+                            <input id="phone" class="form-control" type="text" name="phone" placeholder= '1234567890' value="<?php echo set_value('phone'); ?>"></input> 
                     
                         
                             <label for="empID">University ID: </label>
                             <?php echo form_error('empID'); ?>
-                            <input id="empID" class="form-control" type="text" name="empID" value="<?php echo set_value('empID'); ?>"></input> 
+                            <input id="empID" class="form-control" type="text" name="empID" placeholder= '12345678' value="<?php echo set_value('empID'); ?>"></input> 
 
                             <label for="pawprint">Enter Pawprint: </label>
                             <?php echo form_error('pawprint'); ?>
-                            <input id="pawprint" class="form-control" type="text" name="pawprint" value="<?php echo set_value('pawprint'); ?>"></input>
+                            <input id="pawprint" class="form-control" type="text" name="pawprint" placeholder= 'jdoe12' value="<?php echo set_value('pawprint'); ?>"></input>
 
                             <label for="ferpa">FERPA Score: </label>
                             <?php echo form_error('ferpa'); ?>
-                            <input id="ferpa" class="form-control" type="text" name="ferpa" value="<?php echo set_value('ferpa'); ?>"></input>
 
-                             <label for="campusAddress">Campus Address: </label>
+
+
+                            <input id="ferpa" class="form-control" type="text" name="ferpa" placeholder= '99.0'  value="<?php echo set_value('ferpa'); ?>"></input>
+							<a href="http://myzoutraining.missouri.edu/ferpareq.php">Link to Ferpa Quiz</a><br />
+
+
+                            <label for="campusAddress">Campus Address: </label>
                             <?php echo form_error('campusAddress'); ?>
-                            <input id="campusAddress" class="form-control" type="text" name="campusAddress" value="<?php echo set_value('campusAddress'); ?>"></input> 
+                            <input id="campusAddress" class="form-control" type="text" name="campusAddress" placeholder= '123 9th Street' value="<?php echo set_value('campusAddress'); ?>"></input> 
 
 
 
                             <label for="academicOrg">Academic Organization: </label>
                             <?php echo form_error('academicOrg'); ?>
-                            <input id="academicOrg" class="form-control" type="text" name="academicOrg" value="<?php echo set_value('academicOrg'); ?>"></input> 
+                            <input id="academicOrg" class="form-control" type="text" name="academicOrg" placeholder= 'MSA' value="<?php echo set_value('academicOrg'); ?>"></input> 
 
 
                             <label for="education">Education</label>
@@ -151,11 +156,11 @@
                     
                             <label for="createPassword">Create Password: </label>
                              <?php echo form_error('createPassword'); ?>
-                            <input id="createPassword" class="form-control" type="password" name="createPassword"></input> 
+                            <input id="createPassword" class="form-control" type="password" placeholder= 'Password' name="createPassword"></input> 
 
                             <label for="confirmPassword">Confirm Password: </label>
                              <?php echo form_error('confirmPassword'); ?>
-                            <input id="confirmPassword" class="form-control" type="password" name="confirmPassword"></input> 
+                            <input id="confirmPassword" class="form-control" type="password" placeholder= 'Confirm Password' name="confirmPassword"></input> 
 
                             <input id="submit_registration" class="btn btn-default" type='submit' name='submit_registration' value='Register' />  
                             

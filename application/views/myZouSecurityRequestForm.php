@@ -139,6 +139,7 @@
     	}
         input[type=checkbox]{
             padding:12px;
+            width:30px;
         }
     </style>
 	<title>myZou SECURITY Request Form</title>
@@ -150,6 +151,8 @@
 </head>
 
 <body style="border: double black; border-width: 5px; padding: 5px; align: center;">
+
+	<input type="button" class="btn btn-default" value="Home" name="Home" />
 	
 	<?php echo form_open('index.php/formController/submitRequest'); ?>
 	<!-- Page 1 -->
@@ -988,14 +991,23 @@
 	</div>		
 	
 	<hr/>
-	
+	<div align="center">
 	<input id="Submit" type="Submit" class="btn btn-default" value ="Submit" name="Submit">
 	
-	</div>
 	</form>
 
     <form>
+<<<<<<< HEAD
+    	<p><b>You should print the form out before you submit the form and take it to Jesse Hall to get the signatures that are needed.</b></p><br />
          <input type="button" class="btn btn-default" value="Print" onclick="window.print()" />
+=======
+         <input type="button" class="btn btn-default" value="Print Form" onclick="window.print()" />
+        <a href="printAuthorization"><input id="authorization_slip" class="btn btn-default" type='button' name='authorization' value='Print Authorization Slip' /></a>
+
+
+>>>>>>> skh6yf_Sprint3
       </form>
+      <input type="button" class="btn btn-default" value="Authorization Slip" />
+    </div>
 </body>
 </html>
