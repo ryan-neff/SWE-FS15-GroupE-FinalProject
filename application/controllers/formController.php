@@ -15,7 +15,16 @@ class FormController extends CI_Controller {
 	}
     
     function loadRequestForm(){
-        $this->load->view('myZouSecurityRequestForm');
+        //when reloading form , get userdata for auto population
+        $user = $this->session->userdata('logged_in');
+        
+        foreach($user as $key => $value){
+          $user = $value; 
+        }
+
+        $user_info['user_info'] = $this->UserModel->getUserInfo($user);
+
+        $this->load->view('myZouSecurityRequestForm', $user_info);
     }
     
 
@@ -31,7 +40,6 @@ class FormController extends CI_Controller {
           $sess_data = array('username' => '');
           $this->session->unset_userdata('logged_in', $sess_data);
           $this->session->sess_destroy();
-          $user_data = $this->session->all_userdata();
           
           $this->load->view('loginPage');
       }
@@ -126,7 +134,17 @@ class FormController extends CI_Controller {
 		   -----------------------------------------------*/
 		   
 		if ($this->form_validation->run() == FALSE){
-			$this->load->view('myZouSecurityRequestForm');
+			//when reloading form , get userdata for auto population
+			$user = $this->session->userdata('logged_in');
+        
+        	foreach($user as $key => $value){
+          		$user = $value; 
+        	}
+
+        	$user_info['user_info'] = $this->UserModel->getUserInfo($user);
+
+       		$this->load->view('myZouSecurityRequestForm', $user_info);
+			
 		}
 		else{
 			/*gather user submission data from name attribute*/
@@ -561,8 +579,18 @@ class FormController extends CI_Controller {
 			//test if request insert was successful
 			if ($insertRequest == TRUE) 
    					$this->load->view('receiptPage');
-          	else
-   					$this->load->view('myZouSecurityRequestForm', $now);
+          	else {
+          		//when reloading form , get userdata for auto population
+          		$user = $this->session->userdata('logged_in');
+        
+		        foreach($user as $key => $value){
+		          $user = $value; 
+		        }
+
+	        	$user_info['user_info'] = $this->UserModel->getUserInfo($user);
+
+        		$this->load->view('myZouSecurityRequestForm', $user_info);
+			}
 		}	
 	}
 }
