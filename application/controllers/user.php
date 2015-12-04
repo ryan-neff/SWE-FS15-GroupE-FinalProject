@@ -14,14 +14,13 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
       }
 
    		
-   		//show login page; auto loaded without 
+   	   //show login page; auto loaded without 
       //specification of controller
    	  public function index(){
-        
    			$this->load->view('loginPage');
       }
-        public function loadRequestForm(){
         
+      public function loadRequestForm(){
    			$this->load->view('myZouSecurityRequestForm');
       }
     
@@ -148,7 +147,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
       
       public function check_login() {
         $this->form_validation->set_rules('loginUsername', 'Username', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('loginPassword', 'Password', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('loginPassword', 'Password', 'trim|required|xss_clean|callback_validateCreds['.$this->input->post('loginUsername').']');
         $this->form_validation->set_message('validateCreds', 'The username or password is incorrect');
    			
           $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
@@ -201,12 +200,10 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
           $this->load->view('loginPage');
       }
         
-      public function viewProfile(){
-            
+      public function viewProfile(){   
             $this->load->view('homePage');
             $user_data = $this->session->all_userdata();
-            print_r($user_data);
-         
+            print_r($user_data); 
       }  
         
       public function checkSelectBox($selection){
@@ -215,10 +212,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     
       public function validateCreds($password,$username){
         $data = array(
-   					'username' => $password,
-   					'password' => $username
+   					'username' => $username,
+   					'password' => $password
    				);
-
    					
    	    return $this->UserModel->login($data);
       } //end login validation funciton 
