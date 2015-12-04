@@ -848,37 +848,6 @@
 	
 	<hr/>
 	
-	<!-- still needs formatting-->
-	<div class="form-group">
-		<table class="student-border">
-			<tbody>
-				<thead>
-					<h3><u>Authorization</u></h3>
-					<p>Return to:	Student Information Systems 130 Jesse Hall</p>
-				</thead>
-				<tr>
-					<td colspan="2">By signing, I understand any access given me is for University purposes as part of my job responsibilities. I am
-						responsible for exercising due care to protect this information from unauthorized discloser by safeguarding my
-						password(s) and ensuring the data I obtain is disseminated only through approved University channels.
-						Unauthorized access and use/dissemination of data, are serious offenses, which may be subjected to disciplinary
-						action.
-					</td>
-				<tr>
-					<td id="authorize">*Employee Signature:</td>
-					<td width="475"></td>
-				</tr>
-				<tr>
-					<td id="authorize">*Department Head (or designee) Signature:</td>
-					<td width="475"></td>
-				</tr>
-				<tr>
-					<td id="authorize">*Dean's (or designee) Signature:</td>
-					<td width="475"></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>	
-	
 	<hr/>
 	
 	<!-- still needs formatting-->
@@ -997,17 +966,11 @@
 	</form>
 
     <form>
-<<<<<<< HEAD
-    	<p><b>You should print the form out before you submit the form and take it to Jesse Hall to get the signatures that are needed.</b></p><br />
-         <input type="button" class="btn btn-default" value="Print" onclick="window.print()" />
-=======
+        <p><b>Before submitting this form, please print the Authorization Slip and take it to get the proper signature's of authorization. Return the slip to Student Information Services at 130 Jesse Hall.</b></p><br />
+        
          <input type="button" class="btn btn-default" value="Print Form" onclick="window.print()" />
-        <a href="printAuthorization"><input id="authorization_slip" class="btn btn-default" type='button' name='authorization' value='Print Authorization Slip' /></a>
-
-
->>>>>>> skh6yf_Sprint3
+        <a href="printAuthorization" target="_blank"><input id="authorization_slip" class="btn btn-default" type='button' name='authorization' value='Print Authorization Slip' /></a>
       </form>
-      <input type="button" class="btn btn-default" value="Authorization Slip" />
     </div>
 </body>
 </html>

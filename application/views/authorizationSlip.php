@@ -29,6 +29,10 @@
                 text-align: center;
                 width: 100%;
             }
+            
+            .student-border {
+                border: solid black;
+            }
         </style>
 <div class="form-group">
 		<table class="student-border">
