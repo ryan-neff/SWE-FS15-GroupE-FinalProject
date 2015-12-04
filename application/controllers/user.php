@@ -191,6 +191,16 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    				}
    			}
       }//end login funciton 
+      
+      public function printAuthorization() {
+      	$this->load->view('authorizationSlip');
+      	
+      
+      }
+      
+      public function home() {
+      	$this->load->view('homePage');
+      }
    	
       public function logoutUser(){
           $sess_data = array('username' => '');

@@ -995,7 +995,10 @@
 	</form>
 
     <form>
-         <input type="button" class="btn btn-default" value="Print" onclick="window.print()" />
+         <input type="button" class="btn btn-default" value="Print Form" onclick="window.print()" />
+        <a href="printAuthorization"><input id="authorization_slip" class="btn btn-default" type='button' name='authorization' value='Print Authorization Slip' /></a>
+
+
       </form>
 </body>
 </html>
