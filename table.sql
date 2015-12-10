@@ -8,22 +8,23 @@ CREATE SCHEMA securityRequests;
 
 CREATE TABLE user (
 	pawPrintSSO varchar(26) PRIMARY KEY, #this size may change depending on whether or not it needs to be more than 6 chars
-	EmpID integer(8),
-	fullName varchar(50),
-	title varchar(10),
-	phoneNumber bigint(10),
-	email varchar(50),
-	FERPAscore float(5,2),
-	campusAddress varchar(100),
-	academicOrg varchar(32),
-	isStudentWorker boolean DEFAULT FALSE,
-	isUGRD boolean DEFAULT FALSE,
-	isGRAD boolean DEFAULT FALSE,
-	isMED boolean DEFAULT FALSE,
-	isVETMED boolean DEFAULT FALSE,
-	isLAW boolean DEFAULT FALSE
+	EmpID integer(8), #the user's Employee (or student) ID number
+	fullName varchar(50), #full name of the user
+ 	title varchar(10), # Mr, Mrs, etc
+	phoneNumber bigint(10), #the user's phone number
+	email varchar(50), #the user's email address
+	FERPAscore float(5,2), #the score the user got on their FERPA quiz
+	campusAddress varchar(100), #their address on campus
+	academicOrg varchar(32), #what academic organization they belong to
+	isStudentWorker boolean DEFAULT FALSE, #are they a student worker?
+	isUGRD boolean DEFAULT FALSE, #are they an undergrad?
+	isGRAD boolean DEFAULT FALSE, #are they a graduate student
+	isMED boolean DEFAULT FALSE, #are they a med student
+	isVETMED boolean DEFAULT FALSE, #are they a vet student
+	isLAW boolean DEFAULT FALSE #are they a law student
 );
 
+#test users
 INSERT INTO user VALUES ('abc123', 12345678, 'Testy McTesterson', 'Professor', 5735551234, 'testyM@missouri.edu', 89.624, '132 test st', 'Education', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO user VALUES ('def456', 87654321, 'new kid', 'student', 3823332828, 'nbk123@mail.missouri.edu', 100, '59 main st', 'Engineering', TRUE, TRUE, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 
@@ -35,18 +36,19 @@ CREATE TABLE authentication (
 	PRIMARY KEY (pawPrintSSO) 
 );
 
+#auth values for the test users
 INSERT INTO authentication VALUES 
 ('abc123', 'b295d117135a9763da282e7dae73a5ca7d3e5b11', 'd411466b66bd3688d13f7000612a3e1eb0e6bdfe'), #salt is the sha1 version of "salt" and the password is "password". It has been combined with the hashed salt into "b295d117135a9763da282e7dae73a5ca7d3e5b11password" and then hashed again into "d411466b66bd3688d13f7000612a3e1eb0e6bdfe"
 ('def456', 'a415ab5cc17c8c093c015ccdb7e552aee7911aa4', '9d033ea2b2a4387561e2ffdfd6bfe64ab90a4e83'); # the password is test1234
 
 
 CREATE TABLE request (
-	submittedBy varchar(26) REFERENCES securityRequests.user(pawPrintSSO),
-	dateSubmitted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	isNew boolean DEFAULT TRUE,
-	isCopy boolean DEFAULT FALSE,
-	isValidFERPA boolean DEFAULT FALSE,
-	accessDesc varchar(256),
+	submittedBy varchar(26) REFERENCES securityRequests.user(pawPrintSSO), #who submitted this request
+	dateSubmitted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, #when was this request submitted
+	isNew boolean DEFAULT TRUE, #is it a new request?
+	isCopy boolean DEFAULT FALSE, #is it a copy of someone else's request?
+	isValidFERPA boolean DEFAULT FALSE, #does the user submitting this request have a FERPA > 85
+	accessDesc varchar(256), #Description of the access requested
 	#all of these are specific access vars
 	basicInq boolean DEFAULT FALSE, #basic inquey view access
 	advancedInqView boolean DEFAULT FALSE, #advanced inquery view access
@@ -72,7 +74,7 @@ CREATE TABLE request (
 	selfServiceAdvisor boolean DEFAULT FALSE, #View Advisee photo, addresses, service indicators, emergency contacts, telephone numbers, grades, class schedule, enrollment appointment, print academic advising profile (even though desc says view the box on the form is update)
 	fiscalOfficer boolean DEFAULT FALSE, #view enrollment summary, term statistics and UM term statistics
 	academicAdvisingProfile boolean DEFAULT FALSE, #allows printing of the academic advising profile (also update box)
-	#these are for viewing specific test scores
+	#these are for viewing specific test scores (all formatted view<name of test>)
 	viewACT boolean DEFAULT FALSE,
 	viewSAT boolean DEFAULT FALSE,
 	viewGRE boolean DEFAULT FALSE,
@@ -110,5 +112,6 @@ CREATE TABLE request (
 	PRIMARY KEY(submittedBy, dateSubmitted)
 );
 
+#test request
 INSERT INTO request VALUES
 ('abc123', DEFAULT, DEFAULT, DEFAULT, DEFAULT, 'Description here', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
