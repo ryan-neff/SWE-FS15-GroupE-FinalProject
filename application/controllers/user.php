@@ -36,14 +36,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
       }
     
         
-       
-       /* 
-       |  The following function will be used for creating a login feature for the user
-       |  ------------------------------------------------------------------------------------
-       |   Takes the pawprint (SSO) and desired password from the user input. 
-       |   it will then encrypt the password and pass it to the User model
-       |   to be then inserted into the database.
-      */
+
       public function new_user_registration() {
    			//correct form
    			$this->form_validation->set_rules('firstName', 'First Name', 'trim|required||alpha|min_length[4]|max_length[25]|xss_clean');
@@ -64,9 +57,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    	        
   			
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('loginPage');
+            $this->load->view('loginPage'); //if form valid isn't met reset back to login page
         } 
-        else {
+        else { //check the grad selection 
           
           if($this->input->post('education') == "ugrd"){
             $isUGRD = 1;
@@ -139,7 +132,9 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 						'hashedPassword' => $pwHash
 					);
    					
-   			  $result_register = $this->UserModel->insert_authen($authen_data);
+
+   				//insert user data and authen data into DB thru user model 
+   			    $result_register = $this->UserModel->insert_authen($authen_data);
    				$result_authen = $this->UserModel->insert_user($user_data);
    					   					
    				if ($result_register== TRUE && $result_authen== TRUE) {
@@ -155,7 +150,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
           		else {
    						$this->load->view('loginPage');
    				}
-   			}//end else		
+   			}	
    	  }//end registration funciton 
       
       
@@ -183,7 +178,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					'password' => $this->input->post('loginPassword')
    				);
 
-   					
+   				//check username against passwords in DB thru user model 
    				$result = $this->UserModel->login($data);
 			
    				if ($result == TRUE) {
@@ -224,11 +219,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
           $this->load->view('loginPage');
       }
         
-      public function viewProfile(){   
-            $this->load->view('homePage');
-            $user_data = $this->session->all_userdata();
-            print_r($user_data); 
-      }  
+
         
       public function checkSelectBox($selection){
         return $selection == "false" ? FALSE : TRUE;
@@ -242,37 +233,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					
    	    return $this->UserModel->login($data);
       } //end login validation funciton 
-     
-        
 
-      /*  
-      |	Once the user has filled in the remainder of the data neccesary to fill the 
-      |	tuple in the database the following function should be called to update the information
-      |--------------------------------------------------------------------------------------------
-      |   update_user_information  <- Will take all neccesary form input from the user
-      |								and will pass it to the User model along with the
-      |								users pawprint (SSO) in order to update that users
-      |								fields in the database.
-      */ 
-      public function update_user_information(){
-        $sso = $this->insert->post('pawprint');
-        $user_data = array(
-        		'EmpID'=> $this->input->post('emp_id'),
-    				'fullName' => $this->input->post('username'),
-    				'title' => $this->input->post('title'),
-    				'phoneNumber' => $this->input->post('phone'),
-    				'FERPAscore' => $this->input->post('ferpa'),
-    				'campusAddress' => $this->input->post('address'),
-    				'academicOrg' => $this->input->post('org'),
-    				'isUGRD' => $this->input->post('ugrd'),
-    				'isGRAD' => $this->input->post('grad'),
-    				'isMED' => $this->input->post('med'),
-    				'isVETMED' => $this->input->post('vet med'),
-    				'isLAW' => $this->input->post('law')
-        );
-        		//add email and student_Worker 
-        	
-        $this->UserModel->update_user_info($user_data,$sso);
-      } //end update user function
 }
 ?>
