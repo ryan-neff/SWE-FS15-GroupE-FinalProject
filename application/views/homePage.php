@@ -54,6 +54,7 @@
                             <br>
                             <a href="loadRequestForm"><input id="begin_registration" class="btn btn-default" type='submit' name='begin_registration' value='Request' /></a>
                             <a href="logoutUser"><input id="logout" class="btn btn-default" type='button' name='logout' value='Logout' /></a>
+                            
                         </h3>
                     </th>
                 </tr>

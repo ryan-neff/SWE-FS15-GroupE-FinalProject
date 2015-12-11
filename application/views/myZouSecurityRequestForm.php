@@ -151,6 +151,19 @@
 </head>
 
 <body style="border: double black; border-width: 5px; padding: 5px; align: center;">
+	<?php
+
+        $pawprint = $user_info['user'];
+        $username = $user_info['fullName'];
+        $emp_ID = $user_info['id'];
+        $title = $user_info['title'];
+        $org = $user_info['academicOrg'];
+        $address = $user_info['campusAddress'];
+        $phone = $user_info['phoneNumber'];
+        $ferpa = $user_info['FERPAscore'];
+	?>
+
+	<a href="viewProfile"><input type="button" class="btn btn-default" value="Home" name="Home" /> </a>
 	
 	<?php echo form_open('index.php/formController/submitRequest'); ?>
 	<!-- Page 1 -->
@@ -164,14 +177,14 @@
 					</td>
 					<td id="form-control">
 						<?php echo form_error('username'); ?>
-						<input type="text" class="form-control" name="username" value="<?php echo set_value('username'); ?>" size="50" placeholder="Username" >
+						<input type="text" class="form-control" name="username" value="<?php echo $username; ?>" size="50" placeholder="Username" >
 					</td>
 					<td>
 						<label for="pawprint">*Pawprint/SSO:</label>
 					</td>
 					<td>
 						<?php echo form_error('pawprint'); ?>
-						<input type="text" class="form-control" id="pawprint" name="pawprint" value="<?php echo set_value('pawprint'); ?>" size="6" placeholder="Pawprint">
+						<input type="text" class="form-control" id="pawprint" name="pawprint" value="<?php echo $pawprint; ?>" size="6" placeholder="Pawprint">
 					</td>
 				</tr>
 				<tr>
@@ -180,14 +193,14 @@
 					</td>
 					<td id="form-control">
 						<?php echo form_error('title'); ?>
-						<input type="text" class="form-control" id="title" name="title" value="<?php echo set_value('title'); ?>" size="10" placeholder="Title">
+						<input type="text" class="form-control" id="title" name="title" value="<?php echo $title; ?>" size="10" placeholder="Title">
 					</td>
 					<td>
 						<label for="emp_ID">*Employee ID:</label>
 					</td>
 					<td>
 						<?php echo form_error('emp_ID'); ?>
-						<input type="text" class="form-control" id="emp_ID" name="emp_ID" value="<?php echo set_value('emp_ID'); ?>" size="8" placeholder="Employee ID">
+						<input type="text" class="form-control" id="emp_ID" name="emp_ID" value="<?php echo $emp_ID; ?>" size="8" placeholder="Employee ID">
 					</td>
 				</tr>
 				<tr>
@@ -196,14 +209,14 @@
 					</td>
 					<td id="form-control">
 						<?php echo form_error('org'); ?>
-						<input type="text" class="form-control" id="org" name="org" value="<?php echo set_value('org'); ?>" size="32" placeholder="Organization">
+						<input type="text" class="form-control" id="org" name="org" value="<?php echo $org; ?>" size="32" placeholder="Organization">
 					</td>
 					<td>
 						<label for="address">*Campus Address:</label>
 					</td>
 					<td>
 						<?php echo form_error('address'); ?>
-						<input type="text" class="form-control" id="address" name="address" value="<?php echo set_value('address'); ?>" size="100" placeholder="Campus address">
+						<input type="text" class="form-control" id="address" name="address" value="<?php echo $address; ?>" size="100" placeholder="Campus address">
 					</td>
 				</tr>
 				<tr>
@@ -218,7 +231,7 @@
 					</td>
 					<td>
 						<?php echo form_error('phone'); ?>
-						<input type="phone" class="form-control" id="phone" name="phone" value="<?php echo set_value('phone'); ?>" placeholder="7738769999" />
+						<input type="phone" class="form-control" id="phone" name="phone" value="<?php echo $phone; ?>" placeholder="7738769999" />
 					</td>
 				</tr>
 			</tbody>
@@ -316,7 +329,7 @@
     					To request access to the FERPA tutorial and access the FERPA quiz can be done at <a href="http://myzoutraining.missouri.edu/ferpareq.php"> myZou Training </a>.
     				</td>
     				<td>
-    					FERPA SCORE: <input class="form-control" type="text" name="ferpa" value="<?php echo set_value('ferpa'); ?>" />
+    					FERPA SCORE: <input class="form-control" type="text" name="ferpa" value="<?php echo $ferpa; ?>" />
     				</td>
 				</tr>
 			</tbody>
@@ -846,37 +859,6 @@
 	
 	<hr/>
 	
-	<!-- still needs formatting-->
-	<div class="form-group">
-		<table class="student-border">
-			<tbody>
-				<thead>
-					<h3><u>Authorization</u></h3>
-					<p>Return to:	Student Information Systems 130 Jesse Hall</p>
-				</thead>
-				<tr>
-					<td colspan="2">By signing, I understand any access given me is for University purposes as part of my job responsibilities. I am
-						responsible for exercising due care to protect this information from unauthorized discloser by safeguarding my
-						password(s) and ensuring the data I obtain is disseminated only through approved University channels.
-						Unauthorized access and use/dissemination of data, are serious offenses, which may be subjected to disciplinary
-						action.
-					</td>
-				<tr>
-					<td id="authorize">*Employee Signature:</td>
-					<td width="475"></td>
-				</tr>
-				<tr>
-					<td id="authorize">*Department Head (or designee) Signature:</td>
-					<td width="475"></td>
-				</tr>
-				<tr>
-					<td id="authorize">*Dean's (or designee) Signature:</td>
-					<td width="475"></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>	
-	
 	<hr/>
 	
 	<!-- still needs formatting-->
@@ -995,10 +977,11 @@
 	</form>
 
     <form>
-    	<p><b>You should print the form out before you submit the form and take it to Jesse Hall to get the signatures that are needed.</b></p><br />
-         <input type="button" class="btn btn-default" value="Print" onclick="window.print()" />
+        <p><b>Before submitting this form, please print the Authorization Slip and take it to get the proper signature's of authorization. Return the slip to Student Information Services at 130 Jesse Hall.</b></p><br />
+        
+         <input type="button" class="btn btn-default" value="Print Form" onclick="window.print()" />
+        <a href="printAuthorization" target="_blank"><input id="authorization_slip" class="btn btn-default" type='button' name='authorization' value='Print Authorization Slip' /></a>
       </form>
-      <input type="button" class="btn btn-default" value="Authorization Slip" />
     </div>
 </body>
 </html>

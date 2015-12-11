@@ -14,33 +14,36 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
       }
 
    		
-   		//show login page; auto loaded without 
+   	   //show login page; auto loaded without 
       //specification of controller
    	  public function index(){
-        
    			$this->load->view('loginPage');
       }
-        public function loadRequestForm(){
         
-   			$this->load->view('myZouSecurityRequestForm');
+      public function loadRequestForm(){
+   			//when reloading form , get userdata for auto population
+        $user = $this->session->userdata('logged_in');
+        
+        foreach($user as $key => $value){
+          $user = $value; 
+        }
+
+
+        $user_info['user_info'] = $this->UserModel->getUserInfo($user);
+
+        $this->load->view('myZouSecurityRequestForm', $user_info);
+
       }
     
         
-       
-       /* 
-       |  The following function will be used for creating a login feature for the user
-       |  ------------------------------------------------------------------------------------
-       |   Takes the pawprint (SSO) and desired password from the user input. 
-       |   it will then encrypt the password and pass it to the User model
-       |   to be then inserted into the database.
-      */
+
       public function new_user_registration() {
    			//correct form
    			$this->form_validation->set_rules('firstName', 'First Name', 'trim|required||alpha|min_length[4]|max_length[25]|xss_clean');
    			$this->form_validation->set_rules('lastName', 'Last Name', 'trim|required||alpha|min_length[4]|max_length[25]|xss_clean');
-        	$this->form_validation->set_rules('pawprint', 'Pawprint', 'trim|required||apha_numeric|exact_length[6]|xss_clean');
-        	$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[50]|xss_clean');
-        	$this->form_validation->set_rules('empID', 'Employee ID', 'trim|required|integer|exact_length[8]|xss_clean');
+        $this->form_validation->set_rules('pawprint', 'Pawprint', 'trim|required||apha_numeric|exact_length[6]|xss_clean');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[50]|xss_clean');
+        $this->form_validation->set_rules('empID', 'Employee ID', 'trim|required|integer|exact_length[8]|xss_clean');
    			$this->form_validation->set_rules('title', 'Title', 'trim|required|max_length[10]|xss_clean');
    			$this->form_validation->set_rules('phone', 'Phone Number', 'trim|required|integer|exact_length[10]|xss_clean');
    			$this->form_validation->set_rules('ferpa', 'FERPA Score', 'trim|required||decimal|max_length[6]|less_than[100.01]|xss_clean');
@@ -48,16 +51,15 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    			$this->form_validation->set_rules('academicOrg', 'Academic Organization', 'trim|required|max_length[32]|xss_clean');
    			$this->form_validation->set_rules('education', 'Education Selection', 'callback_checkSelectBox');
    			$this->form_validation->set_message('checkSelectBox', 'You have to select something other than the default');
-			$this->form_validation->set_rules('createPassword', 'Password', 'trim|required|xss_clean');
+			  $this->form_validation->set_rules('createPassword', 'Password', 'trim|required|xss_clean');
    			$this->form_validation->set_rules('confirmPassword', 'Confirm Password', 'trim|required|matches[createPassword]|xss_clean');
-          
-          $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
    	        
   			
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('loginPage');
+            $this->load->view('loginPage'); //if form valid isn't met reset back to login page
         } 
-        else {
+        else { //check the grad selection 
           
           if($this->input->post('education') == "ugrd"){
             $isUGRD = 1;
@@ -95,13 +97,13 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
             $isLAW = 1;
           }
           
-          $fist = $this->input->post('firstName');
+          $first = $this->input->post('firstName');
           $last = $this->input->post('lastName');
-          $fullName = $fist.$last;
+          $fullName = $first.$last;
           $isStudentWorker = 0;
             
    				$user_data = array (
-            		'pawPrintSSO' => $this->input->post('pawprint'),
+            'pawPrintSSO' => $this->input->post('pawprint'),
    					'EmpID' => $this->input->post('empID'),
    					'fullName' => $fullName,
    					'title' => $this->input->post('title'),
@@ -111,7 +113,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					'campusAddress' => $this->input->post('campusAddress'),
    					'academicOrg' => $this->input->post('academicOrg'),
    					'isStudentWorker' => $isStudentWorker,
-                    'isUGRD' => $isUGRD,
+            'isUGRD' => $isUGRD,
    					'isGRAD' => $isGRAD,
    					'isMED' => $isMED,
    					'isVETMED' => $isVETMED,
@@ -130,25 +132,31 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 						'hashedPassword' => $pwHash
 					);
    					
+
+   				//insert user data and authen data into DB thru user model 
    			    $result_register = $this->UserModel->insert_authen($authen_data);
    				$result_authen = $this->UserModel->insert_user($user_data);
-   				
-   			
    					   					
    				if ($result_register== TRUE && $result_authen== TRUE) {
-   						echo "Registration successfull!";
-   						$this->load->view('homePage', $user_data);
+   						
+              $session_data = array(
+                'username' => $this->input->post('pawprint')
+              );
+            
+              //add user data in session
+              $this->session->set_userdata('logged_in', $session_data);
+   					  $this->load->view('homePage');
    				} 
           		else {
    						$this->load->view('loginPage');
    				}
-   			}//end else		
+   			}	
    	  }//end registration funciton 
       
       
       public function check_login() {
         $this->form_validation->set_rules('loginUsername', 'Username', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('loginPassword', 'Password', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('loginPassword', 'Password', 'trim|required|xss_clean|callback_validateCreds['.$this->input->post('loginUsername').']');
         $this->form_validation->set_message('validateCreds', 'The username or password is incorrect');
    			
           $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
@@ -170,7 +178,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    					'password' => $this->input->post('loginPassword')
    				);
 
-   					
+   				//check username against passwords in DB thru user model 
    				$result = $this->UserModel->login($data);
 			
    				if ($result == TRUE) {
@@ -191,6 +199,16 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
    				}
    			}
       }//end login funciton 
+      
+      public function printAuthorization() {
+      	$this->load->view('authorizationSlip');
+      	
+      
+      }
+      
+      public function home() {
+      	$this->load->view('homePage');
+      }
    	
       public function logoutUser(){
           $sess_data = array('username' => '');
@@ -201,13 +219,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
           $this->load->view('loginPage');
       }
         
-      public function viewProfile(){
-            
-            $this->load->view('homePage');
-            $user_data = $this->session->all_userdata();
-            print_r($user_data);
-         
-      }  
+
         
       public function checkSelectBox($selection){
         return $selection == "false" ? FALSE : TRUE;
@@ -215,44 +227,12 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     
       public function validateCreds($password,$username){
         $data = array(
-   					'username' => $password,
-   					'password' => $username
+   					'username' => $username,
+   					'password' => $password
    				);
-
    					
    	    return $this->UserModel->login($data);
       } //end login validation funciton 
-     
-        
 
-      /*  
-      |	Once the user has filled in the remainder of the data neccesary to fill the 
-      |	tuple in the database the following function should be called to update the information
-      |--------------------------------------------------------------------------------------------
-      |   update_user_information  <- Will take all neccesary form input from the user
-      |								and will pass it to the User model along with the
-      |								users pawprint (SSO) in order to update that users
-      |								fields in the database.
-      */ 
-      public function update_user_information(){
-        $sso = $this->insert->post('pawprint');
-        $user_data = array(
-        		'EmpID'=> $this->input->post('emp_id'),
-    				'fullName' => $this->input->post('username'),
-    				'title' => $this->input->post('title'),
-    				'phoneNumber' => $this->input->post('phone'),
-    				'FERPAscore' => $this->input->post('ferpa'),
-    				'campusAddress' => $this->input->post('address'),
-    				'academicOrg' => $this->input->post('org'),
-    				'isUGRD' => $this->input->post('ugrd'),
-    				'isGRAD' => $this->input->post('grad'),
-    				'isMED' => $this->input->post('med'),
-    				'isVETMED' => $this->input->post('vet med'),
-    				'isLAW' => $this->input->post('law')
-        );
-        		//add email and student_Worker 
-        	
-        $this->UserModel->update_user_info($user_data,$sso);
-      } //end update user function
 }
 ?>

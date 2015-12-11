@@ -66,5 +66,29 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
         }
         else return FALSE;
     }
+
+    public function getUserInfo($user){
+      $this->db->select('PawprintSSO,EmpID,fullName,title,phoneNumber,FERPAscore,campusAddress,academicOrg');
+      $this->db->where('PawprintSSO', $user);
+      $this->db->from('user');
+      $query = $this->db->get();
+      
+      if($query->num_rows() > 0){ 
+          foreach ($query->result_array() as $row) {
+            $user_info = array(
+              'user' => $row['PawprintSSO'],
+              'id' => $row['EmpID'],
+              'fullName' => $row['fullName'],
+              'title' => $row['title'],
+              'phoneNumber' => $row['phoneNumber'],
+              'FERPAscore' => $row['FERPAscore'],
+              'campusAddress' => $row['campusAddress'],
+              'academicOrg' => $row['academicOrg']
+            );
+          }
+      }
+
+      return $user_info;
+    }
 }
 ?>
