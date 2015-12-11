@@ -15,32 +15,21 @@ class FormController extends CI_Controller {
 	}
     
     function loadRequestForm(){
-        //when reloading form , get userdata for auto population
-        $user = $this->session->userdata('logged_in');
-        
-        foreach($user as $key => $value){
-          $user = $value; 
-        }
-
-        $user_info['user_info'] = $this->UserModel->getUserInfo($user);
-
-        $this->load->view('myZouSecurityRequestForm', $user_info);
+        $this->load->view('myZouSecurityRequestForm');
     }
     
 
-    public function viewProfile(){
-            
-            $this->load->view('homePage');
-            $user_data = $this->session->all_userdata();
-            print_r($user_data);
-         
+    function viewProfile(){    
+        $this->load->view('homePage');
     }
    
-    public function logoutUser(){
+    function logoutUser(){
+          //sets username in sess data to blank and unsets the sess data
           $sess_data = array('username' => '');
           $this->session->unset_userdata('logged_in', $sess_data);
           $this->session->sess_destroy();
           
+          //redirect to login page agfter logout
           $this->load->view('loginPage');
       }
 	
@@ -134,17 +123,8 @@ class FormController extends CI_Controller {
 		   -----------------------------------------------*/
 		   
 		if ($this->form_validation->run() == FALSE){
-			//when reloading form , get userdata for auto population
-			$user = $this->session->userdata('logged_in');
-        
-        	foreach($user as $key => $value){
-          		$user = $value; 
-        	}
 
-        	$user_info['user_info'] = $this->UserModel->getUserInfo($user);
-
-       		$this->load->view('myZouSecurityRequestForm', $user_info);
-			
+       		$this->load->view('myZouSecurityRequestForm');
 		}
 		else{
 			/*gather user submission data from name attribute*/
@@ -506,12 +486,18 @@ class FormController extends CI_Controller {
 				$studentGroupsUpdate = 1;
 			else
 				$studentGroupsUpdate = 0;
-		
+			
+
+			//sets time zone 
             ini_set( 'date.timezone', 'America/Chicago' );
+            
+            // formats date and time for pk in DB
+            //2015-12-05 17:19:44
 			$now = strftime("%F,%T");
+			
+			//make request array
 			$request_data = array(
 				'submittedBy' => $pawPrintSSO,
-				//%F = Year-month-day %T = hour:min:sec
 				'dateSubmitted' => $now,
 				'isNew' => $isNew,
 				'isCopy' => $isCopy,
@@ -580,15 +566,7 @@ class FormController extends CI_Controller {
 			if ($insertRequest == TRUE) 
    					$this->load->view('receiptPage');
           	else {
-          		//when reloading form , get userdata for auto population
-          		$user = $this->session->userdata('logged_in');
-        
-		        foreach($user as $key => $value){
-		          $user = $value; 
-		        }
-
-	        	$user_info['user_info'] = $this->UserModel->getUserInfo($user);
-
+          		
         		$this->load->view('myZouSecurityRequestForm', $user_info);
 			}
 		}	
